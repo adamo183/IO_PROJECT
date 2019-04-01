@@ -1,9 +1,8 @@
 #pragma once
-
 #include <QtWidgets/QMainWindow>
-#include <QVBoxLayout>
-#include <QPushButton>
-#include <QLabel>
+#include <QtWidgets/QVBoxLayout>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QLabel>
 #include <vector>
 #include "ui_main_win.h"
 
