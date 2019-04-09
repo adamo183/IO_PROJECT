@@ -23,6 +23,7 @@ main_win::main_win(QWidget *parent)
 		QString color = colors.at(std::rand() % colors.size());
 		lbl->setText("<center><h1 style='color: " + color + ";'>Hello World!</h1></center>");
 	});
+	int i = 0;
 }
 
 main_win::~main_win()
