@@ -21,5 +21,5 @@ private:
 	QPushButton * button;
 	QLabel * lbl;
 
-	std::vector<QString> colors = { "yellow", "green", "red", "blue", "brown", "orange", "black" };
+	std::vector<QString> colors = { "yellow", "green", "red", "blue", "brown", "orange", "black","white"};
 };
