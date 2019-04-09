@@ -22,4 +22,5 @@ private:
 	QLabel * lbl;
 
 	std::vector<QString> colors = { "yellow", "green", "red", "blue", "brown", "orange", "black","white"};
+	int x;
 };
