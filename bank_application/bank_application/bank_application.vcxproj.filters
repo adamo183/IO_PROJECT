@@ -45,9 +45,6 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Qt Resources">
-      <UniqueIdentifier>{513d5439-cb3c-43a9-8524-29c43785ede8}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -69,6 +66,7 @@
     <CustomBuild Include="GeneratedFiles\moc_predefs.h.cbt">
       <Filter>Generated Files</Filter>
     </CustomBuild>
+    
     <ClInclude Include="GeneratedFiles\ui_main_win.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
@@ -82,13 +80,5 @@
     <QtRcc Include="main_win.qrc">
       <Filter>Resource Files</Filter>
     </QtRcc>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="bank_application.pro">
-      <Filter>Qt Resources</Filter>
-    </None>
-    <None Include="bank_application.pri">
-      <Filter>Qt Resources</Filter>
-    </None>
   </ItemGroup>
 </Project>
