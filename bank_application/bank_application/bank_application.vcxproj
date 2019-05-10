@@ -229,6 +229,10 @@
     <QtRcc Include="main_win.qrc">
     </QtRcc>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="bank_application.pri" />
+    <None Include="bank_application.pro" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
     <Import Project="$(QtMsBuild)\qt.targets" />
