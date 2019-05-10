@@ -53,9 +53,15 @@
     <ClCompile Include="main_win.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="DB_Holder.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="main_win.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="Thread_synch.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>
