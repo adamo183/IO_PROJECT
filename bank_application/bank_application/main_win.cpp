@@ -1,11 +1,10 @@
 #include "main_win.h"
-#include "page_h.h"
 
 main_win::main_win(QWidget *parent)
-	: QMainWindow(parent), window(nullptr)
+	: QMainWindow(parent)
 {
-	
-	/*
+	ui.setupUi(this);
+
 	timer = new QTimer;
 	timer->setInterval(300);
 
@@ -43,12 +42,4 @@ main_win::main_win(QWidget *parent)
 
 	});
 	T1.detach();
-	*/
-	ui.setupUi(this);
-	Page *login_site = new Page(this);
-	window->setFixedSize(591, 400);
-	window = new QStackedWidget(this);
-	window->addWidget(login_site);
-
-	setCentralWidget(window);
 }

@@ -6,12 +6,10 @@
 #include <QMessageBox>
 #include <QLabel>
 #include <QTimer>
-#include <QStackedWidget>
 
 #include "ui_main_win.h"
 #include "DB_Holder.h"
 #include "Thread_synch.h"
-
 
 class main_win : public QMainWindow
 {
@@ -31,7 +29,6 @@ private:
 	std::pair<QDateTime, QString> test_record;
 	QLabel * output;
 	QTimer * timer;
-	QStackedWidget* window;
 
 	Thread_synch thread_synch;
 	DB_Holder db;
