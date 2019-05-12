@@ -54,7 +54,13 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="DB_Holder.cpp">
-      <Filter>Generated Files</Filter>
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Thread_synch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="page.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -62,6 +68,9 @@
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="Thread_synch.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="page_h.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>
@@ -88,7 +97,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DB_Holder.h">
-      <Filter>Generated Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
