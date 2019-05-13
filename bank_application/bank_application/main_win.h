@@ -28,11 +28,10 @@ public:
 private:
 	Ui::main_winClass ui;
 
-	std::pair<QDateTime, QString> test_record;
+	
 	QLabel * output;
 	QTimer * timer;
 	QStackedWidget* window;
 
-	Thread_synch thread_synch;
-	DB_Holder db;
+
 };

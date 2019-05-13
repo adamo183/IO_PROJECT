@@ -47,7 +47,7 @@ std::pair<QDateTime, QString> DB_Holder::GetTest()
 
 			return std::pair<QDateTime, QString>(query.value(0).toDateTime(), query.value(1).toString());
 		}
-	return std::pair<QDateTime, QString>(QDateTime::currentDateTime(), "err");
+	return std::pair<QDateTime, QString>(QDateTime::currentDateTime(), "error database connection");
 }
 
 

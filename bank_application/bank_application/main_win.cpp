@@ -45,6 +45,7 @@ main_win::main_win(QWidget *parent)
 	T1.detach();
 	
 	
+	
 	*/
 	Page *login_site = new Page(this);
 
@@ -52,5 +53,6 @@ main_win::main_win(QWidget *parent)
 	window->addWidget(login_site);
 
 	setCentralWidget(window);
+	
 	
 }
