@@ -1,9 +1,7 @@
 #include "Page.h"
 
-void Page::wait_for_the_thread_and_hide(const QString & process_description) {
+void Page::wait_for_the_thread_and_hide() {
 	setHidden(false);
-
-	process_descript = process_description;
 
 	connect(&thread_synch, &Thread_synch::changed, this, [&]() {
 

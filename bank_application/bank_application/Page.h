@@ -26,7 +26,7 @@ public slots:
 	virtual void setHidden(bool emitSignal = true) { emit hide(); };
 
 protected slots:
-	void wait_for_the_thread_and_hide(const QString & process_description = "Working");
+	void wait_for_the_thread_and_hide();
 
 public:
 	Page(QScrollArea *parent, const QString & css ) : parent(parent), CSS(css) {};
@@ -36,6 +36,7 @@ protected:
 
 	virtual bool work_in_new_thread() { return true; };
 	void setCSS() { parent->setStyleSheet(CSS); };
+	void setProcessDescription(const QString & desc) { process_descript = desc; };
 
 	QScrollArea * parent = Q_NULLPTR;
 	QGroupBox * group_box = Q_NULLPTR;

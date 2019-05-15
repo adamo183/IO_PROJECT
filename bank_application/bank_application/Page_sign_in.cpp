@@ -81,6 +81,7 @@ void Page_sign_in::showPage()
 
 	setCSS();
 
+	setProcessDescription("Please wait!");
 	connect(send_butt, SIGNAL(clicked()), this, SLOT(wait_for_the_thread_and_hide()));
 }
 
