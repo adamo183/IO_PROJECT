@@ -1,0 +1,105 @@
+/*-------------------QScrollArea-------------------*/
+QScrollArea {
+	border-image: url(media/background.jpg) 0 0 0 0 stretch stretch;
+	border-width: 0px;
+	
+}
+
+/*--------------------QGroupBox--------------------*/
+QGroupBox {
+	background-color: rgba(28, 160, 28, 0.65);
+	border: 2px solid rgb(4, 107, 4);
+	border-radius: 10%;
+	/*margin: 15px;*/
+	padding: 10px;
+}
+
+/*-------------------QPushButton-------------------*/
+QPushButton { 
+
+	background-color: rgb(11, 216, 4); 
+	border: 2px solid green; 
+	border-radius: 5%;
+	height: 30px;
+	width: 170px;
+}
+
+QPushButton:hover {
+	background-color: rgb(123, 243, 123);
+	border-color:  rgb(44, 139, 44);
+	cursor: alias;
+}
+
+QPushButton:hover:pressed { 
+	background-color: rgb(80, 157, 245);
+	border-color: rgb(53, 96, 146);
+	color: blue; 
+}
+
+/*-------------------QRadioButton------------------*/
+QRadioButton {
+	background-color: rgba(0, 128, 0, 0);
+}
+
+/*--------------------QLineEdit--------------------*/
+QLineEdit {
+	background-color: rgb(11, 216, 4); 
+	border: 2px solid green; 
+	border-radius: 5%;
+
+}
+
+QLineEdit:hover {
+	background-color: rgb(123, 243, 123);
+	border-color:  rgb(44, 139, 44);
+}
+
+QLineEdit:focus {
+	background-color: white;
+}
+
+QLineEdit:disabled {
+	background-color: white;
+}
+
+/*----------------------QLabel---------------------*/
+QLabel {	
+	font-size: 15px;
+	border-radius: 5px;
+	background-color: rgba(255, 255, 255, 0.4);
+	padding: 5px;
+}
+
+QLabel#movie {	
+	background-color: rgba(255, 255, 255, 0);
+	padding: 5px;
+}
+
+/*---------------------QComboBox-------------------*/
+QComboBox {
+	background-color: rgb(11, 216, 4);
+	border: 2px solid green;
+	border-radius: 5px;
+	text-align: center;
+	padding-left: 10px;
+}
+
+QComboBox:hover {
+	background-color: rgb(123, 243, 123);
+	border-color:  rgb(44, 139, 44);
+}
+
+QComboBox::drop-down {
+	background-color: rgb(11, 216, 4);
+	border-radius: 5px;
+}
+
+QComboBox::down-arrow {
+	position: absolute;
+	width: 6px;
+	height: 6px;
+	background: rgba(0, 0, 0, 0);
+	border-bottom: 2px solid rgb(44, 139, 44);
+	border-left: 2px solid rgb(44, 139, 44);
+	color: rgba(0, 0, 0, 0);
+}
