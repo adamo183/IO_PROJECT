@@ -13,6 +13,9 @@
 #include <QMovie>
 #include <QGroupBox>
 #include <QScrollArea>
+#include <QTextEdit>
+#include <QLineEdit>
+
 
 class Page : public QObject
 {

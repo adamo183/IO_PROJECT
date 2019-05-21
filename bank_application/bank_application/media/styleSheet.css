@@ -110,3 +110,21 @@ QPushButton#menu_bton {
 QPushButton#out_bton{
     width:50px;
 }
+
+QLabel#curr_lab
+{
+    width:200px;
+}
+QFrame#acc_frame
+{
+    border: 1px solid black;
+    border-radius:20px;
+
+}
+QLabel#quick_lab {
+    width: 200px;
+}
+QFrame#quick_wid {
+    border: 1px solid black;
+    border-radius: 20px;
+}
