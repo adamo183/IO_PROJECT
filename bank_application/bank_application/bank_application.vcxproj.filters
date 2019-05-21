@@ -47,13 +47,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="main_win.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="DB_Holder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Page.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Page_general_view.cpp">
@@ -62,28 +59,46 @@
     <ClCompile Include="Page_sign_in.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Page.cpp">
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="main_win.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="main_win.h">
+    <ClInclude Include="DB_Holder.h">
       <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="Thread_synch.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
+    </ClInclude>
     <QtMoc Include="Page.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <ClInclude Include="Page_general_view.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Page_sign_in.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <QtMoc Include="Thread_synch.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="main_win.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <ClInclude Include="GeneratedFiles\ui_main_win.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_main_win.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="GeneratedFiles\moc_main_win.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
     <CustomBuild Include="GeneratedFiles\moc_predefs.h.cbt">
       <Filter>Generated Files</Filter>
     </CustomBuild>
+    <ClInclude Include="GeneratedFiles\ui_main_win.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="main_win.ui">
@@ -94,19 +109,5 @@
     <QtRcc Include="main_win.qrc">
       <Filter>Resource Files</Filter>
     </QtRcc>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="DB_Holder.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Page_sign_in.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GeneratedFiles\ui_main_win.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Page_general_view.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>

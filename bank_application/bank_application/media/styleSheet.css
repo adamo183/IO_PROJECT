@@ -103,3 +103,10 @@ QComboBox::down-arrow {
 	border-left: 2px solid rgb(44, 139, 44);
 	color: rgba(0, 0, 0, 0);
 }
+
+QPushButton#menu_bton {
+    width:50px;
+}
+QPushButton#out_bton{
+    width:50px;
+}
