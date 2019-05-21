@@ -77,6 +77,7 @@ public:
 
 };
 
+
 namespace Ui {
     class main_winClass: public Ui_main_winClass {};
 } // namespace Ui
