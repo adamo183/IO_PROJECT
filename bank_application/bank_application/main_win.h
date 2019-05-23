@@ -4,6 +4,7 @@
 #include <QFile>
 #include <QTextStream>
 #include <QHBoxLayout>
+#include <QIcon>
 
 #include "ui_main_win.h"
 #include "Page_sign_in.h"

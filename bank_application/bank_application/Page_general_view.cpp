@@ -24,8 +24,8 @@ void Page_general_view::showPage()
 
 	auto topWigdet = new QWidget;
 	auto top_bar = new QHBoxLayout(topWigdet);
-	auto menu_bton = new QPushButton;
-	auto out_bton = new QPushButton;
+	auto menu_bton = new QPushButton("Menu");
+	auto out_bton = new QPushButton("Logout");
 	
 	parent->setLayout(main_lay);
 	main_lay->addWidget(topWigdet);
@@ -54,7 +54,7 @@ void Page_general_view::showPage()
 	acc_bar->addLayout(box_layout);
 	box_layout->setAlignment(Qt::AlignTop);
 	
-	auto acc_frame = new QFrame;
+	auto acc_frame = new QGroupBox;
 	box_layout->addWidget(acc_frame);
 	acc_frame->setLayout(data_lay);
 	auto money = new QLabel("$9999");
@@ -78,7 +78,7 @@ void Page_general_view::showPage()
 	acc_frame->setFixedWidth(200);
 
 	//quick transfer
-	auto quick_wid = new QFrame;
+	auto quick_wid = new QGroupBox;
 	auto quick_lab = new QLabel("Quick Transfer");
 	quick_lab->setObjectName("quick_lab");
 	auto quick_grid = new QGridLayout(quick_wid);

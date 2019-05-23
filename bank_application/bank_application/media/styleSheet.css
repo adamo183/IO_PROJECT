@@ -1,14 +1,13 @@
 /*-------------------QScrollArea-------------------*/
 QScrollArea {
-	border-image: url(media/background.jpg) 0 0 0 0 stretch stretch;
+	background-color: #2E2F41;
 	border-width: 0px;
 	
 }
 
 /*--------------------QGroupBox--------------------*/
 QGroupBox {
-	background-color: rgba(28, 160, 28, 0.65);
-	border: 2px solid rgb(4, 107, 4);
+	background-color: #393A4D;
 	border-radius: 10%;
 	/*margin: 15px;*/
 	padding: 10px;
@@ -17,21 +16,14 @@ QGroupBox {
 /*-------------------QPushButton-------------------*/
 QPushButton { 
 
-	background-color: rgb(11, 216, 4); 
-	border: 2px solid green; 
+	background-color: #EFEFEF;
 	border-radius: 5%;
 	height: 30px;
 	width: 170px;
 }
 
-QPushButton:hover {
-	background-color: rgb(123, 243, 123);
-	border-color:  rgb(44, 139, 44);
-	cursor: alias;
-}
-
 QPushButton:hover:pressed { 
-	background-color: rgb(80, 157, 245);
+	background-color: #289793;
 	border-color: rgb(53, 96, 146);
 	color: blue; 
 }
@@ -43,15 +35,11 @@ QRadioButton {
 
 /*--------------------QLineEdit--------------------*/
 QLineEdit {
-	background-color: rgb(11, 216, 4); 
-	border: 2px solid green; 
-	border-radius: 5%;
-
+	background-color: rgb(196, 197, 199);
 }
 
 QLineEdit:hover {
-	background-color: rgb(123, 243, 123);
-	border-color:  rgb(44, 139, 44);
+	background-color: #e2e2e2;
 }
 
 QLineEdit:focus {

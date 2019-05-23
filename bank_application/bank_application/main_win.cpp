@@ -5,6 +5,9 @@ main_win::main_win(QWidget *parent)
 {
 	ui.setupUi(this);
 
+	setWindowTitle("My bank");
+	setWindowIcon(QIcon("media/icon.ico"));
+
 	// wyglad
 	centralWidget()->layout()->setContentsMargins(0, 0, 0, 0);
 	statusBar()->hide();
