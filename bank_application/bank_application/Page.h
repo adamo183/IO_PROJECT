@@ -2,6 +2,7 @@
 
 #include "DB_Holder.h"
 #include "Thread_synch.h"
+#include "account.h"
 
 #include <chrono>
 #include <thread>
@@ -36,6 +37,8 @@ public:
 	virtual ~Page() {};
 
 protected:
+
+	
 
 	virtual bool work_in_new_thread() { return true; };
 	void setCSS() { parent->setStyleSheet(CSS); };

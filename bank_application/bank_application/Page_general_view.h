@@ -1,5 +1,6 @@
 #pragma once
 #include "Page.h"
+#include "account.h"
 
 class Page_general_view :
 	public Page
@@ -7,7 +8,7 @@ class Page_general_view :
 	DB_Holder * db_holder = nullptr;
 	
 	QLabel * lbl = Q_NULLPTR;
-
+	account* User = Q_NULLPTR;
 
 public:
 	void showPage() override;

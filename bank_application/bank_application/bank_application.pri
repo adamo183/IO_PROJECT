@@ -7,13 +7,15 @@
 message("You are running qmake on a generated .pro file. This may not work!")
 
 
-HEADERS += ./DB_Holder.h \
+HEADERS += ./account.h \
+    ./DB_Holder.h \
     ./Page_general_view.h \
     ./Page_sign_in.h \
     ./Page.h \
     ./Thread_synch.h \
     ./main_win.h
-SOURCES += ./DB_Holder.cpp \
+SOURCES += ./account.cpp \
+    ./DB_Holder.cpp \
     ./Page.cpp \
     ./Page_general_view.cpp \
     ./Page_sign_in.cpp \

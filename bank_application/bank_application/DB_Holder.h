@@ -1,5 +1,6 @@
 #pragma once
 
+#include "account.h"
 #include <QtSql>
 #include <QSqlDatabase>
 #include <QSqlQuery>
@@ -21,7 +22,9 @@ public:
 	bool Connect();
 
 	QString GetLastError() { return last_error; };
+
 	
+
 	// test table
 	bool DownloadTest();
 	std::pair<QDateTime, QString> GetTest();

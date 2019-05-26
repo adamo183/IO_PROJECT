@@ -10,6 +10,7 @@
 #include "Page_sign_in.h"
 #include "Page_general_view.h"
 #include "DB_Holder.h"
+#include "account.h"
 
 class main_win : public QMainWindow
 {

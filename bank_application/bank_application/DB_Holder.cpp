@@ -36,6 +36,7 @@ bool DB_Holder::DownloadTest()
 		if (Connect()) {
 
 			query.exec("SELECT date_time, str from `test` WHERE id = 1");
+			//query.exec("")
 
 			last_error = query.lastError().text();
 
@@ -46,7 +47,7 @@ bool DB_Holder::DownloadTest()
 				return false;
 			}
 
-			test = std::pair<QDateTime, QString>(query.value(0).toDateTime(), query.value(1).toString());
+		//	test = std::pair<QDateTime, QString>(query.value(0).toDateTime(), query.value(1).toString());
 
 			return true;
 		}

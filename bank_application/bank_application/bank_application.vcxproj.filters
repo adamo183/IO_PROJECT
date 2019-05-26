@@ -65,6 +65,9 @@
     <ClCompile Include="main_win.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="account.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DB_Holder.h">
@@ -85,15 +88,6 @@
     <QtMoc Include="main_win.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <ClInclude Include="GeneratedFiles\ui_main_win.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GeneratedFiles\ui_main_win.h">
-      <Filter>Generated Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GeneratedFiles\ui_main_win.h">
-      <Filter>Generated Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="GeneratedFiles\moc_predefs.h.cbt">
@@ -112,5 +106,10 @@
     <QtRcc Include="main_win.qrc">
       <Filter>Resource Files</Filter>
     </QtRcc>
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="account.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
 </Project>

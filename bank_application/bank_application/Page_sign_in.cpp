@@ -21,6 +21,8 @@ void Page_sign_in::showPage()
 	auto pass_lab = new QLabel("Haslo:");
 	auto login_field = new QLineEdit;
 	auto pass_field = new QLineEdit;
+
+	pass_field->setEchoMode(QLineEdit::Password);
 	send_butt = new QPushButton("Sign in");
 
 

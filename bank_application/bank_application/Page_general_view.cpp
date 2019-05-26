@@ -1,5 +1,5 @@
 #include "Page_general_view.h"
-
+#include "account.h"
 
 void Page_general_view::showPage()
 {
@@ -18,7 +18,9 @@ void Page_general_view::showPage()
 	lbl->setText(ans);
 	main_lay->addWidget(lbl);
 	*/
-	//top bar 
+	//top bar
+	User = new account;
+
 	group_box = new QGroupBox;
 	main_lay = new QVBoxLayout(group_box);
 
@@ -79,6 +81,7 @@ void Page_general_view::showPage()
 
 	//quick transfer
 	auto quick_wid = new QGroupBox;
+	quick_wid->setFixedHeight(150);
 	auto quick_lab = new QLabel("Quick Transfer");
 	quick_lab->setObjectName("quick_lab");
 	auto quick_grid = new QGridLayout(quick_wid);
@@ -89,6 +92,8 @@ void Page_general_view::showPage()
 	auto iwant_transf = new QLabel("I want to transfer..");
 	auto from = new QLabel("From this account..");
 	auto to = new QLabel("To this account..");
+	auto send = new QPushButton("Send");
+	auto showMore = new QPushButton("See more..");
 
 	auto transf_field = new QLineEdit;
 	auto from_field = new QLineEdit;
@@ -101,9 +106,11 @@ void Page_general_view::showPage()
 	quick_grid->addWidget(transf_field, 1, 0);
 	quick_grid->addWidget(from_field,1,1);
 	quick_grid->addWidget(to_field, 1, 2);
-	
+	quick_grid->addWidget(send, 3, 0);
+	quick_grid->addWidget(showMore, 3, 2);
 
 	setCSS();
+	
 }
 void Page_general_view::setHidden(bool emitSignal) {
 	isHidden = true;

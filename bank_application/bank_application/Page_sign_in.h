@@ -1,12 +1,12 @@
 #pragma once
 #include "Page.h"
-
+#include "account.h"
 #include <QLineEdit>
 
 class Page_sign_in :
 	public Page
 {
-	DB_Holder * db_holder = nullptr;
+	
 
 	QPushButton * send_butt = Q_NULLPTR;
 	QLabel * lbl = Q_NULLPTR;
@@ -21,5 +21,8 @@ public:
 	Page_sign_in(QScrollArea * parent = Q_NULLPTR, DB_Holder * db = nullptr, const QString & CSS = "") : Page(parent, CSS), db_holder(db) {};
 
 	~Page_sign_in();
+
+protected:
+	DB_Holder * db_holder = nullptr;
 };
 
