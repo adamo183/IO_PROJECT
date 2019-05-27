@@ -54,6 +54,30 @@ bool DB_Holder::DownloadTest()
 	return false;
 }
 
+bool DB_Holder::Login(QString *name,QString *pass)
+{
+	
+	
+	QString pass_f = QString::fromStdString(md5(pass->toStdString()));
+	
+	if (!db.isOpen())
+	{
+		if (Connect())
+		{
+			query.exec("SELECT id_uzytkow FROM `LOGIN` WHERE Nazwa_uz = "+*name+" AND Haslo = "+pass);
+		}
+
+		if (query.size() != 1)
+			return false;
+	}
+	//to be continued....
+	
+	
+	
+	
+	return true;
+}
+
 std::pair<QDateTime, QString> DB_Holder::GetTest()
 {
 	return test;

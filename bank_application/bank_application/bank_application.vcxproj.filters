@@ -68,6 +68,9 @@
     <ClCompile Include="account.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="md5.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DB_Holder.h">
@@ -88,6 +91,9 @@
     <QtMoc Include="main_win.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <ClInclude Include="md5.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="GeneratedFiles\moc_predefs.h.cbt">

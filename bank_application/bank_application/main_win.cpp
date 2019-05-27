@@ -20,6 +20,7 @@ main_win::main_win(QWidget *parent)
 
 	ui.main_scrollArea->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 
+	
 
 	// strony
 	page_sign_in = new Page_sign_in(ui.main_scrollArea, &db_holder, css);

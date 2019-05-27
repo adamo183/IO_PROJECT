@@ -13,3 +13,10 @@ void account::setAccData(int u_id, QString nm, QString srnm, QString acc_n, QStr
 	credit_id = cr_id;
 
 }
+
+bool account::getUserData(DB_Holder hold)
+{
+
+
+	return false;
+}

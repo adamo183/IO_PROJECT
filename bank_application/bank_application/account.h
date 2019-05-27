@@ -1,6 +1,7 @@
 #pragma once
-#include <QObject>
+
 #include <QWidget>
+#include "DB_Holder.h"
 
 class account :public QObject
 {
@@ -34,5 +35,5 @@ public:
 		int getCreditId() const { return credit_id; }
 
 		
-		bool getUserData() { return true; };
+		bool getUserData(DB_Holder base);
 };

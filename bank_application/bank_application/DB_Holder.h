@@ -1,11 +1,11 @@
 #pragma once
 
-#include "account.h"
 #include <QtSql>
 #include <QSqlDatabase>
 #include <QSqlQuery>
 #include <QString>
 #include <QDateTime>
+#include "md5.h"
 
 class DB_Holder
 {
@@ -20,6 +20,7 @@ public:
 	~DB_Holder();
 
 	bool Connect();
+	bool Login(QString *name, QString *Pass);
 
 	QString GetLastError() { return last_error; };
 

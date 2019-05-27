@@ -84,6 +84,7 @@ void Page_sign_in::showPage()
 	setCSS();
 
 	setProcessDescription("Please wait!");
+	connect(send_butt, SIGNAL(clicked()),SLOT(set_login_data(login_field->text(),pass_field->text())));
 	connect(send_butt, SIGNAL(clicked()), this, SLOT(wait_for_the_thread_and_hide()));
 }
 
@@ -104,7 +105,12 @@ bool Page_sign_in::work_in_new_thread()
 	bool downloaded_success = false;
 
 	thread_synch.start();
-	downloaded_success = db_holder->DownloadTest();
+
+
+	//downloaded_success = db_holder->DownloadTest();
+	downloaded_success = db_holder->Login(login,password);
+
+
 	std::this_thread::sleep_for(std::chrono::milliseconds(4000));
 	thread_synch.stop();
 
@@ -118,4 +124,10 @@ Page_sign_in::~Page_sign_in()
 {
 	if(!isHidden)
 		setHidden(false);
+}
+
+void Page_sign_in::set_login_data(QString *log,QString *pas)
+{
+	login = new QString(*log);
+	password = new QString(*pas);
 }
