@@ -109,6 +109,13 @@ void Page_general_view::showPage()
 	quick_grid->addWidget(send, 3, 0);
 	quick_grid->addWidget(showMore, 3, 2);
 
+
+	connect(out_bton, &QPushButton::clicked, this, [this]() {
+		
+		setHidden();
+		emit logout();
+	});
+
 	setCSS();
 	
 }

@@ -16,4 +16,5 @@ public:
 
 	Page_general_view(QScrollArea * parent = Q_NULLPTR, DB_Holder * db = nullptr, const QString & CSS = "") : Page(parent, CSS), db_holder(db) {};
 	~Page_general_view();
+	   
 };

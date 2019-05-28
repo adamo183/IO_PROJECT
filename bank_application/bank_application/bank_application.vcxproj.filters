@@ -59,13 +59,13 @@
     <ClCompile Include="Page_sign_in.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="account.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="main_win.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="account.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="md5.cpp">
@@ -88,6 +88,9 @@
     <QtMoc Include="Thread_synch.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="account.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
     <QtMoc Include="main_win.h">
       <Filter>Header Files</Filter>
     </QtMoc>
@@ -96,9 +99,14 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    
+    
+    
+    
     <CustomBuild Include="GeneratedFiles\moc_predefs.h.cbt">
       <Filter>Generated Files</Filter>
     </CustomBuild>
+    
     <ClInclude Include="GeneratedFiles\ui_main_win.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
@@ -112,10 +120,5 @@
     <QtRcc Include="main_win.qrc">
       <Filter>Resource Files</Filter>
     </QtRcc>
-  </ItemGroup>
-  <ItemGroup>
-    <QtMoc Include="account.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
   </ItemGroup>
 </Project>
