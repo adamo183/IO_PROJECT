@@ -6,6 +6,8 @@
 #include <QString>
 #include <QDateTime>
 #include "md5.h"
+#include "account.h"
+class account;
 
 class DB_Holder
 {
@@ -20,10 +22,10 @@ public:
 	~DB_Holder();
 
 	bool Connect();
-	bool Login(QString *name, QString *Pass);
+	bool Login(QString *name, QString *Pass,account *user);
 
 	QString GetLastError() { return last_error; };
-
+	QSqlDatabase getDB() { return db; }
 	
 
 	// test table

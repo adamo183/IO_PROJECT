@@ -1,5 +1,5 @@
 #include "DB_Holder.h"
-
+#include "account.h"
 #include <chrono>
 #include <thread>
 #include <QDebug>
@@ -18,7 +18,7 @@ bool DB_Holder::Connect()
 	db.open();
 
 	if (db.isOpen()) {
-		query = QSqlQuery(db);
+		//query = QSqlQuery(db);
 		last_error = db.lastError().text();
 	}
 	else {
@@ -32,6 +32,7 @@ bool DB_Holder::Connect()
 /* true - ok, false - error */
 bool DB_Holder::DownloadTest()
 {
+	QSqlQuery query;
 	if (!db.isOpen())
 		if (Connect()) {
 
@@ -54,28 +55,42 @@ bool DB_Holder::DownloadTest()
 	return false;
 }
 
-bool DB_Holder::Login(QString *name,QString *pass)
+bool DB_Holder::Login(QString *name,QString *pass,account* user)
 {
 	
 	
 	QString pass_f = QString::fromStdString(md5(pass->toStdString()));
+	//QSqlQuery query(db);
+
 	
-	if (!db.isOpen())
-	{
+	int u_id;
+	
 		if (Connect())
 		{
-			query.exec("SELECT id_uzytkow FROM `LOGIN` WHERE Nazwa_uz = "+*name+" AND Haslo = "+pass);
+			query.exec(("SELECT * FROM `LOGIN` WHERE Nazwa_uz = '"+*name+"' AND Haslo = '"+pass_f+"'"));
+			
+			if (query.size() == 1)
+			{
+				query.next();
+				u_id = query.value(0).toInt();
+				last_error = query.lastError().text();
+				
+				return true;
+			}
+			else
+			{
+				last_error = "Invalid username or password!";
+				return false;
+			}
 		}
+	
 
-		if (query.size() != 1)
-			return false;
-	}
-	//to be continued....
+		last_error = query.lastError().text();
+		return false;
 	
 	
 	
 	
-	return true;
 }
 
 std::pair<QDateTime, QString> DB_Holder::GetTest()

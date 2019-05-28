@@ -3,6 +3,8 @@
 
 void Page_sign_in::showPage()
 {
+	user = new account;
+
 	isHidden = false;
 	group_box = new QGroupBox(this->parent);
 	main_lay = new QVBoxLayout(group_box);
@@ -89,8 +91,7 @@ void Page_sign_in::showPage()
 		set_login_data(login_field->text(), pass_field->text() );
 		wait_for_the_thread_and_hide();
 	});
-	//connect(send_butt, SIGNAL(clicked()),SLOT(set_login_data(login_field->text(),pass_field->text())));
-	//connect(send_butt, SIGNAL(clicked()), this, SLOT(wait_for_the_thread_and_hide()));
+
 }
 
 void Page_sign_in::setHidden(bool emitSignal)
@@ -113,7 +114,7 @@ bool Page_sign_in::work_in_new_thread()
 
 
 	//downloaded_success = db_holder->DownloadTest();
-	downloaded_success = db_holder->Login(login,password);
+	downloaded_success = db_holder->Login(login,password,user);
 
 
 	std::this_thread::sleep_for(std::chrono::milliseconds(4000));

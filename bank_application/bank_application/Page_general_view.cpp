@@ -1,5 +1,5 @@
 #include "Page_general_view.h"
-#include "account.h"
+
 
 void Page_general_view::showPage()
 {
@@ -24,10 +24,10 @@ void Page_general_view::showPage()
 	group_box = new QGroupBox;
 	main_lay = new QVBoxLayout(group_box);
 
-	auto topWigdet = new QWidget;
-	auto top_bar = new QHBoxLayout(topWigdet);
-	auto menu_bton = new QPushButton("Menu");
-	auto out_bton = new QPushButton("Logout");
+	topWigdet = new QWidget;
+	top_bar = new QHBoxLayout(topWigdet);
+	menu_bton = new QPushButton("Menu");
+	out_bton = new QPushButton("Logout");
 	
 	parent->setLayout(main_lay);
 	main_lay->addWidget(topWigdet);
@@ -40,33 +40,33 @@ void Page_general_view::showPage()
 	out_bton->setObjectName("out_bton");
 	topWigdet->setFixedHeight(50);
 	//acc frame
-	auto acc_lab = new QLabel("My Account");
-	auto curr_lab = new QLabel("Current Account");
+	 acc_lab = new QLabel("My Account");
+	 curr_lab = new QLabel("Current Account");
 	curr_lab->setObjectName("curr_lab");
 	acc_lab->setObjectName("acc_lab");
-	auto acc_bar = new QVBoxLayout;
+	 acc_bar = new QVBoxLayout;
 
 	main_lay->addLayout(acc_bar);
 	acc_bar->setAlignment(Qt::AlignTop);
 	acc_bar->addWidget(acc_lab, 0, Qt::AlignLeft|Qt::AlignTop);
 	
 
-	auto box_layout = new QHBoxLayout;
-	auto data_lay = new QGridLayout;
+	 box_layout = new QHBoxLayout;
+	 data_lay = new QGridLayout;
 	acc_bar->addLayout(box_layout);
 	box_layout->setAlignment(Qt::AlignTop);
 	
-	auto acc_frame = new QGroupBox;
+	 acc_frame = new QGroupBox;
 	box_layout->addWidget(acc_frame);
 	acc_frame->setLayout(data_lay);
-	auto money = new QLabel("$9999");
-	auto trans_name_1 = new QLabel("Transfer_1");
-	auto trans_value_1 = new QLabel("$9999");
+	 money = new QLabel("$9999");
+	 trans_name_1 = new QLabel("Transfer_1");
+	 trans_value_1 = new QLabel("$9999");
 
-	auto trans_name_2 = new QLabel("Transfer_2");
-	auto trans_value_2 = new QLabel("$9999");
+	 trans_name_2 = new QLabel("Transfer_2");
+	 trans_value_2 = new QLabel("$9999");
 
-	auto acc_view = new QPushButton("Account Overview");
+	 acc_view = new QPushButton("Account Overview");
 	acc_frame->setObjectName("acc_frame");
 	data_lay->setAlignment(Qt::AlignTop);
 
@@ -80,24 +80,24 @@ void Page_general_view::showPage()
 	acc_frame->setFixedWidth(200);
 
 	//quick transfer
-	auto quick_wid = new QGroupBox;
+	 quick_wid = new QGroupBox;
 	quick_wid->setFixedHeight(150);
-	auto quick_lab = new QLabel("Quick Transfer");
+	 quick_lab = new QLabel("Quick Transfer");
 	quick_lab->setObjectName("quick_lab");
-	auto quick_grid = new QGridLayout(quick_wid);
+	 quick_grid = new QGridLayout(quick_wid);
 	main_lay->addWidget(quick_lab);
 	main_lay->addWidget(quick_wid);
 	quick_lab->setFixedSize(200,30);
 	quick_wid->setObjectName("quick_wid");
-	auto iwant_transf = new QLabel("I want to transfer..");
-	auto from = new QLabel("From this account..");
-	auto to = new QLabel("To this account..");
-	auto send = new QPushButton("Send");
-	auto showMore = new QPushButton("See more..");
+	 iwant_transf = new QLabel("I want to transfer..");
+	 from = new QLabel("From this account..");
+	 to = new QLabel("To this account..");
+	 send = new QPushButton("Send");
+	 showMore = new QPushButton("See more..");
 
-	auto transf_field = new QLineEdit;
-	auto from_field = new QLineEdit;
-	auto to_field = new QLineEdit;
+	 transf_field = new QLineEdit;
+	 from_field = new QLineEdit;
+	 to_field = new QLineEdit;
 
 	quick_grid->addWidget(iwant_transf, 0, 0);
 	quick_grid->addWidget(from, 0, 1);
@@ -109,7 +109,7 @@ void Page_general_view::showPage()
 	quick_grid->addWidget(send, 3, 0);
 	quick_grid->addWidget(showMore, 3, 2);
 
-
+	User->getUserData(db_holder);
 	connect(out_bton, &QPushButton::clicked, this, [this]() {
 		
 		setHidden();
@@ -125,6 +125,35 @@ void Page_general_view::setHidden(bool emitSignal) {
 	delete lbl;
 	delete main_lay;
 	delete group_box;
+	delete topWigdet;
+	delete top_bar;
+	delete menu_bton;
+	delete out_bton;
+	delete acc_lab;
+	delete curr_lab;
+	delete acc_bar;
+	delete box_layout;
+	delete data_lay;
+	delete acc_frame;
+	delete money;
+	delete trans_name_1;
+	delete trans_value_1;
+	delete trans_name_2;
+	delete trans_value_2;
+	delete acc_view;
+	delete quick_wid;
+	delete quick_lab;
+	delete quick_grid;
+	delete iwant_transf;
+	delete from;
+	delete to;
+	delete showMore;
+	delete send;
+	delete transf_field;
+	delete from_field;
+	delete to_field;
+
+
 
 	if (emitSignal) {
 		emit hide();

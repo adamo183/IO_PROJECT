@@ -14,9 +14,20 @@ void account::setAccData(int u_id, QString nm, QString srnm, QString acc_n, QStr
 
 }
 
-bool account::getUserData(DB_Holder hold)
+bool account::getUserData(DB_Holder *hold)
 {
 
+	QSqlQuery query(hold->getDB());
+	int u_id = getUserId();
+
+	if(hold->Connect())
+	{
+	//	query.exec("SELECT * FROM `UZYTKOWNIK` WHERE Id_Uzytkow = "+ u_id); query zglasza wyjatek , why ???
+	//	query.next();
+		name = query.value(1).toString();
+		surrname = query.value(2).toString();
+	}
+	 
 
 	return false;
 }

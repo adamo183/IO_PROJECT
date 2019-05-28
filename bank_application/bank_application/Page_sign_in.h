@@ -1,6 +1,6 @@
 #pragma once
 #include "Page.h"
-#include "account.h"
+
 #include <QLineEdit>
 
 class Page_sign_in :
@@ -25,9 +25,12 @@ public:
 
 	~Page_sign_in();
 
+	account* user;
+
 protected:
 	DB_Holder * db_holder = nullptr;
 	QString *login;
 	QString *password;
+	
 };
 
