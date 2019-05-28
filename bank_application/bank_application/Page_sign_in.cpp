@@ -84,8 +84,13 @@ void Page_sign_in::showPage()
 	setCSS();
 
 	setProcessDescription("Please wait!");
-	connect(send_butt, SIGNAL(clicked()),SLOT(set_login_data(login_field->text(),pass_field->text())));
-	connect(send_butt, SIGNAL(clicked()), this, SLOT(wait_for_the_thread_and_hide()));
+
+	connect(send_butt, &QPushButton::clicked, this, [this,login_field,pass_field]() {
+		set_login_data(login_field->text(), pass_field->text() );
+		wait_for_the_thread_and_hide();
+	});
+	//connect(send_butt, SIGNAL(clicked()),SLOT(set_login_data(login_field->text(),pass_field->text())));
+	//connect(send_butt, SIGNAL(clicked()), this, SLOT(wait_for_the_thread_and_hide()));
 }
 
 void Page_sign_in::setHidden(bool emitSignal)
@@ -126,8 +131,9 @@ Page_sign_in::~Page_sign_in()
 		setHidden(false);
 }
 
-void Page_sign_in::set_login_data(QString *log,QString *pas)
+void Page_sign_in::set_login_data(QString log,QString pas)
 {
-	login = new QString(*log);
-	password = new QString(*pas);
+	login = new QString(log);
+	password = new QString(pas);
+
 }

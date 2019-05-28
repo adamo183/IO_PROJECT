@@ -14,7 +14,7 @@ class Page_sign_in :
 	std::atomic<bool> download_success = false;
 
 public slots:
-	void set_login_data(QString *log, QString *pas);
+	void set_login_data(QString log, QString pas);
 
 public:
 	void showPage() override;
