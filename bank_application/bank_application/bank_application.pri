@@ -8,20 +8,20 @@ message("You are running qmake on a generated .pro file. This may not work!")
 
 
 HEADERS += ./DB_Holder.h \
-    ./md5.h \
     ./Page_general_view.h \
     ./Page_sign_in.h \
-    ./account.h \
+    ./md5.h \
     ./Page.h \
     ./Thread_synch.h \
+    ./account.h \
     ./main_win.h
-SOURCES += ./account.cpp \
-    ./DB_Holder.cpp \
-    ./md5.cpp \
+SOURCES += ./DB_Holder.cpp \
     ./Page.cpp \
     ./Page_general_view.cpp \
     ./Page_sign_in.cpp \
+    ./account.cpp \
     ./main.cpp \
-    ./main_win.cpp
+    ./main_win.cpp \
+    ./md5.cpp
 FORMS += ./main_win.ui
 RESOURCES += main_win.qrc

@@ -19,6 +19,7 @@ public:
 	   
 
 private:
+	QWidget * layout_widget = Q_NULLPTR;
 	QWidget* topWigdet = Q_NULLPTR;
 	QHBoxLayout* top_bar = Q_NULLPTR;
 	QPushButton* menu_bton = Q_NULLPTR;

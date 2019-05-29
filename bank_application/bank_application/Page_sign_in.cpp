@@ -21,8 +21,8 @@ void Page_sign_in::showPage()
 	//creating login field
 	auto login_lab = new QLabel("Login:");
 	auto pass_lab = new QLabel("Haslo:");
-	auto login_field = new QLineEdit;
-	auto pass_field = new QLineEdit;
+	auto login_field = new QLineEdit;// ("Kowalski");
+	auto pass_field = new QLineEdit;// ("1234");
 
 	pass_field->setEchoMode(QLineEdit::Password);
 	send_butt = new QPushButton("Sign in");
@@ -97,9 +97,12 @@ void Page_sign_in::showPage()
 void Page_sign_in::setHidden(bool emitSignal)
 {
 	isHidden = true;
-	delete send_butt;
-	delete main_lay;
-	delete group_box;
+
+
+	for (auto & ite : parent->widget()->children()) {
+		delete ite;
+	}
+
 	if (emitSignal) { 
 		emit hide(); 
 	}

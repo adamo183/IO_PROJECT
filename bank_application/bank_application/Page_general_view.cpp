@@ -19,6 +19,10 @@ void Page_general_view::showPage()
 	main_lay->addWidget(lbl);
 	*/
 	//top bar
+
+	QWidget * parent_widget = new QWidget(parent);
+	parent_widget->setObjectName("parent_widget");
+	parent_widget->setStyleSheet("QWidget#parent_widget { background-color: rgba(0, 0, 0, 0); }");
 	
 	User->getUserData(db_holder);
 	group_box = new QGroupBox;
@@ -28,8 +32,9 @@ void Page_general_view::showPage()
 	top_bar = new QHBoxLayout(topWigdet);
 	menu_bton = new QPushButton("Menu");
 	out_bton = new QPushButton("Logout");
+
 	
-	parent->setLayout(main_lay);
+	parent_widget->setLayout(main_lay);
 	main_lay->addWidget(topWigdet);
 
 	top_bar->addWidget(menu_bton,1,Qt::AlignLeft);
@@ -109,6 +114,8 @@ void Page_general_view::showPage()
 	quick_grid->addWidget(send, 3, 0);
 	quick_grid->addWidget(showMore, 3, 2);
 
+	parent->setWidget(parent_widget);
+
 	
 	connect(out_bton, &QPushButton::clicked, this, [this]() {
 		
@@ -122,28 +129,23 @@ void Page_general_view::showPage()
 void Page_general_view::setHidden(bool emitSignal) {
 	isHidden = true;
 
+	for (auto & ite : parent->widget()->children()) {
+		delete ite;
+	}
+		
+	/*
 	delete lbl;
-	delete main_lay;
-	delete group_box;
-	delete topWigdet;
-	delete top_bar;
 	delete menu_bton;
 	delete out_bton;
 	delete acc_lab;
 	delete curr_lab;
-	delete acc_bar;
-	delete box_layout;
-	delete data_lay;
-	delete acc_frame;
 	delete money;
 	delete trans_name_1;
 	delete trans_value_1;
 	delete trans_name_2;
 	delete trans_value_2;
 	delete acc_view;
-	delete quick_wid;
 	delete quick_lab;
-	delete quick_grid;
 	delete iwant_transf;
 	delete from;
 	delete to;
@@ -152,8 +154,17 @@ void Page_general_view::setHidden(bool emitSignal) {
 	delete transf_field;
 	delete from_field;
 	delete to_field;
-
-
+	delete data_lay;
+	delete acc_bar;
+	delete top_bar;
+	delete quick_grid;
+	delete box_layout;
+	delete acc_frame;
+	delete quick_wid;
+	delete group_box;
+	delete topWigdet;
+	delete main_lay;
+	*/
 
 	if (emitSignal) {
 		emit hide();
