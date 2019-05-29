@@ -19,8 +19,8 @@ void Page_general_view::showPage()
 	main_lay->addWidget(lbl);
 	*/
 	//top bar
-	User = new account;
-
+	
+	User->getUserData(db_holder);
 	group_box = new QGroupBox;
 	main_lay = new QVBoxLayout(group_box);
 
@@ -109,7 +109,7 @@ void Page_general_view::showPage()
 	quick_grid->addWidget(send, 3, 0);
 	quick_grid->addWidget(showMore, 3, 2);
 
-	User->getUserData(db_holder);
+	
 	connect(out_bton, &QPushButton::clicked, this, [this]() {
 		
 		setHidden();

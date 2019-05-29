@@ -19,13 +19,16 @@ bool account::getUserData(DB_Holder *hold)
 
 	QSqlQuery query(hold->getDB());
 	int u_id = getUserId();
+	query.prepare("SELECT * FROM `UZYTKOWNIK` WHERE Id_Uzytkow = :uid");
+	query.bindValue(":uid", user_id);
 
-	if(hold->Connect())
+	if(hold->Connect())		
 	{
-	//	query.exec("SELECT * FROM `UZYTKOWNIK` WHERE Id_Uzytkow = "+ u_id); query zglasza wyjatek , why ???
-	//	query.next();
+		query.exec(); 
+		query.next();
 		name = query.value(1).toString();
 		surrname = query.value(2).toString();
+		// todo: pobieranie dalszych danych , last error i jakieœ zabezpieczenia ..
 	}
 	 
 

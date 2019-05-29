@@ -27,9 +27,10 @@ private:
 	QString css = "";
 
 	QHBoxLayout * main_layout;
-
+	
 	Page * page_sign_in = Q_NULLPTR;
 	Page * page_general_view = Q_NULLPTR;
-	DB_Holder db_holder;
 
+	DB_Holder db_holder;
+	account *user = Q_NULLPTR;
 };

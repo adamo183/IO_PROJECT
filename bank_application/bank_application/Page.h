@@ -34,7 +34,7 @@ protected slots:
 	void wait_for_the_thread_and_hide();
 
 public:
-	Page(QScrollArea *parent, const QString & css ) : parent(parent), CSS(css) {};
+	Page(QScrollArea *parent, const QString & css) : parent(parent), CSS(css) {};
 	virtual ~Page() {};
 
 protected:

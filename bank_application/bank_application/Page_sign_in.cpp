@@ -3,7 +3,7 @@
 
 void Page_sign_in::showPage()
 {
-	user = new account;
+
 
 	isHidden = false;
 	group_box = new QGroupBox(this->parent);
@@ -114,7 +114,7 @@ bool Page_sign_in::work_in_new_thread()
 
 
 	//downloaded_success = db_holder->DownloadTest();
-	downloaded_success = db_holder->Login(login,password,user);
+	downloaded_success = db_holder->Login(login,password,User);
 
 
 	std::this_thread::sleep_for(std::chrono::milliseconds(4000));

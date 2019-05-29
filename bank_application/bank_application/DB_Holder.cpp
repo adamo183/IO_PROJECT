@@ -74,7 +74,7 @@ bool DB_Holder::Login(QString *name,QString *pass,account* user)
 				query.next();
 				u_id = query.value(0).toInt();
 				last_error = query.lastError().text();
-				
+				user->setUserId(u_id);
 				return true;
 			}
 			else

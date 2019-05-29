@@ -7,7 +7,7 @@ class Page_sign_in :
 	public Page
 {
 	
-
+	account *User = Q_NULLPTR;
 	QPushButton * send_butt = Q_NULLPTR;
 	QLabel * lbl = Q_NULLPTR;
 
@@ -21,16 +21,17 @@ public:
 	void setHidden(bool emitSignal = true) override;
 	bool work_in_new_thread() override;
 
-	Page_sign_in(QScrollArea * parent = Q_NULLPTR, DB_Holder * db = nullptr, const QString & CSS = "") : Page(parent, CSS), db_holder(db) {};
+	Page_sign_in(QScrollArea * parent = Q_NULLPTR, DB_Holder * db = nullptr, const QString & CSS = "" , account *user = Q_NULLPTR) : Page(parent, CSS), db_holder(db) , User(user) {};
 
 	~Page_sign_in();
 
-	account* user;
+	
 
 protected:
 	DB_Holder * db_holder = nullptr;
 	QString *login;
 	QString *password;
+	
 	
 };
 
