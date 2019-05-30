@@ -7,6 +7,7 @@ class Page_general_view :
 {
 public slots:
 	void send_transfer();
+	void new_transfer();
 
 public:
 	void showPage() override;

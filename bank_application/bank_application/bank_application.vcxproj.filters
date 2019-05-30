@@ -71,6 +71,9 @@
     <ClCompile Include="md5.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Transfer.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DB_Holder.h">
@@ -97,16 +100,14 @@
     <ClInclude Include="md5.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Transfer.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    
-    
-    
-    
     <CustomBuild Include="GeneratedFiles\moc_predefs.h.cbt">
       <Filter>Generated Files</Filter>
     </CustomBuild>
-    
     <ClInclude Include="GeneratedFiles\ui_main_win.h">
       <Filter>Generated Files</Filter>
     </ClInclude>

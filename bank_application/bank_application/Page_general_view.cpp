@@ -1,4 +1,6 @@
 #include "Page_general_view.h"
+#include "Transfer.h"
+
 
 
 void Page_general_view::showPage()
@@ -103,7 +105,7 @@ void Page_general_view::showPage()
 
 	 transf_field = new QLineEdit;
 	 title_field = new QLineEdit;
-	 to_field = new QLineEdit;
+	 to_field = new QLineEdit("12126767989845451818979752");
 
 	quick_grid->addWidget(iwant_transf, 0, 0);
 	quick_grid->addWidget(from, 0, 1);
@@ -118,6 +120,7 @@ void Page_general_view::showPage()
 	parent->setWidget(parent_widget);
 
 	connect(send, &QPushButton::clicked, this, [this]() { send_transfer(); });
+	connect(showMore, &QPushButton::clicked, this, [this]() { new_transfer(); });
 	connect(out_bton, &QPushButton::clicked, this, [this]() {
 		
 		setHidden();
@@ -126,6 +129,18 @@ void Page_general_view::showPage()
 
 	setCSS();
 	
+}
+
+void Page_general_view::new_transfer() {
+
+
+	for (auto & ite : parent->children()) {
+
+		QWidget * tmp = dynamic_cast<QWidget *>(ite);
+		if(tmp != nullptr)
+			tmp->setEnabled(false);
+
+	}
 }
 
 void Page_general_view::send_transfer() {
@@ -139,8 +154,8 @@ void Page_general_view::send_transfer() {
 	QString to_acc_number = to_field->text();
 	QString title = title_field->text();
 
-	if (amount > User->getAccBalance()) {
-		QMessageBox::information(nullptr, "Unfortunately", "You've got no money to do this transaction...");
+	if (amount <= 0) {
+		QMessageBox::information(nullptr, " ", "Only positive transfers allowed!");
 		return;
 	}
 
@@ -149,6 +164,11 @@ void Page_general_view::send_transfer() {
 		return;
 	}
 
+	QString ans = Transfer::QuickTransfer(db_holder, User, amount, to_acc_number, title);
+
+	QMessageBox::information(nullptr, " ", ans);
+
+	transf_field->setText(""); to_field->setText(""); title_field->setText("");
 }
 
 void Page_general_view::setHidden(bool emitSignal) {

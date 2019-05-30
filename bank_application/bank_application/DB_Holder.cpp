@@ -29,31 +29,7 @@ bool DB_Holder::Connect()
 	return true;
 }
 
-/* true - ok, false - error */
-bool DB_Holder::DownloadTest()
-{
-	QSqlQuery query;
-	if (!db.isOpen())
-		if (Connect()) {
 
-			query.exec("SELECT date_time, str from `test` WHERE id = 1");
-			//query.exec("")
-
-			last_error = query.lastError().text();
-
-			query.first();
-
-			if (!query.isValid()) {
-				last_error = query.lastError().text();
-				return false;
-			}
-
-		//	test = std::pair<QDateTime, QString>(query.value(0).toDateTime(), query.value(1).toString());
-
-			return true;
-		}
-	return false;
-}
 
 bool DB_Holder::Login(QString *name,QString *pass,account* user)
 {
