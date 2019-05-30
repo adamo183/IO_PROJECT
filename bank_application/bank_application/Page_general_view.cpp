@@ -41,7 +41,8 @@ void Page_general_view::showPage()
 	topWigdet->setFixedHeight(50);
 	//acc frame
 	 acc_lab = new QLabel("My Account");
-	 curr_lab = new QLabel("Current Account");
+	 curr_lab = new QLabel(User->getName()+" "+User->gatSurrname());
+	 curr_lab->setFixedWidth(200);
 	curr_lab->setObjectName("curr_lab");
 	acc_lab->setObjectName("acc_lab");
 	 acc_bar = new QVBoxLayout;
