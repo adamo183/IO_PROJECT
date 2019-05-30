@@ -74,6 +74,9 @@
     <ClCompile Include="Transfer.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
+    <ClCompile Include="Win_transfer.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DB_Holder.h">
@@ -121,5 +124,10 @@
     <QtRcc Include="main_win.qrc">
       <Filter>Resource Files</Filter>
     </QtRcc>
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="Win_transfer.h">
+      <Filter>Generated Files</Filter>
+    </QtMoc>
   </ItemGroup>
 </Project>

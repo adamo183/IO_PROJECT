@@ -208,10 +208,12 @@
     <ClCompile Include="main_win.cpp" />
     <ClCompile Include="md5.cpp" />
     <ClCompile Include="Transfer.cpp" />
+    <ClCompile Include="Win_transfer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DB_Holder.h" />
     <ClInclude Include="Transfer.h" />
+    <QtMoc Include="Win_transfer.h" />
     <QtMoc Include="Page.h">
     </QtMoc>
     <ClInclude Include="Page_general_view.h" />

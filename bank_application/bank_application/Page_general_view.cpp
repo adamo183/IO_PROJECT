@@ -133,14 +133,28 @@ void Page_general_view::showPage()
 
 void Page_general_view::new_transfer() {
 
+	auto setEnable = [this](bool enable) {
+		for (auto & ite : parent->children()) {
+			QWidget * tmp = dynamic_cast<QWidget *>(ite);
+			if (tmp != nullptr)
+				tmp->setEnabled(enable);
+		}
+	};
 
-	for (auto & ite : parent->children()) {
+	setEnable(false);
 
-		QWidget * tmp = dynamic_cast<QWidget *>(ite);
-		if(tmp != nullptr)
-			tmp->setEnabled(false);
+	win_transfer = new Win_transfer;
+	
+	QMainWindow * main_win = dynamic_cast<QMainWindow *>(parent->parent()->parent());
 
-	}
+	emit setCloseAble(false);
+
+	connect(win_transfer, &Win_transfer::closed, this, [this, setEnable]() {
+	
+		setEnable(true);
+		emit setCloseAble(true);
+		win_transfer = Q_NULLPTR;
+	});
 }
 
 void Page_general_view::send_transfer() {

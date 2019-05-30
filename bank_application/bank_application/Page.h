@@ -25,6 +25,7 @@ class Page : public QObject
 signals:
 	void hide();
 	void logout();
+	void setCloseAble(bool par);
 
 public slots:
 	virtual void showPage() = 0;

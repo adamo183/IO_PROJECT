@@ -1,5 +1,6 @@
 #pragma once
 #include "Page.h"
+#include "Win_transfer.h"
 
 
 class Page_general_view :
@@ -20,6 +21,8 @@ public:
 private:
 
 	DB_Holder * db_holder = nullptr;
+
+	Win_transfer * win_transfer = Q_NULLPTR;
 
 	QLabel * lbl = Q_NULLPTR;
 	account* User = Q_NULLPTR;

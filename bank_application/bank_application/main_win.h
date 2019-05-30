@@ -5,6 +5,7 @@
 #include <QTextStream>
 #include <QHBoxLayout>
 #include <QIcon>
+#include <QCloseEvent>
 
 #include "ui_main_win.h"
 #include "Page_sign_in.h"
@@ -15,13 +16,15 @@
 class main_win : public QMainWindow
 {
 	Q_OBJECT
-
+		
 public:
 	main_win(QWidget *parent = Q_NULLPTR);
 	~main_win();
 
-
 private:
+	bool closeAble = true;
+	void closeEvent(QCloseEvent *bar);
+
 	Ui::main_winClass ui;
 
 	QString css = "";
