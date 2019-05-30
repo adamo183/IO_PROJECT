@@ -50,6 +50,27 @@ QLineEdit:disabled {
 	background-color: white;
 }
 
+/*-----------------QPlainTextEdit------------------*/
+QPlainTextEdit {
+	background-color: rgb(196, 197, 199);
+}
+
+QPlainTextEdit:hover {
+	background-color: #e2e2e2;
+}
+
+QPlainTextEdit:focus {
+	background-color: white;
+}
+
+QPlainTextEdit:disabled {
+	background-color: white;
+}
+
+QPlainTextEdit#win_transfer {
+	height: 1000px;
+}
+
 /*----------------------QLabel---------------------*/
 QLabel {
     font-size: 15px;

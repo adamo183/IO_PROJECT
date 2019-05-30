@@ -143,9 +143,10 @@ void Page_general_view::new_transfer() {
 
 	setEnable(false);
 
-	win_transfer = new Win_transfer;
-	
-	QMainWindow * main_win = dynamic_cast<QMainWindow *>(parent->parent()->parent());
+	win_transfer = new Win_transfer(db_holder, User, CSS);
+	win_transfer->setTransferAmount(transf_field->text());
+	win_transfer->setReceiverAccNumber(to_field->text());
+	win_transfer->setTitle(title_field->text());
 
 	emit setCloseAble(false);
 
@@ -153,6 +154,9 @@ void Page_general_view::new_transfer() {
 	
 		setEnable(true);
 		emit setCloseAble(true);
+
+		transf_field->setText(""); to_field->setText(""); title_field->setText("");
+
 		win_transfer = Q_NULLPTR;
 	});
 }

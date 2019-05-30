@@ -16,7 +16,8 @@ void Page_sign_in::showPage()
 	// adamo
 
 	QLabel * title_open = new QLabel("Enter your login and password");
-	///title_open->setStyleSheet("border:1px solid black;border-radius:10px;padding:10px 120px 10px;text-align:center");
+	
+	//title_open->setStyleSheet("border:1px solid black;border-radius:10px;padding:10px 120px 10px;text-align:center");
 
 	//creating login field
 	auto login_lab = new QLabel("Login:");
@@ -120,7 +121,7 @@ bool Page_sign_in::work_in_new_thread()
 	downloaded_success = db_holder->Login(login,password,User);
 
 
-	std::this_thread::sleep_for(std::chrono::milliseconds(4000));
+	//std::this_thread::sleep_for(std::chrono::milliseconds(4000));
 	thread_synch.stop();
 
 	last_error = db_holder->GetLastError();
