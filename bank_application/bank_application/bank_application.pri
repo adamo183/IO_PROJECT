@@ -14,7 +14,12 @@ HEADERS += ./DB_Holder.h \
     ./Page.h \
     ./Thread_synch.h \
     ./account.h \
-    ./main_win.h
+    ./main_win.h \
+    ./Page_credit.h \
+    ./Page_settings.h \
+    ./Page_Trans_Hist.h \
+    ./Transfer.h \
+    ./Win_transfer.h
 SOURCES += ./DB_Holder.cpp \
     ./Page.cpp \
     ./Page_general_view.cpp \
@@ -22,6 +27,10 @@ SOURCES += ./DB_Holder.cpp \
     ./account.cpp \
     ./main.cpp \
     ./main_win.cpp \
-    ./md5.cpp
+    ./md5.cpp \
+    ./Page_credit.cpp \
+    ./Page_settings.cpp \
+    ./Page_Trans_Hist.cpp \
+    ./Win_transfer.cpp
 FORMS += ./main_win.ui
 RESOURCES += main_win.qrc

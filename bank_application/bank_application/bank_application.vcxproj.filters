@@ -75,16 +75,16 @@
       <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="Win_transfer.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Page_credit.cpp">
-      <Filter>Generated Files</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Page_Trans_Hist.cpp">
-      <Filter>Generated Files</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Page_settings.cpp">
-      <Filter>Generated Files</Filter>
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Page_credit.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -113,16 +113,16 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Transfer.h">
-      <Filter>Generated Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Page_credit.h">
-      <Filter>Generated Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Page_Trans_Hist.h">
-      <Filter>Generated Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Page_settings.h">
-      <Filter>Generated Files</Filter>
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Page_credit.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -145,7 +145,7 @@
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="Win_transfer.h">
-      <Filter>Generated Files</Filter>
+      <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>
 </Project>

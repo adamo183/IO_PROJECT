@@ -56,11 +56,11 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\Win32\Debug\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">debug\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Platform)\$(Configuration)\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">bank_application</TargetName>
     <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</IgnoreImportLibrary>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\Win32\Debug\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">release\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Platform)\$(Configuration)\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">bank_application</TargetName>
     <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</IgnoreImportLibrary>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
@@ -74,15 +74,16 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <DisableSpecificWarnings>4577;4467;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <ExceptionHandling>Sync</ExceptionHandling>
-      <ObjectFileName>debug\</ObjectFileName>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>_WINDOWS;UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;_WINDOWS;_UNICODE;_ENABLE_EXTENDED_ALIGNED_STORAGE;_WINDOWS;_UNICODE;_ENABLE_EXTENDED_ALIGNED_STORAGE;_WINDOWS;_UNICODE;_ENABLE_EXTENDED_ALIGNED_STORAGE;_WINDOWS;_UNICODE;_ENABLE_EXTENDED_ALIGNED_STORAGE;_UNICODE;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;QT_DLL;QT_SQL_LIB;QT_WIDGETS_LIB;QT_WIDGETS_LIB;QT_SQL_LIB;QT_WIDGETS_LIB;QT_SQL_LIB;QT_WIDGETS_LIB;QT_SQL_LIB;QT_WIDGETS_LIB;QT_SQL_LIB;QT_WIDGETS_LIB;QT_GUI_LIB;QT_SQL_LIB;QT_CORE_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WINDOWS;UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;_WINDOWS;_UNICODE;_ENABLE_EXTENDED_ALIGNED_STORAGE;_WINDOWS;_UNICODE;_ENABLE_EXTENDED_ALIGNED_STORAGE;_WINDOWS;_UNICODE;_ENABLE_EXTENDED_ALIGNED_STORAGE;_WINDOWS;_UNICODE;_ENABLE_EXTENDED_ALIGNED_STORAGE;_WINDOWS;_UNICODE;_ENABLE_EXTENDED_ALIGNED_STORAGE;_UNICODE;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;QT_DLL;QT_SQL_LIB;QT_WIDGETS_LIB;QT_WIDGETS_LIB;QT_SQL_LIB;QT_WIDGETS_LIB;QT_SQL_LIB;QT_WIDGETS_LIB;QT_SQL_LIB;QT_WIDGETS_LIB;QT_SQL_LIB;QT_WIDGETS_LIB;QT_SQL_LIB;QT_WIDGETS_LIB;QT_GUI_LIB;QT_SQL_LIB;QT_CORE_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessToFile>false</PreprocessToFile>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
       <WarningLevel>Level3</WarningLevel>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
     </ClCompile>
     <Link>
       <AdditionalDependencies>$(QTDIR)\lib\Qt5Widgetsd.lib;$(QTDIR)\lib\Qt5Guid.lib;$(QTDIR)\lib\Qt5Sqld.lib;$(QTDIR)\lib\Qt5Cored.lib;$(QTDIR)\lib\qtmaind.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -102,12 +103,12 @@
       <WarningLevel>0</WarningLevel>
     </Midl>
     <ResourceCompile>
-      <PreprocessorDefinitions>_WINDOWS;UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;_WINDOWS;_UNICODE;_ENABLE_EXTENDED_ALIGNED_STORAGE;_WINDOWS;_UNICODE;_ENABLE_EXTENDED_ALIGNED_STORAGE;_WINDOWS;_UNICODE;_ENABLE_EXTENDED_ALIGNED_STORAGE;_WINDOWS;_UNICODE;_ENABLE_EXTENDED_ALIGNED_STORAGE;_UNICODE;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;QT_DLL;QT_SQL_LIB;QT_WIDGETS_LIB;QT_WIDGETS_LIB;QT_SQL_LIB;QT_WIDGETS_LIB;QT_SQL_LIB;QT_WIDGETS_LIB;QT_SQL_LIB;QT_WIDGETS_LIB;QT_SQL_LIB;QT_WIDGETS_LIB;QT_GUI_LIB;QT_SQL_LIB;QT_CORE_LIB;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WINDOWS;UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;_WINDOWS;_UNICODE;_ENABLE_EXTENDED_ALIGNED_STORAGE;_WINDOWS;_UNICODE;_ENABLE_EXTENDED_ALIGNED_STORAGE;_WINDOWS;_UNICODE;_ENABLE_EXTENDED_ALIGNED_STORAGE;_WINDOWS;_UNICODE;_ENABLE_EXTENDED_ALIGNED_STORAGE;_WINDOWS;_UNICODE;_ENABLE_EXTENDED_ALIGNED_STORAGE;_UNICODE;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;QT_DLL;QT_SQL_LIB;QT_WIDGETS_LIB;QT_WIDGETS_LIB;QT_SQL_LIB;QT_WIDGETS_LIB;QT_SQL_LIB;QT_WIDGETS_LIB;QT_SQL_LIB;QT_WIDGETS_LIB;QT_SQL_LIB;QT_WIDGETS_LIB;QT_SQL_LIB;QT_WIDGETS_LIB;QT_GUI_LIB;QT_SQL_LIB;QT_CORE_LIB;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ResourceCompile>
     <QtMoc>
       <QTDIR>$(QTDIR)</QTDIR>
       <OutputFile>GeneratedFiles\moc_%(Filename).cpp</OutputFile>
-      <Define>UNICODE;_UNICODE;$(Platform);_ENABLE_EXTENDED_ALIGNED_STORAGE;_WINDOWS;_UNICODE;_ENABLE_EXTENDED_ALIGNED_STORAGE;_WINDOWS;_UNICODE;_ENABLE_EXTENDED_ALIGNED_STORAGE;_WINDOWS;_UNICODE;_ENABLE_EXTENDED_ALIGNED_STORAGE;_WINDOWS;_UNICODE;_ENABLE_EXTENDED_ALIGNED_STORAGE;_UNICODE;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;QT_DLL;QT_SQL_LIB;QT_WIDGETS_LIB;QT_WIDGETS_LIB;QT_SQL_LIB;QT_WIDGETS_LIB;QT_SQL_LIB;QT_WIDGETS_LIB;QT_SQL_LIB;QT_WIDGETS_LIB;QT_SQL_LIB;QT_WIDGETS_LIB;QT_GUI_LIB;QT_SQL_LIB;QT_CORE_LIB</Define>
+      <Define>UNICODE;_UNICODE;$(Platform);_ENABLE_EXTENDED_ALIGNED_STORAGE;_WINDOWS;_UNICODE;_ENABLE_EXTENDED_ALIGNED_STORAGE;_WINDOWS;_UNICODE;_ENABLE_EXTENDED_ALIGNED_STORAGE;_WINDOWS;_UNICODE;_ENABLE_EXTENDED_ALIGNED_STORAGE;_WINDOWS;_UNICODE;_ENABLE_EXTENDED_ALIGNED_STORAGE;_WINDOWS;_UNICODE;_ENABLE_EXTENDED_ALIGNED_STORAGE;_UNICODE;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;QT_DLL;QT_SQL_LIB;QT_WIDGETS_LIB;QT_WIDGETS_LIB;QT_SQL_LIB;QT_WIDGETS_LIB;QT_SQL_LIB;QT_WIDGETS_LIB;QT_SQL_LIB;QT_WIDGETS_LIB;QT_SQL_LIB;QT_WIDGETS_LIB;QT_SQL_LIB;QT_WIDGETS_LIB;QT_GUI_LIB;QT_SQL_LIB;QT_CORE_LIB</Define>
       <CompilerFlavor>msvc</CompilerFlavor>
       <Include>./GeneratedFiles/moc_predefs.h</Include>
       <ExecutionDescription>Moc'ing %(Identity)...</ExecutionDescription>
@@ -139,12 +140,11 @@
       <DebugInformationFormat>None</DebugInformationFormat>
       <DisableSpecificWarnings>4577;4467;%(DisableSpecificWarnings)</DisableSpecificWarnings>
       <ExceptionHandling>Sync</ExceptionHandling>
-      <ObjectFileName>release\</ObjectFileName>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
       <Optimization>MaxSpeed</Optimization>
-      <PreprocessorDefinitions>_WINDOWS;UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;_WINDOWS;_UNICODE;_ENABLE_EXTENDED_ALIGNED_STORAGE;_WINDOWS;_UNICODE;_ENABLE_EXTENDED_ALIGNED_STORAGE;_WINDOWS;_UNICODE;_ENABLE_EXTENDED_ALIGNED_STORAGE;_WINDOWS;_UNICODE;_ENABLE_EXTENDED_ALIGNED_STORAGE;_UNICODE;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;QT_DLL;QT_SQL_LIB;QT_WIDGETS_LIB;QT_WIDGETS_LIB;QT_SQL_LIB;QT_WIDGETS_LIB;QT_SQL_LIB;QT_WIDGETS_LIB;QT_SQL_LIB;QT_WIDGETS_LIB;QT_SQL_LIB;QT_NO_DEBUG;QT_WIDGETS_LIB;QT_GUI_LIB;QT_SQL_LIB;QT_CORE_LIB;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WINDOWS;UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;_WINDOWS;_UNICODE;_ENABLE_EXTENDED_ALIGNED_STORAGE;_WINDOWS;_UNICODE;_ENABLE_EXTENDED_ALIGNED_STORAGE;_WINDOWS;_UNICODE;_ENABLE_EXTENDED_ALIGNED_STORAGE;_WINDOWS;_UNICODE;_ENABLE_EXTENDED_ALIGNED_STORAGE;_WINDOWS;_UNICODE;_ENABLE_EXTENDED_ALIGNED_STORAGE;_UNICODE;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;QT_DLL;QT_SQL_LIB;QT_WIDGETS_LIB;QT_WIDGETS_LIB;QT_SQL_LIB;QT_WIDGETS_LIB;QT_SQL_LIB;QT_WIDGETS_LIB;QT_SQL_LIB;QT_WIDGETS_LIB;QT_SQL_LIB;QT_WIDGETS_LIB;QT_SQL_LIB;QT_NO_DEBUG;QT_WIDGETS_LIB;QT_GUI_LIB;QT_SQL_LIB;QT_CORE_LIB;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessToFile>false</PreprocessToFile>
-      <ProgramDataBaseFileName>
-      </ProgramDataBaseFileName>
+      <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
@@ -170,12 +170,12 @@
       <WarningLevel>0</WarningLevel>
     </Midl>
     <ResourceCompile>
-      <PreprocessorDefinitions>_WINDOWS;UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;_WINDOWS;_UNICODE;_ENABLE_EXTENDED_ALIGNED_STORAGE;_WINDOWS;_UNICODE;_ENABLE_EXTENDED_ALIGNED_STORAGE;_WINDOWS;_UNICODE;_ENABLE_EXTENDED_ALIGNED_STORAGE;_WINDOWS;_UNICODE;_ENABLE_EXTENDED_ALIGNED_STORAGE;_UNICODE;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;QT_DLL;QT_SQL_LIB;QT_WIDGETS_LIB;QT_WIDGETS_LIB;QT_SQL_LIB;QT_WIDGETS_LIB;QT_SQL_LIB;QT_WIDGETS_LIB;QT_SQL_LIB;QT_WIDGETS_LIB;QT_SQL_LIB;QT_NO_DEBUG;QT_WIDGETS_LIB;QT_GUI_LIB;QT_SQL_LIB;QT_CORE_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_WINDOWS;UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;_WINDOWS;_UNICODE;_ENABLE_EXTENDED_ALIGNED_STORAGE;_WINDOWS;_UNICODE;_ENABLE_EXTENDED_ALIGNED_STORAGE;_WINDOWS;_UNICODE;_ENABLE_EXTENDED_ALIGNED_STORAGE;_WINDOWS;_UNICODE;_ENABLE_EXTENDED_ALIGNED_STORAGE;_WINDOWS;_UNICODE;_ENABLE_EXTENDED_ALIGNED_STORAGE;_UNICODE;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;QT_DLL;QT_SQL_LIB;QT_WIDGETS_LIB;QT_WIDGETS_LIB;QT_SQL_LIB;QT_WIDGETS_LIB;QT_SQL_LIB;QT_WIDGETS_LIB;QT_SQL_LIB;QT_WIDGETS_LIB;QT_SQL_LIB;QT_WIDGETS_LIB;QT_SQL_LIB;QT_NO_DEBUG;QT_WIDGETS_LIB;QT_GUI_LIB;QT_SQL_LIB;QT_CORE_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ResourceCompile>
     <QtMoc>
       <QTDIR>$(QTDIR)</QTDIR>
       <OutputFile>GeneratedFiles\moc_%(Filename).cpp</OutputFile>
-      <Define>UNICODE;_UNICODE;$(Platform);_ENABLE_EXTENDED_ALIGNED_STORAGE;_WINDOWS;_UNICODE;_ENABLE_EXTENDED_ALIGNED_STORAGE;_WINDOWS;_UNICODE;_ENABLE_EXTENDED_ALIGNED_STORAGE;_WINDOWS;_UNICODE;_ENABLE_EXTENDED_ALIGNED_STORAGE;_WINDOWS;_UNICODE;_ENABLE_EXTENDED_ALIGNED_STORAGE;_UNICODE;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;QT_DLL;QT_SQL_LIB;QT_WIDGETS_LIB;QT_WIDGETS_LIB;QT_SQL_LIB;QT_WIDGETS_LIB;QT_SQL_LIB;QT_WIDGETS_LIB;QT_SQL_LIB;QT_WIDGETS_LIB;QT_SQL_LIB;QT_NO_DEBUG;QT_WIDGETS_LIB;QT_GUI_LIB;QT_SQL_LIB;QT_CORE_LIB</Define>
+      <Define>UNICODE;_UNICODE;$(Platform);_ENABLE_EXTENDED_ALIGNED_STORAGE;_WINDOWS;_UNICODE;_ENABLE_EXTENDED_ALIGNED_STORAGE;_WINDOWS;_UNICODE;_ENABLE_EXTENDED_ALIGNED_STORAGE;_WINDOWS;_UNICODE;_ENABLE_EXTENDED_ALIGNED_STORAGE;_WINDOWS;_UNICODE;_ENABLE_EXTENDED_ALIGNED_STORAGE;_WINDOWS;_UNICODE;_ENABLE_EXTENDED_ALIGNED_STORAGE;_UNICODE;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;QT_DLL;QT_SQL_LIB;QT_WIDGETS_LIB;QT_WIDGETS_LIB;QT_SQL_LIB;QT_WIDGETS_LIB;QT_SQL_LIB;QT_WIDGETS_LIB;QT_SQL_LIB;QT_WIDGETS_LIB;QT_SQL_LIB;QT_WIDGETS_LIB;QT_SQL_LIB;QT_NO_DEBUG;QT_WIDGETS_LIB;QT_GUI_LIB;QT_SQL_LIB;QT_CORE_LIB</Define>
       <CompilerFlavor>msvc</CompilerFlavor>
       <Include>./GeneratedFiles/moc_predefs.h</Include>
       <ExecutionDescription>Moc'ing %(Identity)...</ExecutionDescription>
@@ -215,14 +215,21 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DB_Holder.h" />
-    <ClInclude Include="Page_credit.h" />
-    <ClInclude Include="Page_settings.h" />
     <ClInclude Include="Page_Trans_Hist.h" />
     <ClInclude Include="Transfer.h" />
-    <QtMoc Include="Win_transfer.h" />
+    <QtMoc Include="Win_transfer.h">
+      <OutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\moc_%(Filename).cpp</OutputFile>
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;.;.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;.\..\..\..\..\..\..\..\..\VulkanSDK\1.0.51.0\include;$(QTDIR)\mkspecs\win32-msvc;.\..\..\..\..\..\..\..\..\VulkanSDK\1.0.51.0\include;$(QTDIR)\include;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtSql;$(QTDIR)\include\QtCore;C:\VulkanSDK\1.0.51.0\include;$(QTDIR)\mkspecs\win32-msvc</IncludePath>
+      <Define Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">_WINDOWS;UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;QT_DLL;QT_SQL_LIB;QT_WIDGETS_LIB;QT_GUI_LIB;QT_CORE_LIB;%(PreprocessorDefinitions)</Define>
+      <OutputFile Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\moc_%(Filename).cpp</OutputFile>
+      <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;.;.\GeneratedFiles\$(ConfigurationName);.\GeneratedFiles;.\..\..\..\..\..\..\..\..\VulkanSDK\1.0.51.0\include;$(QTDIR)\mkspecs\win32-msvc;.\..\..\..\..\..\..\..\..\VulkanSDK\1.0.51.0\include;$(QTDIR)\include;$(QTDIR)\include\QtWidgets;$(QTDIR)\include\QtGui;$(QTDIR)\include\QtANGLE;$(QTDIR)\include\QtSql;$(QTDIR)\include\QtCore;C:\VulkanSDK\1.0.51.0\include;$(QTDIR)\mkspecs\win32-msvc</IncludePath>
+      <Define Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">_WINDOWS;UNICODE;_UNICODE;WIN32;_ENABLE_EXTENDED_ALIGNED_STORAGE;WIN64;QT_DLL;QT_SQL_LIB;QT_WIDGETS_LIB;QT_NO_DEBUG;QT_GUI_LIB;QT_CORE_LIB;NDEBUG;%(PreprocessorDefinitions)</Define>
+    </QtMoc>
     <QtMoc Include="Page.h">
     </QtMoc>
+    <ClInclude Include="Page_credit.h" />
     <ClInclude Include="Page_general_view.h" />
+    <ClInclude Include="Page_settings.h" />
     <ClInclude Include="Page_sign_in.h" />
     <QtMoc Include="Thread_synch.h">
     </QtMoc>
@@ -259,4 +266,9 @@
     <Import Project="$(QtMsBuild)\qt.targets" />
   </ImportGroup>
   <ImportGroup Label="ExtensionTargets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties Qt5Version_x0020_Win32="msvc2017" />
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>
