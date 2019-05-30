@@ -5,6 +5,8 @@
 
 class DB_Holder;
 
+enum Sex{ FEMALE, MALE };
+
 class account :public QObject
 {
 	Q_OBJECT
@@ -13,7 +15,10 @@ private:
 	int user_id;
 	QString name;
 	QString surrname;
+	QDate born_date;
+	Sex sex;
 	QString acc_number;
+	double acc_balance;
 	QString phone_number;
 	QString adress;
 	QString nr_doc;
@@ -36,8 +41,14 @@ public:
 		QString getAdress() const { return adress; }
 		QString getDocNumber() const { return nr_doc; }
 		int getCreditId() const { return credit_id; }
+		double getAccBalance() const { return acc_balance; }
+		QDate getBornDate() const { return born_date; }
+		int getAge() const;
 
 		void setUserId(const int uid) { user_id = uid; }
 		
 		bool getUserData(DB_Holder *base);
+
+		bool hasCredit() const { return credit_id; };
+
 };

@@ -14,6 +14,13 @@ void account::setAccData(int u_id, QString nm, QString srnm, QString acc_n, QStr
 
 }
 
+int account::getAge() const {
+
+	int age = QDate::currentDate().year() - born_date.year();
+
+	return (born_date.month() > QDate::currentDate().month() ? age - 1 : age);
+}
+
 bool account::getUserData(DB_Holder *hold)
 {
 
@@ -25,9 +32,19 @@ bool account::getUserData(DB_Holder *hold)
 	if(hold->Connect())		
 	{
 		query.exec(); 
-		query.next();
+		query.first();
+
 		name = query.value(1).toString();
 		surrname = query.value(2).toString();
+		born_date = query.value(3).toDate();
+		sex = (query.value(4).toString().toUpper() == "M" ? MALE : FEMALE);
+		acc_number = query.value(5).toString();
+		acc_balance = query.value(6).toDouble();
+		phone_number = query.value(7).toString();
+		adress = query.value(8).toString();
+		nr_doc = query.value(9).toString();
+		credit_id = query.value(10).toInt();
+
 		// todo: pobieranie dalszych danych , last error i jakieœ zabezpieczenia ..
 	}
 	 

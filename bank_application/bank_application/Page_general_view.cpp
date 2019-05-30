@@ -64,7 +64,7 @@ void Page_general_view::showPage()
 	 acc_frame = new QGroupBox;
 	box_layout->addWidget(acc_frame);
 	acc_frame->setLayout(data_lay);
-	 money = new QLabel("$9999");
+	 money = new QLabel("$" + QString::number(User->getAccBalance()));
 	 trans_name_1 = new QLabel("Transfer_1");
 	 trans_value_1 = new QLabel("$9999");
 
@@ -94,14 +94,14 @@ void Page_general_view::showPage()
 	main_lay->addWidget(quick_wid);
 	quick_lab->setFixedSize(200,30);
 	quick_wid->setObjectName("quick_wid");
-	 iwant_transf = new QLabel("I want to transfer..");
-	 from = new QLabel("From this account..");
-	 to = new QLabel("To this account..");
+	 iwant_transf = new QLabel("I want to transfer:");
+	 from = new QLabel("To this account:");
+	 to = new QLabel("Transaction title:");
 	 send = new QPushButton("Send");
 	 showMore = new QPushButton("See more..");
 
 	 transf_field = new QLineEdit;
-	 from_field = new QLineEdit;
+	 title_field = new QLineEdit;
 	 to_field = new QLineEdit;
 
 	quick_grid->addWidget(iwant_transf, 0, 0);
@@ -109,14 +109,14 @@ void Page_general_view::showPage()
 	quick_grid->addWidget(to, 0, 2);
 
 	quick_grid->addWidget(transf_field, 1, 0);
-	quick_grid->addWidget(from_field,1,1);
-	quick_grid->addWidget(to_field, 1, 2);
+	quick_grid->addWidget(to_field,1,1);
+	quick_grid->addWidget(title_field, 1, 2);
 	quick_grid->addWidget(send, 3, 0);
 	quick_grid->addWidget(showMore, 3, 2);
 
 	parent->setWidget(parent_widget);
 
-	
+	connect(send, &QPushButton::clicked, this, [this]() { send_transfer(); });
 	connect(out_bton, &QPushButton::clicked, this, [this]() {
 		
 		setHidden();
@@ -126,6 +126,30 @@ void Page_general_view::showPage()
 	setCSS();
 	
 }
+
+void Page_general_view::send_transfer() {
+
+	if (transf_field->text().isEmpty() || title_field->text().isEmpty() || to_field->text().isEmpty()) {
+		QMessageBox::information(nullptr, "Empyt fields", "Fill empty fields!");
+		return;
+	}
+
+	double amount = transf_field->text().replace(",", ".").toDouble();
+	QString to_acc_number = to_field->text();
+	QString title = title_field->text();
+
+	if (amount > User->getAccBalance()) {
+		QMessageBox::information(nullptr, "Unfortunately", "You've got no money to do this transaction...");
+		return;
+	}
+
+	if (to_acc_number.size() != 26) {
+		QMessageBox::information(nullptr, "Wrong number", "Too short account number!");
+		return;
+	}
+
+}
+
 void Page_general_view::setHidden(bool emitSignal) {
 	isHidden = true;
 

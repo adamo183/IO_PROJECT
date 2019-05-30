@@ -5,10 +5,8 @@
 class Page_general_view :
 	public Page
 {
-	DB_Holder * db_holder = nullptr;
-	
-	QLabel * lbl = Q_NULLPTR;
-	account* User = Q_NULLPTR;
+public slots:
+	void send_transfer();
 
 public:
 	void showPage() override;
@@ -19,6 +17,12 @@ public:
 	   
 
 private:
+
+	DB_Holder * db_holder = nullptr;
+
+	QLabel * lbl = Q_NULLPTR;
+	account* User = Q_NULLPTR;
+
 	QWidget * layout_widget = Q_NULLPTR;
 	QWidget* topWigdet = Q_NULLPTR;
 	QHBoxLayout* top_bar = Q_NULLPTR;
@@ -45,7 +49,9 @@ private:
 	QPushButton* showMore = Q_NULLPTR;
 	QPushButton* send = Q_NULLPTR;
 	QLineEdit* transf_field = Q_NULLPTR;
-	QLineEdit* from_field = Q_NULLPTR;
+	QLineEdit* title_field = Q_NULLPTR;
 	QLineEdit* to_field = Q_NULLPTR;
+
+
 
 };
