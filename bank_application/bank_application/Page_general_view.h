@@ -31,6 +31,7 @@ private:
 	QWidget* topWigdet = Q_NULLPTR;
 	QHBoxLayout* top_bar = Q_NULLPTR;
 	QPushButton* menu_bton = Q_NULLPTR;
+	QPushButton * sett_bton = Q_NULLPTR;
 	QPushButton* out_bton = Q_NULLPTR;
 	QLabel * acc_lab = Q_NULLPTR;
 	QLabel* curr_lab = Q_NULLPTR;

@@ -116,7 +116,7 @@ QComboBox::down-arrow {
 }
 
 QPushButton#menu_bton {
-    width:50px;
+    width:100px;
 }
 QPushButton#out_bton{
     width:50px;

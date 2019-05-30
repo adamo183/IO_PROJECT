@@ -25,6 +25,9 @@ class Page : public QObject
 signals:
 	void hide();
 	void logout();
+	void creditPage();
+	void transHistPage();
+	void settPage();
 	void setCloseAble(bool par);
 
 public slots:

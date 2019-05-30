@@ -8,8 +8,6 @@ void Page_sign_in::showPage()
 	isHidden = false;
 	group_box = new QGroupBox(this->parent);
 	main_lay = new QVBoxLayout(group_box);
-	//button = new QPushButton("Download from db");
-
 	
 	group_box->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
 
@@ -103,6 +101,7 @@ void Page_sign_in::setHidden(bool emitSignal)
 	for (auto & ite : parent->widget()->children()) {
 		delete ite;
 	}
+	delete group_box;
 
 	if (emitSignal) { 
 		emit hide(); 
@@ -114,16 +113,11 @@ bool Page_sign_in::work_in_new_thread()
 {
 	bool downloaded_success = false;
 
-	thread_synch.start();
-
-
-	//downloaded_success = db_holder->DownloadTest();
 	downloaded_success = db_holder->Login(login,password,User);
+	downloaded_success = User->getUserData(db_holder);
 
-
-	//std::this_thread::sleep_for(std::chrono::milliseconds(4000));
-	thread_synch.stop();
-
+	std::this_thread::sleep_for(std::chrono::milliseconds(500));
+	
 	last_error = db_holder->GetLastError();
 
 	return downloaded_success;

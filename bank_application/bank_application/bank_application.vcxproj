@@ -201,17 +201,23 @@
   <ItemGroup>
     <ClCompile Include="DB_Holder.cpp" />
     <ClCompile Include="Page.cpp" />
+    <ClCompile Include="Page_credit.cpp" />
     <ClCompile Include="Page_general_view.cpp" />
+    <ClCompile Include="Page_settings.cpp" />
     <ClCompile Include="Page_sign_in.cpp" />
     <ClCompile Include="account.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="main_win.cpp" />
     <ClCompile Include="md5.cpp" />
+    <ClCompile Include="Page_Trans_Hist.cpp" />
     <ClCompile Include="Transfer.cpp" />
     <ClCompile Include="Win_transfer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DB_Holder.h" />
+    <ClInclude Include="Page_credit.h" />
+    <ClInclude Include="Page_settings.h" />
+    <ClInclude Include="Page_Trans_Hist.h" />
     <ClInclude Include="Transfer.h" />
     <QtMoc Include="Win_transfer.h" />
     <QtMoc Include="Page.h">

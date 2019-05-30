@@ -10,6 +10,10 @@
 #include "ui_main_win.h"
 #include "Page_sign_in.h"
 #include "Page_general_view.h"
+#include "Page_credit.h"
+#include "Page_Trans_Hist.h"
+#include "Page_settings.h"
+
 #include "DB_Holder.h"
 #include "account.h"
 
@@ -33,6 +37,9 @@ private:
 	
 	Page * page_sign_in = Q_NULLPTR;
 	Page * page_general_view = Q_NULLPTR;
+	Page * page_credit = Q_NULLPTR;
+	Page * page_trans_hist = Q_NULLPTR;
+	Page * page_settings = Q_NULLPTR;
 
 	DB_Holder db_holder;
 	account *user = Q_NULLPTR;

@@ -26,13 +26,14 @@ void Page_general_view::showPage()
 	parent_widget->setObjectName("parent_widget");
 	parent_widget->setStyleSheet("QWidget#parent_widget { background-color: rgba(0, 0, 0, 0); }");
 	
-	User->getUserData(db_holder);
+	//User->getUserData(db_holder);
 	group_box = new QGroupBox;
 	main_lay = new QVBoxLayout(group_box);
 
 	topWigdet = new QWidget;
 	top_bar = new QHBoxLayout(topWigdet);
-	menu_bton = new QPushButton("Menu");
+	menu_bton = new QPushButton("Menu - - test credit");
+	sett_bton = new QPushButton("Settings");
 	out_bton = new QPushButton("Logout");
 
 	
@@ -40,10 +41,12 @@ void Page_general_view::showPage()
 	main_lay->addWidget(topWigdet);
 
 	top_bar->addWidget(menu_bton,1,Qt::AlignLeft);
+	top_bar->addWidget(sett_bton, 1, Qt::AlignLeft);
 	top_bar->addWidget(out_bton,3,Qt::AlignRight);
 	top_bar->setAlignment(Qt::AlignTop);
 	
 	menu_bton->setObjectName("menu_bton");
+	sett_bton->setObjectName("menu_bton");
 	out_bton->setObjectName("out_bton");
 	topWigdet->setFixedHeight(50);
 	//acc frame
@@ -67,7 +70,10 @@ void Page_general_view::showPage()
 	 acc_frame = new QGroupBox;
 	box_layout->addWidget(acc_frame);
 	acc_frame->setLayout(data_lay);
-	 money = new QLabel("$" + QString::number(User->getAccBalance()));
+	 money = new QLabel("$" + QString::number(User->getAccBalance(), 'f', 2));
+
+	 money->setMinimumWidth(150);
+
 	 trans_name_1 = new QLabel("Transfer_1");
 	 trans_value_1 = new QLabel("$9999");
 
@@ -122,9 +128,22 @@ void Page_general_view::showPage()
 	connect(send, &QPushButton::clicked, this, [this]() { send_transfer(); });
 	connect(showMore, &QPushButton::clicked, this, [this]() { new_transfer(); });
 	connect(out_bton, &QPushButton::clicked, this, [this]() {
-		
-		setHidden();
+		setHidden(false);
 		emit logout();
+	});
+
+	connect(menu_bton, &QPushButton::clicked, this, [this]() {
+		setHidden(false);
+		emit creditPage();
+	});
+
+	connect(acc_view, &QPushButton::clicked, this, [this]() {
+		setHidden(false);
+		emit transHistPage();
+	});
+	connect(sett_bton, &QPushButton::clicked, this, [this]() {
+		setHidden(false);
+		emit settPage();
 	});
 
 	setCSS();
@@ -195,39 +214,6 @@ void Page_general_view::setHidden(bool emitSignal) {
 	for (auto & ite : parent->widget()->children()) {
 		delete ite;
 	}
-		
-	/*
-	delete lbl;
-	delete menu_bton;
-	delete out_bton;
-	delete acc_lab;
-	delete curr_lab;
-	delete money;
-	delete trans_name_1;
-	delete trans_value_1;
-	delete trans_name_2;
-	delete trans_value_2;
-	delete acc_view;
-	delete quick_lab;
-	delete iwant_transf;
-	delete from;
-	delete to;
-	delete showMore;
-	delete send;
-	delete transf_field;
-	delete from_field;
-	delete to_field;
-	delete data_lay;
-	delete acc_bar;
-	delete top_bar;
-	delete quick_grid;
-	delete box_layout;
-	delete acc_frame;
-	delete quick_wid;
-	delete group_box;
-	delete topWigdet;
-	delete main_lay;
-	*/
 
 	if (emitSignal) {
 		emit hide();

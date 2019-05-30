@@ -61,7 +61,11 @@ void Page::wait_for_the_thread_and_hide() {
 	});
 
 	std::thread T1([this]() {
+		thread_synch.start();
+
 		finished_succeed = work_in_new_thread();
+
+		thread_synch.stop();
 	});
 	T1.detach();
 }

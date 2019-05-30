@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_Page_t {
-    QByteArrayData data[10];
-    char stringdata0[94];
+    QByteArrayData data[13];
+    char stringdata0[128];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -36,17 +36,20 @@ QT_MOC_LITERAL(0, 0, 4), // "Page"
 QT_MOC_LITERAL(1, 5, 4), // "hide"
 QT_MOC_LITERAL(2, 10, 0), // ""
 QT_MOC_LITERAL(3, 11, 6), // "logout"
-QT_MOC_LITERAL(4, 18, 12), // "setCloseAble"
-QT_MOC_LITERAL(5, 31, 3), // "par"
-QT_MOC_LITERAL(6, 35, 8), // "showPage"
-QT_MOC_LITERAL(7, 44, 9), // "setHidden"
-QT_MOC_LITERAL(8, 54, 10), // "emitSignal"
-QT_MOC_LITERAL(9, 65, 28) // "wait_for_the_thread_and_hide"
+QT_MOC_LITERAL(4, 18, 10), // "creditPage"
+QT_MOC_LITERAL(5, 29, 13), // "transHistPage"
+QT_MOC_LITERAL(6, 43, 8), // "settPage"
+QT_MOC_LITERAL(7, 52, 12), // "setCloseAble"
+QT_MOC_LITERAL(8, 65, 3), // "par"
+QT_MOC_LITERAL(9, 69, 8), // "showPage"
+QT_MOC_LITERAL(10, 78, 9), // "setHidden"
+QT_MOC_LITERAL(11, 88, 10), // "emitSignal"
+QT_MOC_LITERAL(12, 99, 28) // "wait_for_the_thread_and_hide"
 
     },
-    "Page\0hide\0\0logout\0setCloseAble\0par\0"
-    "showPage\0setHidden\0emitSignal\0"
-    "wait_for_the_thread_and_hide"
+    "Page\0hide\0\0logout\0creditPage\0transHistPage\0"
+    "settPage\0setCloseAble\0par\0showPage\0"
+    "setHidden\0emitSignal\0wait_for_the_thread_and_hide"
 };
 #undef QT_MOC_LITERAL
 
@@ -56,32 +59,38 @@ static const uint qt_meta_data_Page[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-       7,   14, // methods
+      10,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       3,       // signalCount
+       6,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    0,   49,    2, 0x06 /* Public */,
-       3,    0,   50,    2, 0x06 /* Public */,
-       4,    1,   51,    2, 0x06 /* Public */,
+       1,    0,   64,    2, 0x06 /* Public */,
+       3,    0,   65,    2, 0x06 /* Public */,
+       4,    0,   66,    2, 0x06 /* Public */,
+       5,    0,   67,    2, 0x06 /* Public */,
+       6,    0,   68,    2, 0x06 /* Public */,
+       7,    1,   69,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       6,    0,   54,    2, 0x0a /* Public */,
-       7,    1,   55,    2, 0x0a /* Public */,
-       7,    0,   58,    2, 0x2a /* Public | MethodCloned */,
-       9,    0,   59,    2, 0x09 /* Protected */,
+       9,    0,   72,    2, 0x0a /* Public */,
+      10,    1,   73,    2, 0x0a /* Public */,
+      10,    0,   76,    2, 0x2a /* Public | MethodCloned */,
+      12,    0,   77,    2, 0x09 /* Protected */,
 
  // signals: parameters
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Bool,    5,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::Bool,    8,
 
  // slots: parameters
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Bool,    8,
+    QMetaType::Void, QMetaType::Bool,   11,
     QMetaType::Void,
     QMetaType::Void,
 
@@ -96,11 +105,14 @@ void Page::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void *
         switch (_id) {
         case 0: _t->hide(); break;
         case 1: _t->logout(); break;
-        case 2: _t->setCloseAble((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 3: _t->showPage(); break;
-        case 4: _t->setHidden((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 5: _t->setHidden(); break;
-        case 6: _t->wait_for_the_thread_and_hide(); break;
+        case 2: _t->creditPage(); break;
+        case 3: _t->transHistPage(); break;
+        case 4: _t->settPage(); break;
+        case 5: _t->setCloseAble((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 6: _t->showPage(); break;
+        case 7: _t->setHidden((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 8: _t->setHidden(); break;
+        case 9: _t->wait_for_the_thread_and_hide(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -120,9 +132,30 @@ void Page::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void *
             }
         }
         {
+            using _t = void (Page::*)();
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&Page::creditPage)) {
+                *result = 2;
+                return;
+            }
+        }
+        {
+            using _t = void (Page::*)();
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&Page::transHistPage)) {
+                *result = 3;
+                return;
+            }
+        }
+        {
+            using _t = void (Page::*)();
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&Page::settPage)) {
+                *result = 4;
+                return;
+            }
+        }
+        {
             using _t = void (Page::*)(bool );
             if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&Page::setCloseAble)) {
-                *result = 2;
+                *result = 5;
                 return;
             }
         }
@@ -158,13 +191,13 @@ int Page::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 7)
+        if (_id < 10)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 7;
+        _id -= 10;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 7)
+        if (_id < 10)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 7;
+        _id -= 10;
     }
     return _id;
 }
@@ -182,10 +215,28 @@ void Page::logout()
 }
 
 // SIGNAL 2
+void Page::creditPage()
+{
+    QMetaObject::activate(this, &staticMetaObject, 2, nullptr);
+}
+
+// SIGNAL 3
+void Page::transHistPage()
+{
+    QMetaObject::activate(this, &staticMetaObject, 3, nullptr);
+}
+
+// SIGNAL 4
+void Page::settPage()
+{
+    QMetaObject::activate(this, &staticMetaObject, 4, nullptr);
+}
+
+// SIGNAL 5
 void Page::setCloseAble(bool _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
-    QMetaObject::activate(this, &staticMetaObject, 2, _a);
+    QMetaObject::activate(this, &staticMetaObject, 5, _a);
 }
 QT_WARNING_POP
 QT_END_MOC_NAMESPACE

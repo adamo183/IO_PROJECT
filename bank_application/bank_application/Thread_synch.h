@@ -3,7 +3,6 @@
 #include <atomic>
 
 #include <QObject>
-#include <QtWidgets/QMainWindow>
 
 class Thread_synch : public QObject
 {
