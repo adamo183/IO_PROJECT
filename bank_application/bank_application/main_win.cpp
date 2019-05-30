@@ -35,7 +35,7 @@ main_win::main_win(QWidget *parent)
 }
 
 main_win::~main_win() {
-	delete main_layout;
+	//delete main_layout;??
 	delete page_sign_in;
 	delete page_general_view;
 };

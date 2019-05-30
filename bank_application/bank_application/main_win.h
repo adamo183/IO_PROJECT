@@ -26,7 +26,7 @@ private:
 
 	QString css = "";
 
-	QHBoxLayout * main_layout;
+	//QHBoxLayout * main_layout;??
 	
 	Page * page_sign_in = Q_NULLPTR;
 	Page * page_general_view = Q_NULLPTR;

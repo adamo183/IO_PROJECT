@@ -7,7 +7,7 @@ void Page::wait_for_the_thread_and_hide() {
 
 		if (this->thread_synch.started()) {
 
-			group_box = new QGroupBox;
+			group_box = new QGroupBox(parent);
 			main_lay = new QVBoxLayout(group_box);
 			lbl_mv = new QLabel;
 			lbl_txt = new QLabel(process_descript);
@@ -26,13 +26,15 @@ void Page::wait_for_the_thread_and_hide() {
 
 			lbl_mv->setMovie(mv);
 
-			parent->setWidget(group_box);
-			group_box->setLayout(main_lay);
+			
 			main_lay->addWidget(lbl_mv);
 			main_lay->addWidget(lbl_txt);
 			group_box->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
 			lbl_mv->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
 			lbl_txt->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+
+			group_box->setLayout(main_lay);
+			parent->setWidget(group_box);
 
 			setCSS();
 
@@ -45,7 +47,7 @@ void Page::wait_for_the_thread_and_hide() {
 			delete mv;
 			delete main_lay;
 			delete group_box;
-
+			
 			thread_synch.disconnect();
 			
 			if (finished_succeed)
