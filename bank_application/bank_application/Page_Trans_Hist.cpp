@@ -79,11 +79,12 @@ void Page_Trans_Hist::showPage()
 
 	lbl = new QLabel("Transaction History");
 	main_lay->addWidget(lbl, 0, Qt::AlignCenter);
-
-	main_lay->addWidget(trans_tool_box);
-
+	
 	btn = new QPushButton("Back");
 	main_lay->addWidget(btn, 0, Qt::AlignLeft);
+
+
+	main_lay->addWidget(trans_tool_box);
 
 
 	connect(btn, &QPushButton::clicked, this, [this]() {
