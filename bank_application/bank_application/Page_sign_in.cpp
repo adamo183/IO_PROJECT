@@ -84,11 +84,11 @@ void Page_sign_in::showPage()
 
 	setCSS();
 
-	setProcessDescription("Please wait!");
+	setProcessDescription("Verifying...");
 
 	connect(send_butt, &QPushButton::clicked, this, [this,login_field,pass_field]() {
 		set_login_data(login_field->text(), pass_field->text() );
-		wait_for_the_thread_and_hide();
+		wait_for_the_thread_and_emit_signal();
 	});
 
 }

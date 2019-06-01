@@ -52,3 +52,69 @@ bool account::getUserData(DB_Holder *hold)
 
 	return false;
 }
+
+bool account::DownloadUserTransactions(DB_Holder * base)
+{
+	if (!base->Connect()) {
+		last_error = base->GetLastError();
+		return false;
+	}
+
+	QSqlQuery query(base->getDB());
+
+	QString req = 
+		"( 	SELECT \n"
+		"		t.Id_Trans, \n"
+		"		t.DataCzas, \n"
+		"		t.Nr_Rach_Nad as Nr_Rach, \n"
+		"		t.Kwota, \n"
+		"		t.Tytul, \n"
+		"		CONCAT(u.Imie, ' ', u.Nazwisko) as Nazwa, \n"
+		"		u.Adres as Adres \n"
+		"		FROM \n"
+		"	TRANSAKCJE t join UZYTKOWNIK u \n"
+		"	on t.Nr_Rach_Nad = u.Nr_Rachunku \n"
+		"	WHERE t.Nr_Rach_Odb = '" + this->acc_number + "' \n"
+		") \n"
+		"UNION ALL \n"
+		"(	SELECT \n"
+		"		t.Id_Trans, \n"
+		"		t.DataCzas, \n"
+		"		t.Nr_Rach_Odb as Nr_Rach, \n"
+		"		t.Kwota * -1 as Kwota, \n"
+		"		t.Tytul, \n"
+		"		t.Nazw_Odb as Nazwa, \n"
+		"		t.Adres_Odb as Adres \n"
+		"	FROM TRANSAKCJE t \n"
+		"	WHERE t.Nr_Rach_Nad = '" + this->acc_number + "' \n"
+		") \n"
+		"ORDER BY Id_Trans DESC;";
+
+	query.exec(req);
+
+	if (query.size() == 0) {
+		last_error = query.lastError().text();
+		if (last_error.isNull())
+			last_error = "There is no transactions to be shown!";
+		return false;
+	}
+
+	Transactions.clear();
+
+	while (query.next()) {
+
+		SingleTransaction tmp;
+		std::get<Transaction::ID>(tmp) = query.value(Transaction::ID).toInt();
+		std::get<Transaction::DATETIME>(tmp) = query.value(Transaction::DATETIME).toDateTime();
+		std::get<Transaction::ACC_NO>(tmp) = query.value(Transaction::ACC_NO).toString();
+		std::get<Transaction::AMOUNT>(tmp) = query.value(Transaction::AMOUNT).toDouble();
+		std::get<Transaction::TITLE>(tmp) = query.value(Transaction::TITLE).toString();
+		std::get<Transaction::NAME>(tmp) = query.value(Transaction::NAME).toString();
+		std::get<Transaction::ADDRESS>(tmp) = query.value(Transaction::ADDRESS).toString();
+
+		Transactions.push_back(std::move(tmp));
+	}
+
+
+	return true;
+}

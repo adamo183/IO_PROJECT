@@ -139,3 +139,15 @@ QFrame#quick_wid {
     border: 1px solid black;
     border-radius: 20px;
 }
+
+QWidget#tool_box_wgt {
+
+	background-color: rgba(0, 0, 0, 0);
+
+}
+
+QLabel#tool_box_lbl {
+	font-size: 10px;
+	color: #fff;
+
+}

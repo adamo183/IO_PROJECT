@@ -13,6 +13,8 @@ public slots:
 public:
 	void showPage() override;
 	void setHidden(bool emitSignal = true) override;
+	bool work_in_new_thread() override;
+
 
 	Page_general_view(QScrollArea * parent = Q_NULLPTR, DB_Holder * db = nullptr, const QString & CSS = "" , account *user = Q_NULLPTR) : Page(parent, CSS), db_holder(db) , User(user) {};
 	~Page_general_view();

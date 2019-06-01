@@ -24,8 +24,15 @@ private:
 	QString nr_doc;
 	int credit_id;
 
+	std::vector<std::tuple<int, QDateTime, QString, double, QString, QString, QString>> Transactions;
+
+	QString last_error;
 
 public:
+	typedef std::tuple<int, QDateTime, QString, double, QString, QString, QString> SingleTransaction;
+	enum Transaction{ ID, DATETIME, ACC_NO, AMOUNT, TITLE, NAME, ADDRESS };
+
+
 		account() {}
 
 		account(int u_id, QString nm, QString srnm, QString acc_n, QString pn, QString addr, QString nr_d, int cr_id = 0) : user_id(u_id), name(nm), surrname(srnm), acc_number(acc_n)
@@ -35,7 +42,7 @@ public:
 
 		int getUserId() const { return user_id; }
 		QString getName() const { return name; }
-		QString gatSurrname() const { return surrname; }
+		QString getSurrname() const { return surrname; }
 		QString getAccNumber() const { return acc_number; }
 		QString getPhoneNumber() const { return phone_number; }
 		QString getAdress() const { return adress; }
@@ -44,10 +51,14 @@ public:
 		double getAccBalance() const { return acc_balance; }
 		QDate getBornDate() const { return born_date; }
 		int getAge() const;
+		QString getLastError() { return last_error; }
+		const std::vector<SingleTransaction> & getTransactions() { return Transactions; }
+
 
 		void setUserId(const int uid) { user_id = uid; }
 		
 		bool getUserData(DB_Holder *base);
+		bool DownloadUserTransactions(DB_Holder *base);
 
 		bool hasCredit() const { return credit_id; };
 

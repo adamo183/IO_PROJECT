@@ -25,7 +25,7 @@ QString Transfer::QuickTransfer(
 	bool download_receiver_data = receiver_name.isEmpty();
 
 	QString columns = (download_receiver_data ? "Id_Uzytkow, Imie, Nazwisko, Adres" : "Id_Uzytkow");
-	query.exec("SELECT " + columns + " FROM UZYTKOWNIK WHERE Nr_Rachunku LIKE " + number);
+	query.exec("SELECT " + columns + " FROM UZYTKOWNIK WHERE Nr_Rachunku LIKE '" + number + "'");
 
 	if (query.size() != 1) {
 		return "Wrong account number!";

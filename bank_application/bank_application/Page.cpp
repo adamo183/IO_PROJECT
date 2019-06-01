@@ -1,7 +1,8 @@
 #include "Page.h"
 
-void Page::wait_for_the_thread_and_hide() {
+void Page::wait_for_the_thread_and_emit_signal(Thread_signals signal2emit) {
 	setHidden(false);
+	current_signal = signal2emit;
 
 	connect(&thread_synch, &Thread_synch::changed, this, [&]() {
 
@@ -50,8 +51,13 @@ void Page::wait_for_the_thread_and_hide() {
 			
 			thread_synch.disconnect();
 			
-			if (finished_succeed)
-				emit hide();
+			if (finished_succeed) {
+				if (this->current_signal == Thread_signals::HIDE) emit hide();
+				if (this->current_signal == Thread_signals::LOGOUT) emit logout();
+				if (this->current_signal == Thread_signals::CREDIT_PAGE) emit creditPage();
+				if (this->current_signal == Thread_signals::TRANS_HIST_PAGE) emit transHistPage();
+				if (this->current_signal == Thread_signals::SETT_PAGE) emit settPage();
+			}
 			else {
 				showPage();
 				QMessageBox::information(nullptr, "ERROR", last_error);

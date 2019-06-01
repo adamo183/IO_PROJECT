@@ -51,7 +51,7 @@ void Page_general_view::showPage()
 	topWigdet->setFixedHeight(50);
 	//acc frame
 	 acc_lab = new QLabel("My Account");
-	 curr_lab = new QLabel(User->getName()+" "+User->gatSurrname());
+	 curr_lab = new QLabel(User->getName()+" "+User->getSurrname());
 	 curr_lab->setFixedWidth(200);
 	curr_lab->setObjectName("curr_lab");
 	acc_lab->setObjectName("acc_lab");
@@ -137,10 +137,13 @@ void Page_general_view::showPage()
 		emit creditPage();
 	});
 
+	setProcessDescription("Please wait!");
+
 	connect(acc_view, &QPushButton::clicked, this, [this]() {
 		setHidden(false);
-		emit transHistPage();
+		wait_for_the_thread_and_emit_signal(Thread_signals::TRANS_HIST_PAGE);
 	});
+
 	connect(sett_bton, &QPushButton::clicked, this, [this]() {
 		setHidden(false);
 		emit settPage();
@@ -149,6 +152,8 @@ void Page_general_view::showPage()
 	setCSS();
 	
 }
+
+
 
 void Page_general_view::new_transfer() {
 
@@ -201,6 +206,11 @@ void Page_general_view::send_transfer() {
 		return;
 	}
 
+	if (to_acc_number == User->getAccNumber()) {
+		QMessageBox::information(nullptr, "Wrong number", "This is yours number!");
+		return;
+	}
+
 	QString ans = Transfer::QuickTransfer(db_holder, User, amount, to_acc_number, title);
 
 	QMessageBox::information(nullptr, " ", ans);
@@ -219,7 +229,19 @@ void Page_general_view::setHidden(bool emitSignal) {
 		emit hide();
 	}
 
-};
+}
+bool Page_general_view::work_in_new_thread()
+{
+
+	bool download_succeed = false;
+
+	download_succeed = User->DownloadUserTransactions(db_holder);
+
+	std::this_thread::sleep_for(std::chrono::milliseconds(500));
+
+	return true;
+}
+;
 
 Page_general_view::~Page_general_view()
 {
