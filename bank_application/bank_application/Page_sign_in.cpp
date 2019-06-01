@@ -19,7 +19,7 @@ void Page_sign_in::showPage()
 
 	//creating login field
 	auto login_lab = new QLabel("Login:");
-	auto pass_lab = new QLabel("Haslo:");
+	auto pass_lab = new QLabel("Password:");
 	auto login_field = new QLineEdit;// ("Kowalski");
 	auto pass_field = new QLineEdit;// ("1234");
 
