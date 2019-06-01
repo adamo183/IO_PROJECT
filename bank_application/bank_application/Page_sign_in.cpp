@@ -20,8 +20,8 @@ void Page_sign_in::showPage()
 	//creating login field
 	auto login_lab = new QLabel("Login:");
 	auto pass_lab = new QLabel("Haslo:");
-	auto login_field = new QLineEdit("root");
-	auto pass_field = new QLineEdit("io@root");
+	auto login_field = new QLineEdit;// ("Kowalski");
+	auto pass_field = new QLineEdit;// ("1234");
 
 	pass_field->setEchoMode(QLineEdit::Password);
 	send_butt = new QPushButton("Sign in");
@@ -113,8 +113,7 @@ bool Page_sign_in::work_in_new_thread()
 {
 	bool downloaded_success = false;
 
-	downloaded_success = db_holder->Login(login,password,User);
-	downloaded_success = User->getUserData(db_holder);
+	downloaded_success = db_holder->Login(login,password,User) && User->getUserData(db_holder);
 
 	std::this_thread::sleep_for(std::chrono::milliseconds(500));
 	

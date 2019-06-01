@@ -45,6 +45,15 @@ bool account::getUserData(DB_Holder *hold)
 		nr_doc = query.value(9).toString();
 		credit_id = query.value(10).toInt();
 
+		query.exec("SELECT SUM(KWOTA) FROM DOCHOD WHERE Id_Uzytkow=" + QString::number(u_id) + " GROUP BY Id_Uzytkow");
+		if (query.size() == 0) {
+			salary_sum = 0;
+		}
+		else {
+			query.first();
+			salary_sum = query.value(0).toInt();
+		}
+
 		return true;
 		// todo: pobieranie dalszych danych , last error i jakieœ zabezpieczenia ..
 	}

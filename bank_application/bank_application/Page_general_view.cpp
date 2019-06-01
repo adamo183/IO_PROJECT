@@ -22,6 +22,8 @@ void Page_general_view::showPage()
 	*/
 	//top bar
 
+	bool credit = !User->hasCredit() && User->hasJob();
+
 	QWidget * parent_widget = new QWidget(parent);
 	parent_widget->setObjectName("parent_widget");
 	parent_widget->setStyleSheet("QWidget#parent_widget { background-color: rgba(0, 0, 0, 0); }");
@@ -32,7 +34,7 @@ void Page_general_view::showPage()
 
 	topWigdet = new QWidget;
 	top_bar = new QHBoxLayout(topWigdet);
-	menu_bton = new QPushButton("Menu - - test credit");
+	if(credit) credit_bton = new QPushButton("Get a credit");
 	sett_bton = new QPushButton("Settings");
 	out_bton = new QPushButton("Logout");
 
@@ -40,12 +42,12 @@ void Page_general_view::showPage()
 	parent_widget->setLayout(main_lay);
 	main_lay->addWidget(topWigdet);
 
-	top_bar->addWidget(menu_bton,1,Qt::AlignLeft);
 	top_bar->addWidget(sett_bton, 1, Qt::AlignLeft);
+	if(credit) top_bar->addWidget(credit_bton,1,Qt::AlignLeft);
 	top_bar->addWidget(out_bton,3,Qt::AlignRight);
 	top_bar->setAlignment(Qt::AlignTop);
 	
-	menu_bton->setObjectName("menu_bton");
+	if(credit) credit_bton->setObjectName("menu_bton");
 	sett_bton->setObjectName("menu_bton");
 	out_bton->setObjectName("out_bton");
 	topWigdet->setFixedHeight(50);
@@ -125,6 +127,7 @@ void Page_general_view::showPage()
 
 	parent->setWidget(parent_widget);
 
+
 	connect(send, &QPushButton::clicked, this, [this]() { send_transfer(); });
 	connect(showMore, &QPushButton::clicked, this, [this]() { new_transfer(); });
 	connect(out_bton, &QPushButton::clicked, this, [this]() {
@@ -132,15 +135,19 @@ void Page_general_view::showPage()
 		emit logout();
 	});
 
-	connect(menu_bton, &QPushButton::clicked, this, [this]() {
-		setHidden(false);
-		emit creditPage();
-	});
-
 	setProcessDescription("Please wait!");
+
+	if (credit) {
+		connect(credit_bton, &QPushButton::clicked, this, [this]() {
+			setHidden(false);
+			current_work = Thread_signals::CREDIT_PAGE;
+			wait_for_the_thread_and_emit_signal(Thread_signals::CREDIT_PAGE);
+		});
+	}
 
 	connect(acc_view, &QPushButton::clicked, this, [this]() {
 		setHidden(false);
+		current_work = Thread_signals::TRANS_HIST_PAGE;
 		wait_for_the_thread_and_emit_signal(Thread_signals::TRANS_HIST_PAGE);
 	});
 
@@ -188,7 +195,7 @@ void Page_general_view::new_transfer() {
 void Page_general_view::send_transfer() {
 
 	if (transf_field->text().isEmpty() || title_field->text().isEmpty() || to_field->text().isEmpty()) {
-		QMessageBox::information(nullptr, "Empyt fields", "Fill empty fields!");
+		QMessageBox::information(parent, "Empyt fields", "Fill empty fields!");
 		return;
 	}
 
@@ -197,23 +204,23 @@ void Page_general_view::send_transfer() {
 	QString title = title_field->text();
 
 	if (amount <= 0) {
-		QMessageBox::information(nullptr, " ", "Only positive transfers allowed!");
+		QMessageBox::information(parent, " ", "Only positive transfers allowed!");
 		return;
 	}
 
 	if (to_acc_number.size() != 26) {
-		QMessageBox::information(nullptr, "Wrong number", "Too short account number!");
+		QMessageBox::information(parent, "Wrong number", "Too short account number!");
 		return;
 	}
 
 	if (to_acc_number == User->getAccNumber()) {
-		QMessageBox::information(nullptr, "Wrong number", "This is yours number!");
+		QMessageBox::information(parent, "Wrong number", "This is yours number!");
 		return;
 	}
 
 	QString ans = Transfer::QuickTransfer(db_holder, User, amount, to_acc_number, title);
 
-	QMessageBox::information(nullptr, " ", ans);
+	QMessageBox::information(parent, " ", ans);
 
 	transf_field->setText(""); to_field->setText(""); title_field->setText("");
 }
@@ -232,14 +239,20 @@ void Page_general_view::setHidden(bool emitSignal) {
 }
 bool Page_general_view::work_in_new_thread()
 {
-
 	bool download_succeed = false;
 
-	download_succeed = User->DownloadUserTransactions(db_holder);
+	if (current_work == Thread_signals::TRANS_HIST_PAGE) {
+
+		download_succeed = User->DownloadUserTransactions(db_holder);
+	}
+	if (current_work == Thread_signals::CREDIT_PAGE) {
+
+		download_succeed = db_holder->downloadMlModel();
+	}
 
 	std::this_thread::sleep_for(std::chrono::milliseconds(500));
 
-	return true;
+	return download_succeed;
 }
 ;
 

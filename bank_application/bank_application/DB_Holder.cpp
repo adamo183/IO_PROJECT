@@ -69,11 +69,24 @@ bool DB_Holder::Login(QString *name,QString *pass,account* user)
 	
 }
 
-std::pair<QDateTime, QString> DB_Holder::GetTest()
+bool DB_Holder::downloadMlModel()
 {
-	return test;
-}
+	if (Connect()) {
 
+		query.exec("SELECT `Model` FROM `ML_MODEL` ORDER BY `Id` DESC LIMIT 1");
+
+		if (query.size() == 1) {
+			query.first();
+			mlModel = query.value(0).toString();
+			return true;
+		}
+		last_error = query.lastError().text();
+		return false;
+
+	}
+	last_error = db.lastError().text();
+	return false;
+}
 
 DB_Holder::~DB_Holder()
 {

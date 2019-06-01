@@ -151,3 +151,7 @@ QLabel#tool_box_lbl {
 	color: #fff;
 
 }
+
+QMessageBox {
+	background-color: #393A4D;
+}

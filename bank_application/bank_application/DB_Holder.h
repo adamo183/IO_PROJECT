@@ -15,7 +15,7 @@ class DB_Holder
 	QSqlQuery query;
 
 	QString last_error = "";
-	std::pair<QDateTime, QString> test;
+	QString mlModel;
 
 public:
 	DB_Holder() {};
@@ -26,10 +26,9 @@ public:
 
 	QString GetLastError() { return last_error; };
 	QSqlDatabase getDB() { return db; }
-	
 
-	// test table
-	bool DownloadTest();
-	std::pair<QDateTime, QString> GetTest();
+	bool downloadMlModel();
+	QString getMlModel() const { return mlModel; }
+
 };
 

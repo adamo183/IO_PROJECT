@@ -24,6 +24,8 @@ private:
 	QString nr_doc;
 	int credit_id;
 
+	double salary_sum;
+
 	std::vector<std::tuple<int, QDateTime, QString, double, QString, QString, QString>> Transactions;
 
 	QString last_error;
@@ -59,6 +61,9 @@ public:
 		
 		bool getUserData(DB_Holder *base);
 		bool DownloadUserTransactions(DB_Holder *base);
+
+		bool hasJob() const { return (salary_sum != 0 ? 1 : 0); };
+		double getSalarySum() const { return salary_sum; };
 
 		bool hasCredit() const { return credit_id; };
 

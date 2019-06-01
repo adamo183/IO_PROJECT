@@ -16,6 +16,13 @@ public:
 		QString receiver_name = "", 
 		QString receiver_adress = ""
 	);
+	static QString TakeCredit(
+		DB_Holder * db,
+		account * user,
+		double amount,
+		double interest,
+		int duration
+	);
 
 };
 

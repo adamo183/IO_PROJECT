@@ -22,6 +22,8 @@ public:
 
 private:
 
+	Thread_signals current_work;
+
 	DB_Holder * db_holder = nullptr;
 
 	Win_transfer * win_transfer = Q_NULLPTR;
@@ -32,7 +34,7 @@ private:
 	QWidget * layout_widget = Q_NULLPTR;
 	QWidget* topWigdet = Q_NULLPTR;
 	QHBoxLayout* top_bar = Q_NULLPTR;
-	QPushButton* menu_bton = Q_NULLPTR;
+	QPushButton* credit_bton = Q_NULLPTR;
 	QPushButton * sett_bton = Q_NULLPTR;
 	QPushButton* out_bton = Q_NULLPTR;
 	QLabel * acc_lab = Q_NULLPTR;

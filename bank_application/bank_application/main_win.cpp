@@ -55,9 +55,10 @@ main_win::~main_win() {
 }
 void main_win::closeEvent(QCloseEvent * bar) {
 
-	if (closeAble)
+	if (closeAble) {
 		bar->accept();
-	else
+	}
+	else {
 		bar->ignore();
-
+	}
 };

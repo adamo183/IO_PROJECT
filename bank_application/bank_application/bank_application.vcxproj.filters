@@ -86,6 +86,9 @@
     <ClCompile Include="Page_credit.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Credit.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DB_Holder.h">
@@ -123,6 +126,9 @@
     </ClInclude>
     <ClInclude Include="Page_credit.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Credit.h">
+      <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

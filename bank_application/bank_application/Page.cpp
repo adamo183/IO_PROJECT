@@ -60,7 +60,7 @@ void Page::wait_for_the_thread_and_emit_signal(Thread_signals signal2emit) {
 			}
 			else {
 				showPage();
-				QMessageBox::information(nullptr, "ERROR", last_error);
+				QMessageBox::information(parent, "ERROR", last_error);
 			}
 		}
 
