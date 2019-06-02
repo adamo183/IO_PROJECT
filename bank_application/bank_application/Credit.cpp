@@ -1,5 +1,10 @@
 #include "Credit.h"
 
+Mat Credit::predict()
+{
+	return Mat();
+}
+
 void Credit::setVals(int age, double salary, double amount, int duration)
 {
 	this->age = age;
