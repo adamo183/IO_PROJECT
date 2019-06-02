@@ -244,10 +244,12 @@ bool Page_general_view::work_in_new_thread()
 	if (current_work == Thread_signals::TRANS_HIST_PAGE) {
 
 		download_succeed = User->DownloadUserTransactions(db_holder);
+		if (!download_succeed) last_error = User->getLastError();
 	}
 	if (current_work == Thread_signals::CREDIT_PAGE) {
 
 		download_succeed = db_holder->downloadMlModel();
+		if (!download_succeed) last_error = db_holder->GetLastError();
 	}
 
 	std::this_thread::sleep_for(std::chrono::milliseconds(500));

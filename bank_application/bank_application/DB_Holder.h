@@ -23,9 +23,10 @@ public:
 
 	bool Connect();
 	bool Login(QString *name, QString *Pass,account *user);
+	void close() { db.close(); };
 
 	QString GetLastError() { return last_error; };
-	QSqlDatabase getDB() { return db; }
+	QSqlDatabase & getDB() { return db; }
 
 	bool downloadMlModel();
 	QString getMlModel() const { return mlModel; }
