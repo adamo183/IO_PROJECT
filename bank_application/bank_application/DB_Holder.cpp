@@ -1,27 +1,30 @@
 #include "DB_Holder.h"
 #include "account.h"
-#include <chrono>
-#include <thread>
-#include <QDebug>
 
 
-bool DB_Holder::Connect()
+DB_Holder::DB_Holder()
 {
-	bool success = false;
-
-	if (db.isOpen())
-		success = true;
-
-	db.close();
 	db.setHostName("mn16.webd.pl");
 	db.setPort(3306);
 	db.setUserName("slavek_io_proj");
 	db.setPassword("io_proj@2019");
 	db.setDatabaseName("slavek_io");
-	db.open();
+	query = QSqlQuery(db);
+}
+
+DB_Holder::~DB_Holder()
+{
+	db.close();
+}
+
+bool DB_Holder::Connect()
+{
+	bool success = false;
+
+	if (!db.isOpen())
+		db.open();
 
 	if (db.isOpen()) {
-		query = QSqlQuery(db);
 		last_error = db.lastError().text();
 		success = true;
 	}
@@ -96,7 +99,3 @@ bool DB_Holder::downloadMlModel()
 	return success;
 }
 
-DB_Holder::~DB_Holder()
-{
-	db.close();
-}

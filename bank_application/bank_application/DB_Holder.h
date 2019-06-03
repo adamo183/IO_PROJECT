@@ -18,7 +18,7 @@ class DB_Holder
 	QString mlModel;
 
 public:
-	DB_Holder() {};
+	DB_Holder();
 	~DB_Holder();
 
 	bool Connect();

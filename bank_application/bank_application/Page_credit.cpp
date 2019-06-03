@@ -31,6 +31,7 @@ void Page_credit::showPage()
 	amount_ln->setEnabled(false);
 	verify_btn->setEnabled(false);
 	
+	conditions_field->setText(db_holder->getMlModel());
 
 	back_btn = new QPushButton("Back", parent);
 	main_lay->addWidget(back_btn, 0, Qt::AlignLeft);
