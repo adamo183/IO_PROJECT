@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" GroupingSetting="Access" MembersFormat="FullSignature">
+  <Class Name="Mat" Collapsed="true">
+    <Position X="14" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Credit.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Credit" Collapsed="true">
+    <Position X="14" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAgQAABAAAAAAAAAAAAgBAAAAEACAAAAAA=</HashCode>
+      <FileName>Credit.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui_main_winClass" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAEAQAAAAAAAAIEAAAQAIAAAgIAAAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_main_win.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DB_Holder" Collapsed="true">
+    <Position X="15.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAgAAAAAAQAAAAABARAIAAAAAAAAAAAIEYACBAAAA=</HashCode>
+      <FileName>DB_Holder.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Page_Trans_Hist" Collapsed="true">
+    <Position X="9.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>JAABAAAAgAAAEAAAAAAAAABAAAIAAAAAEABCBBAAhAA=</HashCode>
+      <FileName>Page_Trans_Hist.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Page_credit" Collapsed="true">
+    <Position X="0.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BQABQIIAAAAIAIAAAgAAIQJAkIIAgAAAAABgAEAIBAA=</HashCode>
+      <FileName>Page_credit.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Page_general_view" Collapsed="true">
+    <Position X="3" Y="2" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>DGABAAIA4AAgUDBEIgAAAosQNCRACAAAAABAFABEFEA=</HashCode>
+      <FileName>Page_general_view.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Page_settings" Collapsed="true">
+    <Position X="5.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAABAAAAAAAAEAAAABAAAAAAAAAAAAACEABAAAAABAA=</HashCode>
+      <FileName>Page_settings.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Page_sign_in" Collapsed="true">
+    <Position X="7.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAABAAAAAAAAEAAAAAAAAgCAAEAAAAAAgABIAgAAFAA=</HashCode>
+      <FileName>Page_sign_in.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Transfer" Collapsed="true">
+    <Position X="14" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Transfer.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MD5" Collapsed="true">
+    <Position X="15.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAEAAAAAAIAgABEAEAAAAAAAGQAJEAIBAGGAEAAE=</HashCode>
+      <FileName>md5.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Page" Collapsed="true">
+    <Position X="5.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABBUIACQAQASUABACCEAAgBAAAICAAIAAABAAAAAEgI=</HashCode>
+      <FileName>Page.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Thread_synch" Collapsed="true">
+    <Position X="12.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Thread_synch.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Win_transfer" Collapsed="true">
+    <Position X="15.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BADAIAGAAAIQVAAQAAAAQABAAAAQAQAAAhAAAAAAAYA=</HashCode>
+      <FileName>Win_transfer.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="account" Collapsed="true">
+    <Position X="12.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AADAQlAAAABQAAAKAQSAggIACAAEUAEIgAAOQAAEAYA=</HashCode>
+      <FileName>account.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="main_win" Collapsed="true">
+    <Position X="12.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAQAAEAAQAIAAAAAQAAAAAAAAQBCAAAAABQQ=</HashCode>
+      <FileName>main_win.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ui::main_winClass" Collapsed="true">
+    <Position X="0.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\ui_main_win.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="Thread_signals" Collapsed="true">
+    <Position X="14" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAAAAAAgAAAAAIgAAAAAAIAAAAAAAAA=</HashCode>
+      <FileName>Page.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Sex" Collapsed="true">
+    <Position X="12.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>account.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

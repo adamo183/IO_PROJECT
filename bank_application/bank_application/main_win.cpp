@@ -34,7 +34,7 @@ main_win::main_win(QWidget *parent)
 	// akcje z podstorn
 	connect(page_sign_in, SIGNAL(hide()), page_general_view, SLOT(showPage()));
 	connect(page_general_view, SIGNAL(logout()), page_sign_in, SLOT(showPage()));
-	connect(page_account_overview, SIGNAL(hide()), page_general_view, SLOT(showPage()));
+	//connect(page_account_overview, SIGNAL(hide()), page_general_view, SLOT(showPage()));
 
 	connect(page_general_view, SIGNAL(creditPage()), page_credit, SLOT(showPage()));
 	connect(page_credit, SIGNAL(hide()), page_general_view, SLOT(showPage()));

@@ -18,8 +18,7 @@ public:
 
 	Page_general_view(QScrollArea * parent = Q_NULLPTR, DB_Holder * db = nullptr, const QString & CSS = "" , account *user = Q_NULLPTR) : Page(parent, CSS), db_holder(db) , User(user) {};
 	~Page_general_view();
-	   
-
+	
 private:
 
 	Thread_signals current_work;

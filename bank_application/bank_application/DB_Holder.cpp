@@ -19,23 +19,10 @@ DB_Holder::~DB_Holder()
 
 bool DB_Holder::Connect()
 {
-	bool success = false;
-
-	if (!db.isOpen())
-		db.open();
-
-	if (db.isOpen()) {
-		last_error = db.lastError().text();
-		success = true;
-	}
-	else {
-		last_error = db.lastError().text();
-	}
-
+	bool success = db.open();
+	last_error = db.lastError().text();
 	return success;
 }
-
-
 
 bool DB_Holder::Login(QString *name,QString *pass,account* user)
 {
