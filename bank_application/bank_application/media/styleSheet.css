@@ -50,6 +50,27 @@ QLineEdit:disabled {
 	background-color: white;
 }
 
+/*-----------------QPlainTextEdit------------------*/
+QPlainTextEdit {
+	background-color: rgb(196, 197, 199);
+}
+
+QPlainTextEdit:hover {
+	background-color: #e2e2e2;
+}
+
+QPlainTextEdit:focus {
+	background-color: white;
+}
+
+QPlainTextEdit:disabled {
+	background-color: white;
+}
+
+QPlainTextEdit#win_transfer {
+	height: 1000px;
+}
+
 /*----------------------QLabel---------------------*/
 QLabel {
     font-size: 15px;
@@ -95,7 +116,7 @@ QComboBox::down-arrow {
 }
 
 QPushButton#menu_bton {
-    width:50px;
+    width:100px;
 }
 QPushButton#out_bton{
     width:50px;
@@ -117,4 +138,20 @@ QLabel#quick_lab {
 QFrame#quick_wid {
     border: 1px solid black;
     border-radius: 20px;
+}
+
+QWidget#tool_box_wgt {
+
+	background-color: rgba(0, 0, 0, 0);
+
+}
+
+QLabel#tool_box_lbl {
+	font-size: 10px;
+	color: #fff;
+
+}
+
+QMessageBox {
+	background-color: #393A4D;
 }

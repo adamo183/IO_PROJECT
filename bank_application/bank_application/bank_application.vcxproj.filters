@@ -53,10 +53,22 @@
     <ClCompile Include="Page.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Page_Trans_Hist.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Page_credit.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="Page_general_view.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Page_settings.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="Page_sign_in.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Win_transfer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="account.cpp">
@@ -71,6 +83,12 @@
     <ClCompile Include="md5.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Credit.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Transfer.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DB_Holder.h">
@@ -79,13 +97,28 @@
     <QtMoc Include="Page.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <ClInclude Include="Page_Trans_Hist.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Page_credit.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="Page_general_view.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Page_settings.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Page_sign_in.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <QtMoc Include="Thread_synch.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <ClInclude Include="Transfer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <QtMoc Include="Win_transfer.h">
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="account.h">
@@ -96,6 +129,9 @@
     </QtMoc>
     <ClInclude Include="md5.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Credit.h">
+      <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

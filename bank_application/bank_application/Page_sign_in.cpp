@@ -8,19 +8,18 @@ void Page_sign_in::showPage()
 	isHidden = false;
 	group_box = new QGroupBox(this->parent);
 	main_lay = new QVBoxLayout(group_box);
-	//button = new QPushButton("Download from db");
-
 	
 	group_box->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
 
 	// adamo
 
 	QLabel * title_open = new QLabel("Enter your login and password");
-	///title_open->setStyleSheet("border:1px solid black;border-radius:10px;padding:10px 120px 10px;text-align:center");
+	
+	//title_open->setStyleSheet("border:1px solid black;border-radius:10px;padding:10px 120px 10px;text-align:center");
 
 	//creating login field
 	auto login_lab = new QLabel("Login:");
-	auto pass_lab = new QLabel("Haslo:");
+	auto pass_lab = new QLabel("Password:");
 	auto login_field = new QLineEdit("Kowalski");
 	auto pass_field = new QLineEdit("1234");
 
@@ -85,11 +84,11 @@ void Page_sign_in::showPage()
 
 	setCSS();
 
-	setProcessDescription("Please wait!");
+	setProcessDescription("Verifying...");
 
 	connect(send_butt, &QPushButton::clicked, this, [this,login_field,pass_field]() {
 		set_login_data(login_field->text(), pass_field->text() );
-		wait_for_the_thread_and_hide();
+		wait_for_the_thread_and_emit_signal();
 	});
 
 }
@@ -102,6 +101,7 @@ void Page_sign_in::setHidden(bool emitSignal)
 	for (auto & ite : parent->widget()->children()) {
 		delete ite;
 	}
+	delete group_box;
 
 	if (emitSignal) { 
 		emit hide(); 
@@ -113,16 +113,10 @@ bool Page_sign_in::work_in_new_thread()
 {
 	bool downloaded_success = false;
 
-	thread_synch.start();
+	downloaded_success = db_holder->Login(login,password,User) && User->getUserData(db_holder);
 
-
-	//downloaded_success = db_holder->DownloadTest();
-	downloaded_success = db_holder->Login(login,password,User);
-
-
-	std::this_thread::sleep_for(std::chrono::milliseconds(4000));
-	thread_synch.stop();
-
+	std::this_thread::sleep_for(std::chrono::milliseconds(500));
+	
 	last_error = db_holder->GetLastError();
 
 	return downloaded_success;

@@ -17,6 +17,7 @@
 #include <QTextEdit>
 #include <QLineEdit>
 
+enum class Thread_signals { HIDE, LOGOUT, CREDIT_PAGE, TRANS_HIST_PAGE, SETT_PAGE };
 
 class Page : public QObject
 {
@@ -25,21 +26,27 @@ class Page : public QObject
 signals:
 	void hide();
 	void logout();
+	void creditPage();
+	void transHistPage();
+	void settPage();
+	void setCloseAble(bool par);
 
 public slots:
+
 	virtual void showPage() = 0;
 	virtual void setHidden(bool emitSignal = true) { emit hide(); };
-
-protected slots:
-	void wait_for_the_thread_and_hide();
 
 public:
 	Page(QScrollArea *parent, const QString & css) : parent(parent), CSS(css) {};
 	virtual ~Page() {};
 
+
+protected slots:
+	void wait_for_the_thread_and_emit_signal(Thread_signals signal2emit = Thread_signals::HIDE);
+
 protected:
 
-	
+	Thread_signals current_signal;
 
 	virtual bool work_in_new_thread() { return true; };
 	void setCSS() { parent->setStyleSheet(CSS); };

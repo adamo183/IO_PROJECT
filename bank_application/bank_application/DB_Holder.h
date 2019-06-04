@@ -15,21 +15,21 @@ class DB_Holder
 	QSqlQuery query;
 
 	QString last_error = "";
-	std::pair<QDateTime, QString> test;
+	QString mlModel;
 
 public:
-	DB_Holder() {};
+	DB_Holder();
 	~DB_Holder();
 
 	bool Connect();
 	bool Login(QString *name, QString *Pass,account *user);
+	void close() { db.close(); };
 
 	QString GetLastError() { return last_error; };
-	QSqlDatabase getDB() { return db; }
-	void SetLastError(QString lastErr) { last_error = lastErr; }
+	QSqlDatabase & getDB() { return db; }
 
-	// test table
-	bool DownloadTest();
-	std::pair<QDateTime, QString> GetTest();
+	bool downloadMlModel();
+	QString getMlModel() const { return mlModel; }
+
 };
 
