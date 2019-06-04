@@ -45,7 +45,7 @@ bool account::getUserData(DB_Holder *hold)
 		nr_doc = query.value(9).toString();
 		credit_id = query.value(10).toInt();
 
-		// todo: pobieranie dalszych danych , last error i jakieœ zabezpieczenia ..
+		
 	}
 	 
 

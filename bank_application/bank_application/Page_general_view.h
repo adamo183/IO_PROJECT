@@ -7,7 +7,7 @@ class Page_general_view :
 {
 public slots:
 	void send_transfer();
-
+	void show_acc_over();
 public:
 	void showPage() override;
 	void setHidden(bool emitSignal = true) override;

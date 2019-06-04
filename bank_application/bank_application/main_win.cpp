@@ -25,12 +25,13 @@ main_win::main_win(QWidget *parent)
 	// strony
 	page_sign_in = new Page_sign_in(ui.main_scrollArea, &db_holder, css, user);
 	page_general_view = new Page_general_view(ui.main_scrollArea, &db_holder, css, user);
-
+	page_account_overview = new Page_account_overview(ui.main_scrollArea, &db_holder, css, user);
 	page_sign_in->showPage();
 
 	// akcje z podstorn
 	connect(page_sign_in, SIGNAL(hide()), page_general_view, SLOT(showPage()));
 	connect(page_general_view, SIGNAL(logout()), page_sign_in, SLOT(showPage()));
+	connect(page_account_overview, SIGNAL(hide()), page_general_view, SLOT(showPage()));
 
 }
 

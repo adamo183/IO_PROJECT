@@ -26,7 +26,7 @@ public:
 
 	QString GetLastError() { return last_error; };
 	QSqlDatabase getDB() { return db; }
-	
+	void SetLastError(QString lastErr) { last_error = lastErr; }
 
 	// test table
 	bool DownloadTest();

@@ -119,10 +119,10 @@ void Page_general_view::showPage()
 
 	connect(send, &QPushButton::clicked, this, [this]() { send_transfer(); });
 	connect(out_bton, &QPushButton::clicked, this, [this]() {
-		
 		setHidden();
 		emit logout();
 	});
+	connect(acc_view,,&QPushButton::clicked,this,);
 
 	setCSS();
 	
@@ -202,4 +202,9 @@ Page_general_view::~Page_general_view()
 	if (!isHidden) {
 		setHidden(false);
 	}
+}
+
+void Page_general_view::show_acc_over()
+{
+
 }
