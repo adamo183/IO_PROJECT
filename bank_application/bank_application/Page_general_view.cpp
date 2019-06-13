@@ -113,7 +113,7 @@ void Page_general_view::showPage()
 
 	 transf_field = new QLineEdit;
 	 title_field = new QLineEdit;
-	 to_field = new QLineEdit("12126767989845451818979752");
+	 to_field = new QLineEdit("76542265022222222000001001");
 
 	quick_grid->addWidget(iwant_transf, 0, 0);
 	quick_grid->addWidget(from, 0, 1);

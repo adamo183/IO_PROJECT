@@ -9,18 +9,26 @@ DB_Holder::DB_Holder()
 	db.setUserName("slavek_io_proj");
 	db.setPassword("io_proj@2019");
 	db.setDatabaseName("slavek_io");
-	query = QSqlQuery(db);
+
+	timer = new QTimer;
+	QTimer::connect(timer, &QTimer::timeout, nullptr, [this]() {
+		db.close();
+		timer->stop();
+	});
 }
 
 DB_Holder::~DB_Holder()
 {
 	db.close();
+	delete timer;
 }
 
 bool DB_Holder::Connect()
 {
-	bool success = db.open();
+	bool success = (db.isOpen() ? true : db.open());
 	last_error = db.lastError().text();
+	
+	timer->start(30000);
 	return success;
 }
 
@@ -34,6 +42,8 @@ bool DB_Holder::Login(QString *name,QString *pass,account* user)
 	
 	if (Connect())
 	{
+		QSqlQuery query = QSqlQuery(db);
+
 		query.exec(("SELECT * FROM `LOGIN` WHERE Nazwa_uz = '"+*name+"' AND Haslo = '"+pass_f+"'"));
 			
 		if (query.size() == 1)
@@ -52,9 +62,9 @@ bool DB_Holder::Login(QString *name,QString *pass,account* user)
 		}
 	}
 	else {
-		last_error = query.lastError().text();
+		last_error = db.lastError().text();
 	}		
-	db.close();
+	//db.close();
 
 	return success;
 }
@@ -64,6 +74,7 @@ bool DB_Holder::downloadMlModel()
 	bool success = false;
 
 	if (Connect()) {
+		QSqlQuery query = QSqlQuery(db);
 
 		query.exec("SELECT `Model` FROM `ML_MODEL` ORDER BY `Id` DESC LIMIT 1");
 
@@ -82,7 +93,7 @@ bool DB_Holder::downloadMlModel()
 		last_error = db.lastError().text();
 	}
 
-	db.close();
+	//db.close();
 	return success;
 }
 

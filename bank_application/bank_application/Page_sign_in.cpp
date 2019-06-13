@@ -11,74 +11,34 @@ void Page_sign_in::showPage()
 	
 	group_box->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
 
-	// adamo
-
 	QLabel * title_open = new QLabel("Enter your login and password");
-	
-	//title_open->setStyleSheet("border:1px solid black;border-radius:10px;padding:10px 120px 10px;text-align:center");
 
-	//creating login field
 	auto login_lab = new QLabel("Login:");
 	auto pass_lab = new QLabel("Password:");
 	auto login_field = new QLineEdit("Kowalski");
 	auto pass_field = new QLineEdit("1234");
+	shortcut = new QShortcut(QKeySequence(QKeySequence::InsertParagraphSeparator), parent);
 
 	pass_field->setEchoMode(QLineEdit::Password);
 	send_butt = new QPushButton("Sign in");
 
+	auto grid_layout = new QGridLayout;
 
-	//creating layout
-	auto logo = new QHBoxLayout;
-	auto horizont_login = new QHBoxLayout;
-	auto horizont_pass = new QHBoxLayout;
-	auto horizont_butt = new QHBoxLayout;
-	auto status_login = new QHBoxLayout;
+	grid_layout->addWidget(login_lab, 0, 0);
+	grid_layout->addWidget(login_field, 0, 1);
 
+	grid_layout->addWidget(pass_lab,1,0);
+	grid_layout->addWidget(pass_field,1,1);
 
-	//setings layout
+	grid_layout->addWidget(send_butt,2,1);
 
-	horizont_login->setAlignment(Qt::AlignTop);
-	horizont_pass->setAlignment(Qt::AlignTop);
-	main_lay->setAlignment(Qt::AlignTop);
-
-
-	//adding inside layout to main_lay
-	main_lay->addLayout(logo);
-	main_lay->addLayout(horizont_login);
-	main_lay->addLayout(horizont_pass);
-	main_lay->addLayout(horizont_butt);
-	main_lay->addLayout(status_login);
-
-	logo->addWidget(title_open);
-
-	logo->setAlignment(Qt::AlignCenter);
-	title_open->setFixedWidth(400);
-
-	horizont_login->addStretch();
-	horizont_login->addWidget(login_lab);
-	horizont_login->addWidget(login_field);
-	horizont_login->addStretch();
-
-	horizont_pass->addStretch();
-	horizont_pass->addWidget(pass_lab);
-	horizont_pass->addWidget(pass_field);
-	horizont_pass->addStretch();
-
-	horizont_butt->addWidget(send_butt);
 	send_butt->setFixedWidth(100);
 	title_open->setFixedWidth(400);
-	//status_login->addWidget(status);
-	status_login->setAlignment(Qt::AlignCenter);
-	//status->setMargin(100);
+
+	main_lay->addWidget(title_open);
+	main_lay->addLayout(grid_layout);
+
 	group_box->setLayout(main_lay);
-
-
-
-
-
-	// end of adamo
-
-	main_lay->addWidget(send_butt);
 
 	parent->setWidget(group_box);
 
@@ -91,17 +51,23 @@ void Page_sign_in::showPage()
 		wait_for_the_thread_and_emit_signal();
 	});
 
+	connect(shortcut, &QShortcut::activated, this, [this]() {
+		send_butt->clicked(true);
+	});
 }
 
 void Page_sign_in::setHidden(bool emitSignal)
 {
 	isHidden = true;
 
+	send_butt->disconnect();
+	shortcut->disconnect();
 
 	for (auto & ite : parent->widget()->children()) {
 		delete ite;
 	}
 	delete group_box;
+	delete shortcut;
 
 	if (emitSignal) { 
 		emit hide(); 

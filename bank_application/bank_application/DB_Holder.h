@@ -5,17 +5,20 @@
 #include <QSqlQuery>
 #include <QString>
 #include <QDateTime>
+#include <QTimer>
 #include "md5.h"
 #include "account.h"
+
 class account;
 
 class DB_Holder
 {
 	QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
-	QSqlQuery query;
 
 	QString last_error = "";
 	QString mlModel;
+
+	QTimer *timer;
 
 public:
 	DB_Holder();
