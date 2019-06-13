@@ -17,9 +17,7 @@ class DB_Holder
 
 	QString last_error = "";
 	QString mlModel;
-
-	QTimer *timer;
-
+	
 public:
 	DB_Holder();
 	~DB_Holder();

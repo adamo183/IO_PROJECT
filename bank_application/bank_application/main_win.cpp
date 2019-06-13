@@ -9,7 +9,7 @@ main_win::main_win(QWidget *parent)
 	setWindowIcon(QIcon("media/icon.ico"));
 
 	// wyglad
-	this->setFixedSize(800, 600);
+	//this->setFixedSize(800, 600);
 	centralWidget()->layout()->setContentsMargins(0, 0, 0, 0);
 	statusBar()->hide();
 	ui.mainToolBar->hide();

@@ -36,7 +36,12 @@ public:
     {
         if (main_winClass->objectName().isEmpty())
             main_winClass->setObjectName(QString::fromUtf8("main_winClass"));
-        main_winClass->resize(600, 400);
+        main_winClass->resize(800, 600);
+        QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(main_winClass->sizePolicy().hasHeightForWidth());
+        main_winClass->setSizePolicy(sizePolicy);
         centralWidget = new QWidget(main_winClass);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         gridLayout = new QGridLayout(centralWidget);
@@ -48,7 +53,7 @@ public:
         main_scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QString::fromUtf8("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 580, 327));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 780, 527));
         main_scrollArea->setWidget(scrollAreaWidgetContents);
 
         gridLayout->addWidget(main_scrollArea, 0, 0, 1, 1);
@@ -56,7 +61,7 @@ public:
         main_winClass->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(main_winClass);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 600, 21));
+        menuBar->setGeometry(QRect(0, 0, 800, 21));
         main_winClass->setMenuBar(menuBar);
         mainToolBar = new QToolBar(main_winClass);
         mainToolBar->setObjectName(QString::fromUtf8("mainToolBar"));

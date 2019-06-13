@@ -10,25 +10,17 @@ DB_Holder::DB_Holder()
 	db.setPassword("io_proj@2019");
 	db.setDatabaseName("slavek_io");
 
-	timer = new QTimer;
-	QTimer::connect(timer, &QTimer::timeout, nullptr, [this]() {
-		db.close();
-		timer->stop();
-	});
 }
 
 DB_Holder::~DB_Holder()
 {
 	db.close();
-	delete timer;
 }
 
 bool DB_Holder::Connect()
 {
 	bool success = (db.isOpen() ? true : db.open());
 	last_error = db.lastError().text();
-	
-	timer->start(30000);
 	return success;
 }
 
@@ -64,7 +56,7 @@ bool DB_Holder::Login(QString *name,QString *pass,account* user)
 	else {
 		last_error = db.lastError().text();
 	}		
-	//db.close();
+	db.close();
 
 	return success;
 }
@@ -93,7 +85,7 @@ bool DB_Holder::downloadMlModel()
 		last_error = db.lastError().text();
 	}
 
-	//db.close();
+	db.close();
 	return success;
 }
 
