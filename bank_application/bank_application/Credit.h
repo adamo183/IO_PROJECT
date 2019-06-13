@@ -9,7 +9,7 @@ namespace cv {
 
 class Credit
 {
-	//Ptr<ANN_MLP> net;
+	//Ptr<cv::ml::ANN_MLP> net;
 	double amount, salary;
 	int age, duration;
 
@@ -18,7 +18,7 @@ class Credit
 public:
 	Credit(const QString & ml_model) {
 		//cv::FileStorage fs(ml_model, cv::FileStorage::READ | cv::FileStorage::MEMORY);
-		//net = cv::Algorithm::read<ANN_MLP>(fs.getFirstTopLevelNode());
+		//net = cv::Algorithm::read<cv::ml::ANN_MLP>(fs.getFirstTopLevelNode());
 	};
 	void setVals(int age, double salary, double amount, int duration);
 	int isAbleToGetCredit();
