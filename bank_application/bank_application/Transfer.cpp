@@ -2,6 +2,39 @@
 #include "account.h"
 #include "DB_Holder.h"
 
+bool Transfer::correctNumber(const QString & number)
+{
+	int k[9], S = 0;
+	/*
+		7 6 5 4 2 2 6 5 k1 k2 k3 k4 k5 k6 k7 k8 k9 i1 i2 i3 i4 i5 i6 i7 i8 i9
+		First 8 digits const for polibank
+		k1, k2, ..., k9 control digits
+		i1, i2, ..., i9 user id number
+
+		S = sum(i1, i2, ...m i9)
+		k_j = S % (j + 1)
+			j = 1, 2, ..., 9
+	*/
+
+	if (number.size() != 26)
+		return false;
+
+	for (int i = 8; i < 26; ++i) {
+		int tmp = number.toStdString()[i] - '0';
+		if (i < 17)
+			k[i - 8] = tmp;
+		else
+			S += tmp;
+	}
+
+	for (int i = 0; i < 9; ++i) {
+		if (k[i] != (S % (i + 2)))
+			return false;
+	}
+
+	return true;
+}
+
 QString Transfer::QuickTransfer(
 	DB_Holder * db, 
 	account * user, 
@@ -13,7 +46,9 @@ QString Transfer::QuickTransfer(
 ) {
 	QString ans;
 
-	if (amount > user->getAccBalance()) {
+	if (!correctNumber(number))
+		ans = "Wrong account number!";
+	else if (amount > user->getAccBalance()) {
 		ans = "You've got no money to do this transaction...";
 	}
 	else if (!db->Connect()) {
@@ -29,7 +64,7 @@ QString Transfer::QuickTransfer(
 		query.exec("SELECT " + columns + " FROM UZYTKOWNIK WHERE Nr_Rachunku LIKE '" + number + "'");
 
 		if (query.size() != 1) {
-			ans = "Wrong account number!";
+			ans = "There is no user with such an account number!";
 		}
 		else {
 
