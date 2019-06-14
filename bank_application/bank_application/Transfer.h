@@ -6,6 +6,7 @@ class DB_Holder;
 
 class Transfer
 {
+	static bool correctNumber(const QString & number);
 public:
 	static QString QuickTransfer(
 		DB_Holder * db, 

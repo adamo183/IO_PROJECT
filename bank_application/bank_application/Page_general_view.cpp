@@ -6,29 +6,15 @@
 void Page_general_view::showPage()
 {
 	isHidden = false;
-	/*
-	group_box = new QGroupBox;
-	main_lay = new QVBoxLayout(group_box);
-	lbl = new QLabel;
-	
-	parent->setWidget(group_box);
-	group_box->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
-
-	auto ansPair = db_holder->GetTest();
-	QString ans = ansPair.first.toString("yyyy-MM-dd hh:mm:ss") + "<br/><h1>" + ansPair.second + "</h1>";
-
-	lbl->setText(ans);
-	main_lay->addWidget(lbl);
-	*/
-	//top bar
 
 	bool credit = !User->hasCredit() && User->hasJob();
+
+	/*********************************************************************************/
 
 	QWidget * parent_widget = new QWidget(parent);
 	parent_widget->setObjectName("parent_widget");
 	parent_widget->setStyleSheet("QWidget#parent_widget { background-color: rgba(0, 0, 0, 0); }");
 	
-	//User->getUserData(db_holder);
 	group_box = new QGroupBox;
 	main_lay = new QVBoxLayout(group_box);
 
@@ -113,7 +99,7 @@ void Page_general_view::showPage()
 
 	 transf_field = new QLineEdit;
 	 title_field = new QLineEdit;
-	 to_field = new QLineEdit("12126767989845451818979752");
+	 to_field = new QLineEdit("76542265022222222000001001");
 
 	quick_grid->addWidget(iwant_transf, 0, 0);
 	quick_grid->addWidget(from, 0, 1);
@@ -127,6 +113,9 @@ void Page_general_view::showPage()
 
 	parent->setWidget(parent_widget);
 
+
+
+	/*********************************************************************************/
 
 	connect(send, &QPushButton::clicked, this, [this]() { send_transfer(); });
 	connect(showMore, &QPushButton::clicked, this, [this]() { new_transfer(); });
@@ -155,12 +144,11 @@ void Page_general_view::showPage()
 		setHidden(false);
 		emit settPage();
 	});
-//	connect(acc_view,,&QPushButton::clicked,this,);
+	//connect(acc_view,,&QPushButton::clicked,this,);
 
 	setCSS();
 	
 }
-
 
 
 void Page_general_view::new_transfer() {
@@ -265,4 +253,3 @@ Page_general_view::~Page_general_view()
 		setHidden(false);
 	}
 }
-

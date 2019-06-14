@@ -63,7 +63,7 @@ void Page_Trans_Hist::showPage()
 
 		lay->addWidget(lbl, 0, 0);
 		lay->addWidget(btn, 0, 1);
-
+		
 		wgt->setLayout(lay);
 
 		QString item_title = std::get<Tr::DATETIME>(current_trans).toString("ddd dd.MM.yyyy") + "\n" +
@@ -75,6 +75,7 @@ void Page_Trans_Hist::showPage()
 	}
 
 	trans_tool_box->setMinimumHeight(300 + n*50);
+	trans_tool_box->setFixedWidth(400);
 
 
 	lbl = new QLabel("Transaction History");

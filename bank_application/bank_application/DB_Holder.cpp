@@ -9,7 +9,7 @@ DB_Holder::DB_Holder()
 	db.setUserName("slavek_io_proj");
 	db.setPassword("io_proj@2019");
 	db.setDatabaseName("slavek_io");
-	query = QSqlQuery(db);
+
 }
 
 DB_Holder::~DB_Holder()
@@ -19,23 +19,10 @@ DB_Holder::~DB_Holder()
 
 bool DB_Holder::Connect()
 {
-	bool success = false;
-
-	if (!db.isOpen())
-		db.open();
-
-	if (db.isOpen()) {
-		last_error = db.lastError().text();
-		success = true;
-	}
-	else {
-		last_error = db.lastError().text();
-	}
-
+	bool success = (db.isOpen() ? true : db.open());
+	last_error = db.lastError().text();
 	return success;
 }
-
-
 
 bool DB_Holder::Login(QString *name,QString *pass,account* user)
 {
@@ -47,6 +34,8 @@ bool DB_Holder::Login(QString *name,QString *pass,account* user)
 	
 	if (Connect())
 	{
+		QSqlQuery query = QSqlQuery(db);
+
 		query.exec(("SELECT * FROM `LOGIN` WHERE Nazwa_uz = '"+*name+"' AND Haslo = '"+pass_f+"'"));
 			
 		if (query.size() == 1)
@@ -65,7 +54,7 @@ bool DB_Holder::Login(QString *name,QString *pass,account* user)
 		}
 	}
 	else {
-		last_error = query.lastError().text();
+		last_error = db.lastError().text();
 	}		
 	db.close();
 
@@ -77,6 +66,7 @@ bool DB_Holder::downloadMlModel()
 	bool success = false;
 
 	if (Connect()) {
+		QSqlQuery query = QSqlQuery(db);
 
 		query.exec("SELECT `Model` FROM `ML_MODEL` ORDER BY `Id` DESC LIMIT 1");
 

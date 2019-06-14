@@ -89,25 +89,25 @@ void Win_transfer::send_slot() {
 			address = Address_pte->toPlainText();
 
 	if (accNo.isEmpty() || amount_str.isEmpty() || title.isEmpty() || name.isEmpty() || address.isEmpty()) {
-		QMessageBox::information(nullptr, "Empyt fields", "Fill empty fields!");
+		QMessageBox::information(this, "Empyt fields", "Fill empty fields!");
 		return;
 	}
 
 	double amount = amount_str.replace(",", ".").toDouble();
 
 	if (amount <= 0) {
-		QMessageBox::information(nullptr, " ", "Only positive transfers allowed!");
+		QMessageBox::information(this, " ", "Only positive transfers allowed!");
 		return;
 	}
 
 	if (accNo.size() != 26) {
-		QMessageBox::information(nullptr, "Wrong number", "Too short account number!");
+		QMessageBox::information(this, "Wrong number", "Too short account number!");
 		return;
 	}
 
 	QString ans = Transfer::QuickTransfer(db, user, amount, accNo, title, name, address);
 
-	QMessageBox::information(nullptr, " ", ans);
+	QMessageBox::information(this, " ", ans);
 
 	this->close();
 }
