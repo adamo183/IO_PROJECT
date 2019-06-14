@@ -155,7 +155,7 @@ void Page_general_view::showPage()
 		setHidden(false);
 		emit settPage();
 	});
-	connect(acc_view,,&QPushButton::clicked,this,);
+//	connect(acc_view,,&QPushButton::clicked,this,);
 
 	setCSS();
 	
@@ -266,7 +266,3 @@ Page_general_view::~Page_general_view()
 	}
 }
 
-void Page_general_view::show_acc_over()
-{
-
-}
