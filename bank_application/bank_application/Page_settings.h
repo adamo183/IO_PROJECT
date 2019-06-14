@@ -1,5 +1,6 @@
 #pragma once
 #include "Page.h"
+
 class Page_settings :
 	public Page
 {
@@ -8,6 +9,7 @@ class Page_settings :
 
 	QLabel * lbl;
 	QPushButton * btn;
+	
 
 public:
 	void showPage() override;

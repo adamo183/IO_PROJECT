@@ -1,6 +1,6 @@
 #include "Page_settings.h"
-
-
+#include <QTableWidget>
+#include <QTableView>
 
 void Page_settings::showPage()
 {
@@ -11,24 +11,82 @@ void Page_settings::showPage()
 
 	group_box->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
 	/******************************************************************************/
+	auto * info_lay = new QGridLayout;
+	auto * info_widget = new QWidget;
+	auto * name_label = new QLabel("Name: ");
+	auto * name_line = new QLineEdit;
+	auto * surname_label = new QLabel("Surname: ");
+	auto * surname_line = new QLineEdit;
+	auto * phone_label = new QLabel("Phone number: ");
+	auto * phone_line = new QLineEdit;
+	auto * doc_label = new QLabel("Document number: ");
+	auto * doc_line = new QLineEdit;
+	auto * addr_label = new QLabel("Address: ");
+	auto * addr_line = new QLineEdit;
+	auto * job_label = new QLabel("Job setting");
 
-
-
-
-	lbl = new QLabel("Settings");
+	lbl = new QLabel("Account Settings");
 	main_lay->addWidget(lbl, 0, Qt::AlignCenter);
+	main_lay->addWidget(info_widget);
+
+	info_widget->setLayout(info_lay);
+	info_lay->addWidget(name_label,0,0);
+	info_lay->addWidget(name_line,0,1);
+	name_line->setText(User->getName());
+	info_lay->addWidget(surname_label,1,0);
+	info_lay->addWidget(surname_line,1,1);
+	surname_line->setText(User->getSurrname());
+	info_lay->addWidget(phone_label, 2, 0);
+	info_lay->addWidget(phone_line, 2, 1);
+	phone_line->setText(User->getPhoneNumber());
+	info_lay->addWidget(doc_label, 3, 0);
+	info_lay->addWidget(doc_line, 3, 1);
+	doc_line->setText(User->getDocNumber());
+	info_lay->addWidget(addr_label, 4, 0);
+	info_lay->addWidget(addr_line, 4, 1);
+	addr_line->setText(User->getAdress());
+	main_lay->addWidget(job_label,0,Qt::AlignCenter);
 
 	btn = new QPushButton("Cancel");
-	main_lay->addWidget(btn, 0, Qt::AlignLeft);
+	auto setBtn = new QPushButton("Save Changes");
+	info_lay->addWidget(btn,6,0);
+	
+	info_lay->addWidget(setBtn, 6, 1);
 
+	auto * job_table = new QTableView;
+	auto *sql_tbl = new QSqlTableModel;//(this->parent, db_holder->getDB());
+	sql_tbl->setTable("DOCHOD");
+	sql_tbl->setEditStrategy(QSqlTableModel::OnManualSubmit);
+	
 
+	QString filt = "Id_uzytkow = "+ QString::number(User->getUserId());
+	sql_tbl->setFilter(filt);
+	sql_tbl->select();
+	//sql_tbl->setHeaderData(0, Qt::Horizontal, tr("Id_doch"));
+	//sql_tbl->setHeaderData(1, Qt::Horizontal, tr("Company name"));
+//	sql_tbl->setHeaderData(2, Qt::Horizontal, tr("Company address"));
+//	sql_tbl->setHeaderData(0, Qt::Horizontal, tr("Salary"));
+	
+	main_lay->addWidget(job_table);
+	job_table->setModel(sql_tbl);
+	job_table->resizeColumnsToContents();
+
+	auto * submit = new QPushButton("Submit");
+	auto * new_job = new QPushButton("New job");
+	auto * down_btn = new QHBoxLayout;
+	main_lay->addLayout(down_btn);
+	down_btn->addWidget(submit);
+	down_btn->addWidget(new_job);
+		
 	connect(btn, &QPushButton::clicked, this, [this]() {
 		setHidden();
 	});
-
+	connect(setBtn, &QPushButton::clicked, this, [this]() {});
 
 	/******************************************************************************/
+
 	parent->setWidget(group_box);
+
 
 	setCSS();
 }
