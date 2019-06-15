@@ -142,8 +142,10 @@ QFrame#quick_wid {
 
 QWidget#tool_box_wgt {
 
-	background-color: rgba(0, 0, 0, 0);
-
+	/*background-color: rgba(0, 0, 0, 0);*/
+	border-style: solid;
+	border-width: 0px 2px 2px 2px;
+	border-color: rgb(89, 91, 124);
 }
 
 QLabel#tool_box_lbl {
@@ -154,4 +156,10 @@ QLabel#tool_box_lbl {
 
 QMessageBox {
 	background-color: #393A4D;
+}
+
+QWidget#withBorder {
+
+	border: 2px solid rgb(89, 91, 124);
+	border-radius:10px;
 }

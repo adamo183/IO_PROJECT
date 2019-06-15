@@ -11,63 +11,75 @@ void Page_general_view::showPage()
 
 	/*********************************************************************************/
 
-	//QWidget * parent_widget = new QWidget(parent);
-	//parent_widget->setObjectName("parent_widget");
-	//parent_widget->setStyleSheet("QWidget#parent_widget { background-color: rgba(0, 0, 0, 0); }");
-	
 	group_box = new QGroupBox(this->parent);
 	main_lay = new QVBoxLayout(group_box);
-	menu_layout = new QHBoxLayout(group_box);
+
 
 	group_box->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
 
+	// menu
+	menu_layout = new QHBoxLayout(group_box);
 
 	if(credit) credit_bton = new QPushButton("Get a credit");
 	sett_bton = new QPushButton("Settings");
 	out_bton = new QPushButton("Logout");
+	new_transf = new QPushButton("New transfer");
 
+	sett_bton->setFixedWidth(100);
+	new_transf->setFixedWidth(100);
+	if (credit) credit_bton->setFixedWidth(100);
+	out_bton->setFixedWidth(50);
 
-	
-	menu_layout->addWidget(sett_bton, Qt::AlignLeft);
-	if (credit) menu_layout->addWidget(credit_bton, Qt::AlignLeft);
-	menu_layout->addWidget(out_bton, Qt::AlignRight);
+	menu_layout->addWidget(sett_bton);
+	menu_layout->addWidget(new_transf);
+	if (credit) menu_layout->addWidget(credit_bton);
+	menu_layout->addWidget(out_bton);
+
+	menu_layout->setAlignment(out_bton, Qt::AlignRight);
 
 	if (credit) credit_bton->setObjectName("menu_bton");
 	sett_bton->setObjectName("menu_bton");
+	new_transf->setObjectName("menu_bton");
 	out_bton->setObjectName("out_bton");
-	
-	main_lay->addLayout(menu_layout);
-	main_lay->addStretch();
 
+	main_lay->addLayout(menu_layout);
+
+	// end of menu
+
+	main_lay->addSpacing(25);
 
 	//acc frame
 	acc_wgt = new QWidget(group_box);
+	acc_wgt->setObjectName("withBorder");
 	acc_grid = new QGridLayout(acc_wgt);
 
 	acc_lab = new QLabel("My Account");
 	curr_lab = new QLabel(User->getName()+" "+User->getSurrname());
-	curr_lab->setFixedWidth(400);
 	curr_lab->setObjectName("curr_lab");
 	acc_lab->setObjectName("acc_lab");
 
 	money = new QLabel("$" + QString::number(User->getAccBalance(), 'f', 2));
-	money->setMinimumWidth(150);
 
 	acc_view = new QPushButton("Account Overview");
+	
+	acc_view->setFixedWidth(150);
+	
 
 	acc_grid->addWidget(acc_lab, 0, 0, 2, 2, Qt::AlignCenter);
-	acc_grid->addWidget(curr_lab, 2, 0, Qt::AlignLeft);
+	acc_grid->addWidget(curr_lab, 2, 0, 1, 2, Qt::AlignLeft);
 	acc_grid->addWidget(money, 3, 0, Qt::AlignLeft);
 	acc_grid->addWidget(acc_view, 3, 1, Qt::AlignLeft);
 
 	acc_wgt->setLayout(acc_grid);
-	main_lay->addWidget(acc_wgt);
+	main_lay->addWidget(acc_wgt, 0, Qt::AlignLeft);
 
 	// end of acc frame
 
+	main_lay->addSpacing(15);
+	
 	// quick transfer
 	quick_wgt = new QWidget(group_box);
-	quick_wgt->setStyleSheet("QWidget { background-color: #00F; }");
+	quick_wgt->setObjectName("withBorder");
 	quick_grid = new QGridLayout(quick_wgt);
 
 	quick_lab = new QLabel("Quick Transfer");
@@ -82,6 +94,11 @@ void Page_general_view::showPage()
 	title_field = new QLineEdit;
 	to_field = new QLineEdit("76542265022222222000001001");
 
+	quick_wgt->setFixedWidth(500);
+	transf_field->setFixedWidth(200);
+	title_field->setFixedWidth(200);
+	to_field->setFixedWidth(200);
+
 	quick_grid->addWidget(quick_lab, 0, 0, 2, 2, Qt::AlignCenter);
 	quick_grid->addWidget(iwant_transf, 2, 0, Qt::AlignRight);
 	quick_grid->addWidget(transf_field, 2, 1, Qt::AlignLeft);
@@ -94,7 +111,7 @@ void Page_general_view::showPage()
 
 	quick_wgt->setLayout(quick_grid);
 
-	main_lay->addWidget(quick_wgt);
+	main_lay->addWidget(quick_wgt, 0, Qt::AlignCenter);
 
 	// end of quick transfer
 
@@ -106,7 +123,8 @@ void Page_general_view::showPage()
 	/*********************************************************************************/
 
 	connect(send, &QPushButton::clicked, this, [this]() { send_transfer(); });
-	connect(showMore, &QPushButton::clicked, this, [this]() { new_transfer(); });
+	connect(new_transf, &QPushButton::clicked, this, [this]() { new_transfer(false); });
+	connect(showMore, &QPushButton::clicked, this, [this]() { new_transfer(true); });
 	connect(out_bton, &QPushButton::clicked, this, [this]() {
 		setHidden(false);
 		emit logout();
@@ -132,14 +150,13 @@ void Page_general_view::showPage()
 		setHidden(false);
 		emit settPage();
 	});
-	//connect(acc_view,,&QPushButton::clicked,this,);
 
 	setCSS();
 	
 }
 
 
-void Page_general_view::new_transfer() {
+void Page_general_view::new_transfer(bool set_vals) {
 
 	auto setEnable = [this](bool enable) {
 		for (auto & ite : parent->children()) {
@@ -152,17 +169,20 @@ void Page_general_view::new_transfer() {
 	setEnable(false);
 
 	win_transfer = new Win_transfer(db_holder, User, CSS);
-	win_transfer->setTransferAmount(transf_field->text());
-	win_transfer->setReceiverAccNumber(to_field->text());
-	win_transfer->setTitle(title_field->text());
 
+	if (set_vals) {
+		win_transfer->setTransferAmount(transf_field->text());
+		win_transfer->setReceiverAccNumber(to_field->text());
+		win_transfer->setTitle(title_field->text());
+	}
+	
 	emit setCloseAble(false);
 
 	connect(win_transfer, &Win_transfer::closed, this, [this, setEnable]() {
 	
 		setEnable(true);
 		emit setCloseAble(true);
-
+		
 		transf_field->setText(""); to_field->setText(""); title_field->setText("");
 
 		win_transfer = Q_NULLPTR;

@@ -8,7 +8,7 @@ class Page_general_view :
 {
 public slots:
 	void send_transfer();
-	void new_transfer();
+	void new_transfer(bool);
 
 public:
 	void showPage() override;
@@ -30,6 +30,7 @@ private:
 	QLabel * lbl = Q_NULLPTR;
 	account* User = Q_NULLPTR;
 
+	QPushButton * new_transf = Q_NULLPTR;
 	QPushButton* credit_bton = Q_NULLPTR;
 	QPushButton * sett_bton = Q_NULLPTR;
 	QPushButton* out_bton = Q_NULLPTR;
