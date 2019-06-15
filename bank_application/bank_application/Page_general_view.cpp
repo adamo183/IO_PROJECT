@@ -11,107 +11,95 @@ void Page_general_view::showPage()
 
 	/*********************************************************************************/
 
-	QWidget * parent_widget = new QWidget(parent);
-	parent_widget->setObjectName("parent_widget");
-	parent_widget->setStyleSheet("QWidget#parent_widget { background-color: rgba(0, 0, 0, 0); }");
+	//QWidget * parent_widget = new QWidget(parent);
+	//parent_widget->setObjectName("parent_widget");
+	//parent_widget->setStyleSheet("QWidget#parent_widget { background-color: rgba(0, 0, 0, 0); }");
 	
-	group_box = new QGroupBox;
+	group_box = new QGroupBox(this->parent);
 	main_lay = new QVBoxLayout(group_box);
+	menu_layout = new QHBoxLayout(group_box);
 
-	topWigdet = new QWidget;
-	top_bar = new QHBoxLayout(topWigdet);
+	group_box->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
+
+
 	if(credit) credit_bton = new QPushButton("Get a credit");
 	sett_bton = new QPushButton("Settings");
 	out_bton = new QPushButton("Logout");
 
-	
-	parent_widget->setLayout(main_lay);
-	main_lay->addWidget(topWigdet);
 
-	top_bar->addWidget(sett_bton, 1, Qt::AlignLeft);
-	if(credit) top_bar->addWidget(credit_bton,1,Qt::AlignLeft);
-	top_bar->addWidget(out_bton,3,Qt::AlignRight);
-	top_bar->setAlignment(Qt::AlignTop);
 	
-	if(credit) credit_bton->setObjectName("menu_bton");
+	menu_layout->addWidget(sett_bton, Qt::AlignLeft);
+	if (credit) menu_layout->addWidget(credit_bton, Qt::AlignLeft);
+	menu_layout->addWidget(out_bton, Qt::AlignRight);
+
+	if (credit) credit_bton->setObjectName("menu_bton");
 	sett_bton->setObjectName("menu_bton");
 	out_bton->setObjectName("out_bton");
-	topWigdet->setFixedHeight(50);
+	
+	main_lay->addLayout(menu_layout);
+	main_lay->addStretch();
+
+
 	//acc frame
-	 acc_lab = new QLabel("My Account");
-	 curr_lab = new QLabel(User->getName()+" "+User->getSurrname());
-	 curr_lab->setFixedWidth(200);
+	acc_wgt = new QWidget(group_box);
+	acc_grid = new QGridLayout(acc_wgt);
+
+	acc_lab = new QLabel("My Account");
+	curr_lab = new QLabel(User->getName()+" "+User->getSurrname());
+	curr_lab->setFixedWidth(400);
 	curr_lab->setObjectName("curr_lab");
 	acc_lab->setObjectName("acc_lab");
-	 acc_bar = new QVBoxLayout;
 
-	main_lay->addLayout(acc_bar);
-	acc_bar->setAlignment(Qt::AlignTop);
-	acc_bar->addWidget(acc_lab, 0, Qt::AlignLeft|Qt::AlignTop);
-	
+	money = new QLabel("$" + QString::number(User->getAccBalance(), 'f', 2));
+	money->setMinimumWidth(150);
 
-	 box_layout = new QHBoxLayout;
-	 data_lay = new QGridLayout;
-	acc_bar->addLayout(box_layout);
-	box_layout->setAlignment(Qt::AlignTop);
-	
-	 acc_frame = new QGroupBox;
-	box_layout->addWidget(acc_frame);
-	acc_frame->setLayout(data_lay);
-	 money = new QLabel("$" + QString::number(User->getAccBalance(), 'f', 2));
+	acc_view = new QPushButton("Account Overview");
 
-	 money->setMinimumWidth(150);
+	acc_grid->addWidget(acc_lab, 0, 0, 2, 2, Qt::AlignCenter);
+	acc_grid->addWidget(curr_lab, 2, 0, Qt::AlignLeft);
+	acc_grid->addWidget(money, 3, 0, Qt::AlignLeft);
+	acc_grid->addWidget(acc_view, 3, 1, Qt::AlignLeft);
 
-	 trans_name_1 = new QLabel("Transfer_1");
-	 trans_value_1 = new QLabel("$9999");
+	acc_wgt->setLayout(acc_grid);
+	main_lay->addWidget(acc_wgt);
 
-	 trans_name_2 = new QLabel("Transfer_2");
-	 trans_value_2 = new QLabel("$9999");
+	// end of acc frame
 
-	 acc_view = new QPushButton("Account Overview");
-	acc_frame->setObjectName("acc_frame");
-	data_lay->setAlignment(Qt::AlignTop);
+	// quick transfer
+	quick_wgt = new QWidget(group_box);
+	quick_wgt->setStyleSheet("QWidget { background-color: #00F; }");
+	quick_grid = new QGridLayout(quick_wgt);
 
-	data_lay->addWidget(curr_lab, 0, 0, Qt::AlignTop | Qt::AlignLeft);
-	data_lay->addWidget(money, 1, 0,Qt::AlignLeft);
-	data_lay->addWidget(trans_name_1,3,0);
-	data_lay->addWidget(trans_value_1, 3, 1);
-	data_lay->addWidget(trans_name_2, 4, 0);
-	data_lay->addWidget(trans_value_2, 4, 1);
-	data_lay->addWidget(acc_view, 5, 0,1,2);
-	acc_frame->setFixedWidth(200);
-
-	//quick transfer
-	 quick_wid = new QGroupBox;
-	quick_wid->setFixedHeight(150);
-	 quick_lab = new QLabel("Quick Transfer");
+	quick_lab = new QLabel("Quick Transfer");
 	quick_lab->setObjectName("quick_lab");
-	 quick_grid = new QGridLayout(quick_wid);
-	main_lay->addWidget(quick_lab);
-	main_lay->addWidget(quick_wid);
-	quick_lab->setFixedSize(200,30);
-	quick_wid->setObjectName("quick_wid");
-	 iwant_transf = new QLabel("I want to transfer:");
-	 from = new QLabel("To this account:");
-	 to = new QLabel("Transaction title:");
-	 send = new QPushButton("Send");
-	 showMore = new QPushButton("See more..");
+	iwant_transf = new QLabel("I want to transfer:");
+	from = new QLabel("To this account:");
+	to = new QLabel("Transaction title:");
+	send = new QPushButton("Send");
+	showMore = new QPushButton("See more..");
 
-	 transf_field = new QLineEdit;
-	 title_field = new QLineEdit;
-	 to_field = new QLineEdit("76542265022222222000001001");
+	transf_field = new QLineEdit;
+	title_field = new QLineEdit;
+	to_field = new QLineEdit("76542265022222222000001001");
 
-	quick_grid->addWidget(iwant_transf, 0, 0);
-	quick_grid->addWidget(from, 0, 1);
-	quick_grid->addWidget(to, 0, 2);
+	quick_grid->addWidget(quick_lab, 0, 0, 2, 2, Qt::AlignCenter);
+	quick_grid->addWidget(iwant_transf, 2, 0, Qt::AlignRight);
+	quick_grid->addWidget(transf_field, 2, 1, Qt::AlignLeft);
+	quick_grid->addWidget(from, 3, 0, Qt::AlignRight);
+	quick_grid->addWidget(to_field, 3, 1, Qt::AlignLeft);
+	quick_grid->addWidget(to, 4, 0, Qt::AlignRight);
+	quick_grid->addWidget(title_field, 4, 1, Qt::AlignLeft);
+	quick_grid->addWidget(showMore, 5, 0, Qt::AlignRight);
+	quick_grid->addWidget(send, 5, 1, Qt::AlignLeft);
 
-	quick_grid->addWidget(transf_field, 1, 0);
-	quick_grid->addWidget(to_field,1,1);
-	quick_grid->addWidget(title_field, 1, 2);
-	quick_grid->addWidget(send, 3, 0);
-	quick_grid->addWidget(showMore, 3, 2);
+	quick_wgt->setLayout(quick_grid);
 
-	parent->setWidget(parent_widget);
+	main_lay->addWidget(quick_wgt);
+
+	// end of quick transfer
+
+	group_box->setLayout(main_lay);
+	parent->setWidget(group_box);
 
 
 
