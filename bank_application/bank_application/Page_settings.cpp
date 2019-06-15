@@ -92,7 +92,35 @@ void Page_settings::showPage()
 
 void Page_settings::setNewData()
 {
-	
+	if (db_holder->Connect()) {
+		QSqlQuery query = QSqlQuery(db_holder->getDB());
+
+		if (name_line->text() != User->getName())
+		{
+			query.exec("UPDATE `UZYTKOWNIK` SET `Imie` = '"+ name_line->text() + "'  WHERE `Id_Uzytkow` = "+QString::number(User->getUserId()));
+			db_holder->SetLastError(query.lastError().text());
+		}
+		if (surname_line->text() != User->getSurrname())
+		{
+			query.exec("UPDATE `UZYTKOWNIK` SET `Nazwisko` = '" + surname_line->text() + "'  WHERE `Id_Uzytkow` = " + QString::number(User->getUserId()));
+			db_holder->SetLastError(query.lastError().text());
+		}
+		if (phone_line->text() != User->getPhoneNumber())
+		{
+			query.exec("UPDATE `UZYTKOWNIK` SET `Nr_Tel` = '" + phone_line->text() + "'  WHERE `Id_Uzytkow` = " + QString::number(User->getUserId()));
+			db_holder->SetLastError(query.lastError().text());
+		}
+		if (doc_line->text() != User->getDocNumber())
+		{
+			query.exec("UPDATE `UZYTKOWNIK` SET `Nr_Dokumentu` = '" + doc_line->text() + "'  WHERE `Id_Uzytkow` = " + QString::number(User->getUserId()));
+			db_holder->SetLastError(query.lastError().text());
+		}
+		if (addr_line->text() != User->getAdress())
+		{
+			query.exec("UPDATE `UZYTKOWNIK` SET `Adres` = '" + addr_line->text() + "'  WHERE `Id_Uzytkow` = " + QString::number(User->getUserId()));
+			db_holder->SetLastError(query.lastError().text());
+		}
+	}
 }
 
 void Page_settings::setHidden(bool emitSignal)

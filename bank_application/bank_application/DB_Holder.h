@@ -26,6 +26,7 @@ public:
 	bool Login(QString *name, QString *Pass,account *user);
 	void close() { db.close(); };
 
+	void SetLastError(QString err) { last_error = err; }
 	QString GetLastError() { return last_error; };
 	QSqlDatabase & getDB() { return db; }
 
