@@ -148,7 +148,8 @@ void Page_general_view::showPage()
 
 	connect(sett_bton, &QPushButton::clicked, this, [this]() {
 		setHidden(false);
-		emit settPage();
+		current_work = Thread_signals::SETT_PAGE;
+		wait_for_the_thread_and_emit_signal(Thread_signals::SETT_PAGE);
 	});
 
 	setCSS();
@@ -247,6 +248,28 @@ bool Page_general_view::work_in_new_thread()
 
 		download_succeed = db_holder->downloadMlModel();
 		if (!download_succeed) last_error = db_holder->GetLastError();
+	}
+	if (current_work == Thread_signals::SETT_PAGE) {
+
+
+
+
+
+
+		/*
+		zastap operacja czasochlonna
+		*/
+
+
+
+
+
+
+		std::this_thread::sleep_for(std::chrono::milliseconds(5000));
+
+
+
+		download_succeed = true;
 	}
 
 	std::this_thread::sleep_for(std::chrono::milliseconds(500));

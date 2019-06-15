@@ -24,18 +24,20 @@ void Page_sign_in::showPage()
 
 	auto grid_layout = new QGridLayout;
 
-	grid_layout->addWidget(login_lab, 0, 0);
-	grid_layout->addWidget(login_field, 0, 1);
+	grid_layout->addWidget(title_open, 0, 0, 1, 2, Qt::AlignCenter);
+	grid_layout->addWidget(login_lab, 1, 0, Qt::AlignRight);
+	grid_layout->addWidget(login_field, 1, 1);
 
-	grid_layout->addWidget(pass_lab,1,0);
-	grid_layout->addWidget(pass_field,1,1);
+	grid_layout->addWidget(pass_lab, 2, 0, Qt::AlignRight);
+	grid_layout->addWidget(pass_field, 2, 1);
 
-	grid_layout->addWidget(send_butt,2,1);
+	grid_layout->addWidget(send_butt, 3, 0, 1, 2, Qt::AlignCenter);
 
+	login_field->setFixedWidth(140);
+	pass_field->setFixedWidth(140);
 	send_butt->setFixedWidth(100);
-	title_open->setFixedWidth(400);
+	title_open->setFixedWidth(250);
 
-	main_lay->addWidget(title_open);
 	main_lay->addLayout(grid_layout);
 
 	group_box->setLayout(main_lay);
