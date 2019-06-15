@@ -1,6 +1,4 @@
 #include "Page_settings.h"
-#include <QTableWidget>
-#include <QTableView>
 
 void Page_settings::showPage()
 {
@@ -11,19 +9,19 @@ void Page_settings::showPage()
 
 	group_box->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
 	/******************************************************************************/
-	auto * info_lay = new QGridLayout;
-	auto * info_widget = new QWidget;
-	auto * name_label = new QLabel("Name: ");
-	auto * name_line = new QLineEdit;
-	auto * surname_label = new QLabel("Surname: ");
-	auto * surname_line = new QLineEdit;
-	auto * phone_label = new QLabel("Phone number: ");
-	auto * phone_line = new QLineEdit;
-	auto * doc_label = new QLabel("Document number: ");
-	auto * doc_line = new QLineEdit;
-	auto * addr_label = new QLabel("Address: ");
-	auto * addr_line = new QLineEdit;
-	auto * job_label = new QLabel("Job setting");
+	 info_lay = new QGridLayout;
+	info_widget = new QWidget;
+	 name_label = new QLabel("Name: ");
+	name_line = new QLineEdit;
+	 surname_label = new QLabel("Surname: ");
+	 surname_line = new QLineEdit;
+	 phone_label = new QLabel("Phone number: ");
+	 phone_line = new QLineEdit;
+	 doc_label = new QLabel("Document number: ");
+	 doc_line = new QLineEdit;
+	 addr_label = new QLabel("Address: ");
+	 addr_line = new QLineEdit;
+	 job_label = new QLabel("Job setting");
 
 	lbl = new QLabel("Account Settings");
 	main_lay->addWidget(lbl, 0, Qt::AlignCenter);
@@ -53,8 +51,8 @@ void Page_settings::showPage()
 	
 	info_lay->addWidget(setBtn, 6, 1);
 
-	auto * job_table = new QTableView;
-	auto *sql_tbl = new QSqlTableModel;//(this->parent, db_holder->getDB());
+	 job_table = new QTableView;
+	 sql_tbl = new QSqlTableModel;//(this->parent, db_holder->getDB());
 	sql_tbl->setTable("DOCHOD");
 	sql_tbl->setEditStrategy(QSqlTableModel::OnManualSubmit);
 	
@@ -71,9 +69,9 @@ void Page_settings::showPage()
 	job_table->setModel(sql_tbl);
 	job_table->resizeColumnsToContents();
 
-	auto * submit = new QPushButton("Submit");
-	auto * new_job = new QPushButton("New job");
-	auto * down_btn = new QHBoxLayout;
+	 submit = new QPushButton("Submit");
+	 new_job = new QPushButton("New job");
+	 down_btn = new QHBoxLayout;
 	main_lay->addLayout(down_btn);
 	down_btn->addWidget(submit);
 	down_btn->addWidget(new_job);
@@ -81,7 +79,8 @@ void Page_settings::showPage()
 	connect(btn, &QPushButton::clicked, this, [this]() {
 		setHidden();
 	});
-	connect(setBtn, &QPushButton::clicked, this, [this]() {});
+	connect(setBtn, &QPushButton::clicked, this, [this]() {  setNewData(); });
+
 
 	/******************************************************************************/
 
@@ -89,6 +88,11 @@ void Page_settings::showPage()
 
 
 	setCSS();
+}
+
+void Page_settings::setNewData()
+{
+	
 }
 
 void Page_settings::setHidden(bool emitSignal)
