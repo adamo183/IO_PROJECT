@@ -4,12 +4,14 @@
 
 DB_Holder::DB_Holder()
 {
+	db = QSqlDatabase::addDatabase("QMYSQL");
 	db.setHostName("mn16.webd.pl");
 	db.setPort(3306);
 	db.setUserName("slavek_io_proj");
 	db.setPassword("io_proj@2019");
 	db.setDatabaseName("slavek_io");
 
+	last_connection_timestamp = timer.now();
 }
 
 DB_Holder::~DB_Holder()
@@ -19,7 +21,14 @@ DB_Holder::~DB_Holder()
 
 bool DB_Holder::Connect()
 {
-	bool success = (db.isOpen() ? true : db.open());
+	auto period_ms = std::chrono::duration_cast<std::chrono::milliseconds>(timer.now() - last_connection_timestamp).count();
+
+	if (period_ms > 60000)
+		db.close();
+
+	bool success = (db.isOpen()? true : db.open());
+	if (success) last_connection_timestamp = timer.now();
+
 	last_error = db.lastError().text();
 	return success;
 }
@@ -34,7 +43,7 @@ bool DB_Holder::Login(QString *name,QString *pass,account* user)
 	
 	if (Connect())
 	{
-		QSqlQuery query = QSqlQuery(db);
+		QSqlQuery query(db);
 
 		query.exec(("SELECT * FROM `LOGIN` WHERE Nazwa_uz = '"+*name+"' AND Haslo = '"+pass_f+"'"));
 			
@@ -56,7 +65,7 @@ bool DB_Holder::Login(QString *name,QString *pass,account* user)
 	else {
 		last_error = db.lastError().text();
 	}		
-	db.close();
+
 
 	return success;
 }
@@ -66,7 +75,7 @@ bool DB_Holder::downloadMlModel()
 	bool success = false;
 
 	if (Connect()) {
-		QSqlQuery query = QSqlQuery(db);
+		QSqlQuery query(db);
 
 		query.exec("SELECT `Model` FROM `ML_MODEL` ORDER BY `Id` DESC LIMIT 1");
 
@@ -85,7 +94,33 @@ bool DB_Holder::downloadMlModel()
 		last_error = db.lastError().text();
 	}
 
-	db.close();
+	return success;
+}
+
+bool DB_Holder::downloadCreditConditions()
+{
+	bool success = false;
+
+	if (Connect()) {
+		QSqlQuery query(db);
+
+		query.exec("SELECT `Regula` FROM `REG_KREDYT` ORDER BY `Id` DESC LIMIT 1");
+
+		if (query.size() == 1) {
+			query.first();
+			credit_conditions = query.value(0).toString();
+
+			success = true;
+		}
+		else {
+			last_error = query.lastError().text();
+		}
+
+	}
+	else {
+		last_error = db.lastError().text();
+	}
+
 	return success;
 }
 

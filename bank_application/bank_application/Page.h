@@ -39,6 +39,7 @@ public slots:
 public:
 	Page(QScrollArea *parent, const QString & css) : parent(parent), CSS(css) {};
 	virtual ~Page() {};
+	bool isVisible() { return !isHidden; };
 
 
 protected slots:

@@ -13,6 +13,8 @@ void Page_credit::showPage()
 
 	credit = new Credit(db_holder->getMlModel());
 
+	lay = new QGridLayout;
+
 	conditions_lbl = new QLabel("Read conditions!", parent);
 	conditions_field = new QTextBrowser(parent);
 	conditions_check = new QCheckBox("Akcept conditions", parent);
@@ -31,20 +33,24 @@ void Page_credit::showPage()
 	amount_ln->setEnabled(false);
 	verify_btn->setEnabled(false);
 	
-	conditions_field->setText(db_holder->getMlModel());
+	conditions_field->setText(db_holder->getCreditCondtions());
+	conditions_field->setFixedWidth(500);
 
 	back_btn = new QPushButton("Back", parent);
-	main_lay->addWidget(back_btn, 0, Qt::AlignLeft);
-	main_lay->addWidget(conditions_lbl, 0, Qt::AlignCenter);
-	main_lay->addWidget(conditions_field, 0, Qt::AlignLeft);
-	main_lay->addWidget(conditions_check, 0, Qt::AlignLeft);
-	main_lay->addWidget(amount_lbl, 0, Qt::AlignLeft);
-	main_lay->addWidget(amount_ln, 0, Qt::AlignLeft);
-	main_lay->addWidget(duration_lbl, 0, Qt::AlignLeft);
-	main_lay->addWidget(duration_ln, 0, Qt::AlignLeft);
-	main_lay->addWidget(verify_btn, 0, Qt::AlignCenter);
-	main_lay->addWidget(ans_lbl, 0, Qt::AlignLeft);
-	main_lay->addWidget(ans_btn, 0, Qt::AlignCenter);
+	//lay->addWidget(back_btn, 0, 0, Qt::AlignLeft);
+	lay->addWidget(conditions_lbl, 1, 0, 1, 2, Qt::AlignCenter);
+	lay->addWidget(conditions_field, 2, 0, 1, 2, Qt::AlignLeft);
+	lay->addWidget(conditions_check, 3, 0, Qt::AlignLeft);
+	lay->addWidget(amount_lbl, 4, 0, Qt::AlignRight);
+	lay->addWidget(amount_ln, 4, 1, Qt::AlignLeft);
+	lay->addWidget(duration_lbl, 5,	0, Qt::AlignRight);
+	lay->addWidget(duration_ln, 5, 1, Qt::AlignLeft);
+	lay->addWidget(back_btn, 6, 0, Qt::AlignRight);
+	lay->addWidget(verify_btn, 6, 1, Qt::AlignCenter);
+	lay->addWidget(ans_lbl, 7, 0, 1, 2, Qt::AlignLeft);
+	lay->addWidget(ans_btn, 8, 0, 1, 2, Qt::AlignCenter);
+
+	main_lay->addLayout(lay);
 
 	ans_lbl->hide();
 	ans_btn->hide();
@@ -92,7 +98,22 @@ void Page_credit::verify_ans() {
 
 	credit->setVals(User->getAge(), User->getSalarySum(), amount, duration);
 
-	bool able2get = credit->isAbleToGetCredit();
+	int decision = credit->isAbleToGetCredit();
+	bool able2get = (decision == -1 ? false : true);
+	
+	QString ans_str;
+
+	if (!able2get) {
+		ans_str = "Unfortunately, we cannot give you any credit.";
+	}
+	else if (decision == 0) {
+		ans_str = "Congratulations! You are able to get this credit!\nThe total cost is $" + QString::number(amount * (1 + ratio_of_interest / 100.0)) + ".\n\nWould you like to take this?";
+	}
+	else {
+		ans_str = "Unfortunately, we cannot give you as much as you would like to get. However, we can offer you $" + QString::number(decision) + ", the total cost of it would be $" + QString::number(decision * (1 + ratio_of_interest / 100.0)) + ".\n\nWould you like to take this?";
+	}
+
+	ans_lbl->setText(ans_str);
 
 	if (ans_lbl->isHidden())
 		ans_lbl->show();

@@ -5,7 +5,8 @@
 #include <QSqlQuery>
 #include <QString>
 #include <QDateTime>
-#include <QTimer>
+#include <QDebug>
+#include <chrono>
 #include "md5.h"
 #include "account.h"
 
@@ -13,10 +14,13 @@ class account;
 
 class DB_Holder
 {
-	QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
+	QSqlDatabase db;
 
 	QString last_error = "";
-	QString mlModel;
+	QString mlModel, credit_conditions;
+
+	std::chrono::high_resolution_clock timer;
+	decltype(timer.now()) last_connection_timestamp;
 	
 public:
 	DB_Holder();
@@ -31,7 +35,9 @@ public:
 	QSqlDatabase & getDB() { return db; }
 
 	bool downloadMlModel();
+	bool downloadCreditConditions();
 	QString getMlModel() const { return mlModel; }
+	QString getCreditCondtions() const { return credit_conditions; };
 
 };
 

@@ -23,36 +23,53 @@ main_win::main_win(QWidget *parent)
 	user = new account;
 
 	// strony
-	page_sign_in = new Page_sign_in(ui.main_scrollArea, &db_holder, css, user);
-	page_general_view = new Page_general_view(ui.main_scrollArea, &db_holder, css, user);
-	page_credit = new Page_credit(ui.main_scrollArea, &db_holder, css, user);
-	page_trans_hist = new Page_Trans_Hist(ui.main_scrollArea, &db_holder, css, user);
-	page_settings = new Page_settings(ui.main_scrollArea, &db_holder, css, user);
-
-	page_sign_in->showPage();
+	pages.resize(5);
+	pages[SING_IN] = new Page_sign_in(ui.main_scrollArea, &db_holder, css, user);
+	pages[GEN_VIEW] = new Page_general_view(ui.main_scrollArea, &db_holder, css, user);
+	pages[CREDIT] = new Page_credit(ui.main_scrollArea, &db_holder, css, user);
+	pages[TRANS_HIST] = new Page_Trans_Hist(ui.main_scrollArea, &db_holder, css, user);
+	pages[SETT] = new Page_settings(ui.main_scrollArea, &db_holder, css, user);
+	
+	pages[SING_IN]->showPage();
 
 	// akcje z podstorn
-	connect(page_sign_in, SIGNAL(hide()), page_general_view, SLOT(showPage()));
-	connect(page_general_view, SIGNAL(logout()), page_sign_in, SLOT(showPage()));
-	//connect(page_account_overview, SIGNAL(hide()), page_general_view, SLOT(showPage()));
+	connect(pages[SING_IN], SIGNAL(hide()), pages[GEN_VIEW], SLOT(showPage()));
+	connect(pages[GEN_VIEW], SIGNAL(logout()), pages[SING_IN], SLOT(showPage()));
 
-	connect(page_general_view, SIGNAL(creditPage()), page_credit, SLOT(showPage()));
-	connect(page_credit, SIGNAL(hide()), page_general_view, SLOT(showPage()));
+	connect(pages[GEN_VIEW], SIGNAL(creditPage()), pages[CREDIT], SLOT(showPage()));
+	connect(pages[CREDIT], SIGNAL(hide()), pages[GEN_VIEW], SLOT(showPage()));
 	
-	connect(page_general_view, SIGNAL(transHistPage()), page_trans_hist, SLOT(showPage()));
-	connect(page_trans_hist, SIGNAL(hide()), page_general_view, SLOT(showPage()));
+	connect(pages[GEN_VIEW], SIGNAL(transHistPage()), pages[TRANS_HIST], SLOT(showPage()));
+	connect(pages[TRANS_HIST], SIGNAL(hide()), pages[GEN_VIEW], SLOT(showPage()));
 
-	connect(page_general_view, SIGNAL(settPage()), page_settings, SLOT(showPage()));
-	connect(page_settings, SIGNAL(hide()), page_general_view, SLOT(showPage()));
+	connect(pages[GEN_VIEW], SIGNAL(settPage()), pages[SETT], SLOT(showPage()));
+	connect(pages[SETT], SIGNAL(hide()), pages[GEN_VIEW], SLOT(showPage()));
 
-	connect(page_general_view, &Page::setCloseAble, this, [this](bool var) { closeAble = var; });
-	connect(page_trans_hist, &Page::setCloseAble, this, [this](bool var) { closeAble = var; });
+	connect(pages[GEN_VIEW], &Page::setCloseAble, this, [this](bool var) { closeAble = var; });
+	connect(pages[TRANS_HIST], &Page::setCloseAble, this, [this](bool var) { closeAble = var; });
+
+
+	QCoreApplication::instance()->installEventFilter(this);
+
+	timer = new QTimer(this);
+
+	connect(timer, &QTimer::timeout, this, [this]() {
+		
+		for (auto & ite : pages) {
+			if (ite->isVisible() && dynamic_cast<Page_sign_in *>(ite) == nullptr) {
+				ite->setHidden();
+				pages[SING_IN]->showPage();
+			}
+		}
+
+		timer->stop();
+	});
 }
 
 main_win::~main_win() {
-	//delete main_layout;??
-	delete page_sign_in;
-	delete page_general_view;
+	
+	for (auto & ite : pages)
+		delete ite;
 }
 void main_win::closeEvent(QCloseEvent * bar) {
 
@@ -63,3 +80,12 @@ void main_win::closeEvent(QCloseEvent * bar) {
 		bar->ignore();
 	}
 };
+
+
+bool main_win::eventFilter(QObject *watched, QEvent *event) {
+	if (event->type() == QEvent::KeyPress || event->type() == QEvent::MouseButtonPress) {
+
+		timer->start(60000);
+	}
+	return false;
+}

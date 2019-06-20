@@ -90,8 +90,8 @@ class Page_settings :
 	QLabel * doc_label ;
 	QLabel * addr_label ;
 	QLabel * job_label;
-	QTableView * job_table;
-	QSqlTableModel *sql_tbl;//(this->parent, db_holder->getDB());
+	//QTableView * job_table;
+	//QSqlTableModel *sql_tbl;//(this->parent, db_holder->getDB());
 
 	QLineEdit * name_line;
 	QLineEdit * surname_line;

@@ -51,32 +51,6 @@ void Page_settings::showPage()
 	jobs_lay = new QVBoxLayout;
 	/**********************************************************************/
 
-	
-
-	/*
-	 job_table = new QTableView;
-	 sql_tbl = new QSqlTableModel;//(this->parent, db_holder->getDB());
-	sql_tbl->setTable("DOCHOD");
-	sql_tbl->setEditStrategy(QSqlTableModel::OnManualSubmit);
-	
-
-	QString filt = "Id_uzytkow = "+ QString::number(User->getUserId());
-	sql_tbl->setFilter(filt);
-	sql_tbl->select();
-	//sql_tbl->setHeaderData(0, Qt::Horizontal, tr("Id_doch"));
-	//sql_tbl->setHeaderData(1, Qt::Horizontal, tr("Company name"));
-//	sql_tbl->setHeaderData(2, Qt::Horizontal, tr("Company address"));
-//	sql_tbl->setHeaderData(0, Qt::Horizontal, tr("Salary"));
-	
-	main_lay->addWidget(job_table);
-	job_table->setModel(sql_tbl);
-	job_table->resizeColumnsToContents();
-
-	 submit = new QPushButton("Submit");
-	 down_btn = new QHBoxLayout;
-	main_lay->addLayout(down_btn);
-	*/
-
 	std::vector<account::SingleJob> jobs_data = User->getJobs();
 
 	for (auto & ite : jobs_data) {
@@ -129,7 +103,7 @@ void Page_settings::setNewData()
 {
 	bool success = false;
 	if (db_holder->Connect()) {
-		QSqlQuery query = QSqlQuery(db_holder->getDB());
+		QSqlQuery query(db_holder->getDB());
 
 		bool noChanges = true;
 
@@ -169,6 +143,7 @@ void Page_settings::setNewData()
 					ite->lines[JobField::SALARY]->text().isEmpty()) 
 				{
 					QMessageBox::information(parent, "Error", "Fill empty fields!");
+					//db_holder->close();
 					return;
 				}
 				success = query.exec("INSERT INTO DOCHOD(Id_Uzytkow, Nazwa_Firmy, Adres_Firmy, Kwota) VALUES("
@@ -214,7 +189,7 @@ void Page_settings::setNewData()
 			}
 
 		}
-
+		//db_holder->close();
 		if (noChanges) return;
 
 		auto new_end = std::remove_if(jobs.begin(), jobs.end(), [](JobField * j) {
@@ -240,6 +215,7 @@ void Page_settings::setNewData()
 void Page_settings::setHidden(bool emitSignal)
 {
 	isHidden = true;
+
 
 	for (auto & i : jobs)
 		delete i;

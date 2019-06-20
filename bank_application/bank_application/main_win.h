@@ -6,6 +6,8 @@
 #include <QHBoxLayout>
 #include <QIcon>
 #include <QCloseEvent>
+#include <QTimer>
+#include <qdebug.h>
 
 #include "ui_main_win.h"
 #include "Page_sign_in.h"
@@ -28,10 +30,14 @@ public:
 private:
 	bool closeAble = true;
 	void closeEvent(QCloseEvent *bar);
+	bool eventFilter(QObject *watched, QEvent *event);
+
+	int cc = 0;
 
 	Ui::main_winClass ui;
 
 	QString css = "";
+	QTimer * timer;
 
 	//QHBoxLayout * main_layout;??
 	
@@ -40,6 +46,9 @@ private:
 	Page * page_credit = Q_NULLPTR;
 	Page * page_trans_hist = Q_NULLPTR;
 	Page * page_settings = Q_NULLPTR;
+
+	enum {SING_IN, GEN_VIEW, CREDIT, TRANS_HIST, SETT};
+	std::vector<Page *> pages;
 
 	DB_Holder db_holder;
 	account *user = Q_NULLPTR;

@@ -246,7 +246,7 @@ bool Page_general_view::work_in_new_thread()
 	}
 	if (current_work == Thread_signals::CREDIT_PAGE) {
 
-		download_succeed = db_holder->downloadMlModel();
+		download_succeed = db_holder->downloadMlModel() && db_holder->downloadCreditConditions();
 		if (!download_succeed) last_error = db_holder->GetLastError();
 	}
 	if (current_work == Thread_signals::SETT_PAGE) {
@@ -259,7 +259,7 @@ bool Page_general_view::work_in_new_thread()
 
 	return download_succeed;
 }
-;
+
 
 Page_general_view::~Page_general_view()
 {

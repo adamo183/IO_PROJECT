@@ -68,7 +68,7 @@ bool account::getUserData(DB_Holder *base)
 	}
 	 
 	
-	base->close();
+	//base->close();
 
 	return success;
 }
@@ -111,12 +111,13 @@ bool account::DownloadUserTransactions(DB_Holder * base)
 			") \n"
 			"ORDER BY Id_Trans DESC;";
 
-		query.exec(req);
+		success = query.exec(req);
 
-		if (query.size() == 0) {
+		if (query.size() == 0 || !success) {
 			last_error = query.lastError().text();
 			if (last_error == ' ')
 				last_error = "There is no transactions to be shown!";
+			success = false;
 		}
 		else {
 			Transactions.clear();
@@ -138,7 +139,7 @@ bool account::DownloadUserTransactions(DB_Holder * base)
 			success = true;
 		}
 	}
-	base->close();
+	//base->close();
 
 	return success;
 }
@@ -151,6 +152,7 @@ bool account::DownloadUserJobs(DB_Holder * base)
 	}
 	else {
 
+		//QSqlQuery query(base->getDB());
 		QSqlQuery query(base->getDB());
 
 		QString req =
@@ -164,11 +166,11 @@ bool account::DownloadUserJobs(DB_Holder * base)
 			"WHERE "
 			"	 Id_Uzytkow = " + QString::number(this->user_id) + ";\n";
 
-		query.exec(req);
+		;
 
-		if (query.size() == 0) {
+		if (!query.exec(req)) {
 			last_error = query.lastError().text();
-			if (last_error == ' ')
+			if (last_error == ' ' && !this->hasJob())
 				success = true;
 		}
 		else {
@@ -188,7 +190,7 @@ bool account::DownloadUserJobs(DB_Holder * base)
 			success = true;
 		}
 	}
-	base->close();
+	//base->close();
 
 	return success;
 }

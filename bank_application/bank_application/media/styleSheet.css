@@ -163,3 +163,7 @@ QWidget#withBorder {
 	border: 2px solid rgb(89, 91, 124);
 	border-radius:10px;
 }
+
+QCheckBox {
+	color: #FFF;
+}

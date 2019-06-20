@@ -83,7 +83,7 @@ bool Page_sign_in::work_in_new_thread()
 
 	downloaded_success = db_holder->Login(login,password,User) && User->getUserData(db_holder);
 
-	std::this_thread::sleep_for(std::chrono::milliseconds(500));
+	//std::this_thread::sleep_for(std::chrono::milliseconds(500));
 	
 	last_error = db_holder->GetLastError();
 

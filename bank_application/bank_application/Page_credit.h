@@ -16,6 +16,8 @@ class Page_credit :
 	double amount = 0, ratio_of_interest = 5.2;
 	int duration = 0;
 
+	QGridLayout * lay;
+
 	QLabel * conditions_lbl, * amount_lbl, * duration_lbl, * ans_lbl;
 	QTextBrowser * conditions_field;
 	QCheckBox * conditions_check;
