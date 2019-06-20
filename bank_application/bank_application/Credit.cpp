@@ -3,16 +3,14 @@
 
 cv::Mat Credit::predict()
 {
-	/*
 	cv::Mat in = (cv::Mat_<float>(1, 3) << salary, (amount / duration), age);
 	cv::Mat result;
 
 	net->predict(in, result);
 
 	return result;
-	*/
 
-	return cv::Mat();
+	//return cv::Mat();
 }
 
 void Credit::setVals(int age, double salary, double amount, int duration)
@@ -33,17 +31,17 @@ void Credit::setVals(int age, double salary, double amount, int duration)
 */
 int Credit::isAbleToGetCredit()
 {
-	/*
-		if (predict(Age, Salary, Credit_amount, Duration, ymlModel).at<float>(0) > 0.0)
-		return 0;
-	while (!(predict(Age, Salary, Credit_amount, Duration, ymlModel).at<float>(0) > 0.0))
-	{
-		if (Credit_amount <= 0)
-			return -1;
-		Credit_amount -= 500;
-	}
-	return (int)Credit_amount;
-	*/
 	
-	return ((rand() % 2) * -1);
+	if (predict().at<float>(0) > 0.0)
+		return 0;
+	while (!(predict().at<float>(0) > 0.0))
+	{
+		if (amount <= 0)
+			return -1;
+		amount -= 500;
+	}
+	return (int)amount;
+	
+	
+	//return ((rand() % 2) * -1);
 }

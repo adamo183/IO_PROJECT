@@ -35,6 +35,7 @@ void Page_credit::showPage()
 	
 	conditions_field->setText(db_holder->getCreditCondtions());
 	conditions_field->setFixedWidth(500);
+	ans_lbl->setFixedWidth(500);
 
 	back_btn = new QPushButton("Back", parent);
 	//lay->addWidget(back_btn, 0, 0, Qt::AlignLeft);
@@ -107,10 +108,11 @@ void Page_credit::verify_ans() {
 		ans_str = "Unfortunately, we cannot give you any credit.";
 	}
 	else if (decision == 0) {
-		ans_str = "Congratulations! You are able to get this credit!\nThe total cost is $" + QString::number(amount * (1 + ratio_of_interest / 100.0)) + ".\n\nWould you like to take this?";
+		ans_str = "Congratulations! You are able to get this credit!\nThe ratio of interest is " + QString::number(ratio_of_interest) + "% so the total cost is $" + QString::number(amount * (1 + ratio_of_interest / 100.0)) + ".\n\nWould you like to take this?";
 	}
 	else {
-		ans_str = "Unfortunately, we cannot give you as much as you would like to get. However, we can offer you $" + QString::number(decision) + ", the total cost of it would be $" + QString::number(decision * (1 + ratio_of_interest / 100.0)) + ".\n\nWould you like to take this?";
+		ans_str = "Unfortunately, we cannot give you as much as you would like to\nget. However, we can offer you $" + QString::number(decision) + ", the ratio of interest is\n" + QString::number(ratio_of_interest) + "% so the total cost of it would be $" + QString::number(decision * (1 + ratio_of_interest / 100.0)) + ".\n\nWould you like to take this?";
+		amount = decision;
 	}
 
 	ans_lbl->setText(ans_str);

@@ -69,7 +69,7 @@ void Page_settings::showPage()
 
 	btns_lay = new QGridLayout;// (parent);
 	new_job_btn = new QPushButton("New job");
-	cancel_btn = new QPushButton("Cancel");
+	cancel_btn = new QPushButton("Back");
 	save_btn = new QPushButton("Save Changes");
 	btns_lay->addWidget(new_job_btn, 0, 0, 1, 2, Qt::AlignCenter);
 	btns_lay->setVerticalSpacing(20);

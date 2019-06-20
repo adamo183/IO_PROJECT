@@ -92,7 +92,7 @@ void Page_general_view::showPage()
 
 	transf_field = new QLineEdit;
 	title_field = new QLineEdit;
-	to_field = new QLineEdit("76542265022222222000001001");
+	to_field = new QLineEdit;
 
 	quick_wgt->setFixedWidth(500);
 	transf_field->setFixedWidth(200);

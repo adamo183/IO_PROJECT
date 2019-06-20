@@ -85,7 +85,7 @@ void main_win::closeEvent(QCloseEvent * bar) {
 bool main_win::eventFilter(QObject *watched, QEvent *event) {
 	if (event->type() == QEvent::KeyPress || event->type() == QEvent::MouseButtonPress) {
 
-		timer->start(60000);
+		timer->start(300000);
 	}
 	return false;
 }

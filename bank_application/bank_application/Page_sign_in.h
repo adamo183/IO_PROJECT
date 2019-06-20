@@ -11,7 +11,6 @@ class Page_sign_in :
 	
 	account *User = Q_NULLPTR;
 	QPushButton * send_butt = Q_NULLPTR;
-	QShortcut * shortcut = Q_NULLPTR;
 
 	std::atomic<bool> download_success = false;
 

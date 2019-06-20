@@ -15,12 +15,12 @@ void Page_sign_in::showPage()
 
 	auto login_lab = new QLabel("Login:");
 	auto pass_lab = new QLabel("Password:");
-	auto login_field = new QLineEdit("Kowalski");
-	auto pass_field = new QLineEdit("1234");
-	shortcut = new QShortcut(QKeySequence(QKeySequence::InsertParagraphSeparator), parent);
+	auto login_field = new QLineEdit;
+	auto pass_field = new QLineEdit;
 
 	pass_field->setEchoMode(QLineEdit::Password);
 	send_butt = new QPushButton("Sign in");
+	send_butt->setShortcut(QKeySequence::InsertParagraphSeparator);
 
 	auto grid_layout = new QGridLayout;
 
@@ -52,10 +52,6 @@ void Page_sign_in::showPage()
 		set_login_data(login_field->text(), pass_field->text() );
 		wait_for_the_thread_and_emit_signal();
 	});
-
-	connect(shortcut, &QShortcut::activated, this, [this]() {
-		send_butt->clicked(true);
-	});
 }
 
 void Page_sign_in::setHidden(bool emitSignal)
@@ -63,13 +59,11 @@ void Page_sign_in::setHidden(bool emitSignal)
 	isHidden = true;
 
 	send_butt->disconnect();
-	shortcut->disconnect();
 
 	for (auto & ite : parent->widget()->children()) {
 		delete ite;
 	}
 	delete group_box;
-	delete shortcut;
 
 	if (emitSignal) { 
 		emit hide(); 

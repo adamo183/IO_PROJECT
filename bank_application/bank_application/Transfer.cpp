@@ -94,7 +94,7 @@ QString Transfer::QuickTransfer(
 		}
 	}
 
-	db->close();
+	//db->close();
 
 	return ans;
 }
@@ -113,10 +113,21 @@ QString Transfer::TakeCredit(
 	}
 	else {
 
+		auto addMscToDate = [](int msc, QDate date = QDate::currentDate(), QString format = "yyyy.MM.dd")->QString {
+			int tmp = date.month() + msc;
+			return QDate::fromString(
+				(
+					QString::number(date.year() + (tmp / 12) - (((tmp % 12) == 0) ? 1 : 0)) + "." +
+					QString::number(((tmp % 12) == 0 ? 12 : (tmp % 12))) + "." +
+					QString::number(date.day())
+					),
+				"yyyy.M.d").toString(format);
+		};
+
 		QSqlQuery query(db->getDB());
 
 		QString data_beg = QDate::currentDate().toString("yyyy.MM.dd");
-		QString data_end = QDate::currentDate().toString("yyyy.MM.dd"); // todo: przeliczanie na date konca 
+		QString data_end = addMscToDate(duration);
 		QString a_str = QString::number(amount);
 		QString i_str = QString::number(interest);
 
@@ -128,10 +139,10 @@ QString Transfer::TakeCredit(
 			"	Stan_Konta = Stan_Konta + " + a_str + ",\n"
 			"	Id_Kredyt = (SELECT Id_Kredyt FROM KREDYTY ORDER BY Id_Kredyt DESC LIMIT 1)\n"
 			"WHERE Id_Uzytkow = " + QString::number(user->getUserId()) + ";\n"
-			"UPDATE UZYTKOWNIK SET Stan_Konta = Stan_Konta - " + a_str + " WHERE Id_Uzytkow = '00000000000000000000000001';\n"
+			"UPDATE UZYTKOWNIK SET Stan_Konta = Stan_Konta - " + a_str + " WHERE Id_Uzytkow = '76542265111111111000000001';\n"
 			"INSERT INTO TRANSAKCJE (Nr_Rach_Nad, Nr_Rach_Odb, Kwota, Tytul, Nazw_Odb, Adres_Odb)\n"
 			"VALUES(\n"
-			"	'00000000000000000000000001',\n"
+			"	'76542265111111111000000001',\n"
 			"	'" + user->getAccNumber() + "',\n"
 			"	" + a_str + ",\n"
 			"	'Credit with " + i_str + "% ratio of interests',\n"
@@ -149,7 +160,7 @@ QString Transfer::TakeCredit(
 		}
 	}
 
-	db->close();
+	//db->close();
 
 	return ans;
 }
