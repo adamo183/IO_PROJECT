@@ -27,11 +27,13 @@ private:
 	double salary_sum;
 
 	std::vector<std::tuple<int, QDateTime, QString, double, QString, QString, QString>> Transactions;
+	std::vector<std::tuple<int, QString, QString, double>> Jobs;
 
 	QString last_error;
 
 public:
 	typedef std::tuple<int, QDateTime, QString, double, QString, QString, QString> SingleTransaction;
+	typedef std::tuple<int, QString, QString, double> SingleJob;
 	enum Transaction{ ID, DATETIME, ACC_NO, AMOUNT, TITLE, NAME, ADDRESS };
 
 
@@ -55,12 +57,14 @@ public:
 		int getAge() const;
 		QString getLastError() { return last_error; }
 		const std::vector<SingleTransaction> & getTransactions() { return Transactions; }
+		const std::vector<SingleJob> & getJobs() { return Jobs; };
 
 
 		void setUserId(const int uid) { user_id = uid; }
 		
 		bool getUserData(DB_Holder *base);
 		bool DownloadUserTransactions(DB_Holder *base);
+		bool DownloadUserJobs(DB_Holder * base);
 
 		bool hasJob() const { return (salary_sum != 0 ? 1 : 0); };
 		double getSalarySum() const { return salary_sum; };

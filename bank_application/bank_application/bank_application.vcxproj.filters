@@ -84,10 +84,10 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Credit.cpp">
-      <Filter>Generated Files</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Transfer.cpp">
-      <Filter>Generated Files</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -128,7 +128,7 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Credit.h">
-      <Filter>Generated Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

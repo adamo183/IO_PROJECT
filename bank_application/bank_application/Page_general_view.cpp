@@ -251,28 +251,11 @@ bool Page_general_view::work_in_new_thread()
 	}
 	if (current_work == Thread_signals::SETT_PAGE) {
 
-
-
-
-
-
-		/*
-		zastap operacja czasochlonna
-		*/
-
-
-
-
-
-
-		std::this_thread::sleep_for(std::chrono::milliseconds(5000));
-
-
-
-		download_succeed = true;
+		download_succeed = User->DownloadUserJobs(db_holder);
+		if (!download_succeed) last_error = User->getLastError();
 	}
 
-	std::this_thread::sleep_for(std::chrono::milliseconds(500));
+	std::this_thread::sleep_for(std::chrono::milliseconds(200));
 
 	return download_succeed;
 }

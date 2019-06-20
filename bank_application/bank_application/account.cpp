@@ -142,3 +142,53 @@ bool account::DownloadUserTransactions(DB_Holder * base)
 
 	return success;
 }
+
+bool account::DownloadUserJobs(DB_Holder * base)
+{
+	bool success = false;
+	if (!base->Connect()) {
+		last_error = base->GetLastError();
+	}
+	else {
+
+		QSqlQuery query(base->getDB());
+
+		QString req =
+			"SELECT \n"
+			"	Id_Doch, \n"
+			"	Nazwa_Firmy, \n"
+			"	Adres_Firmy, \n"
+			"	Kwota \n"
+			"FROM \n"
+			"	DOCHOD \n"
+			"WHERE "
+			"	 Id_Uzytkow = " + QString::number(this->user_id) + ";\n";
+
+		query.exec(req);
+
+		if (query.size() == 0) {
+			last_error = query.lastError().text();
+			if (last_error == ' ')
+				success = true;
+		}
+		else {
+			Jobs.clear();
+
+			while (query.next()) {
+
+				SingleJob tmp;
+				std::get<0>(tmp) = query.value(0).toInt();
+				std::get<1>(tmp) = query.value(1).toString();
+				std::get<2>(tmp) = query.value(2).toString();
+				std::get<3>(tmp) = query.value(3).toDouble();
+
+				Jobs.push_back(std::move(tmp));
+			}
+
+			success = true;
+		}
+	}
+	base->close();
+
+	return success;
+}
