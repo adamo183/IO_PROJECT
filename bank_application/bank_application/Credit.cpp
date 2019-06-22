@@ -1,5 +1,4 @@
-#include "Credit.h"
-
+﻿#include "Credit.h"
 
 cv::Mat Credit::predict()
 {
@@ -9,8 +8,6 @@ cv::Mat Credit::predict()
 	net->predict(in, result);
 
 	return result;
-
-	//return cv::Mat();
 }
 
 void Credit::setVals(int age, double salary, double amount, int duration)
@@ -21,14 +18,6 @@ void Credit::setVals(int age, double salary, double amount, int duration)
 	this->duration = duration;
 }
 
-/** Method decide to give credit
-*	@param Age - age of person
-*	@param Salary - how much does that person earn per month
-*	@param Credit_amount - how much does that person want to get
-*	@param Duration - how long time does it take that person to pay back
-*	@param ymlModel - machine learning model
-*	@return 0 - if is able to get, otherwise proposed amount or -1 if there is no possibility at all
-*/
 int Credit::isAbleToGetCredit()
 {
 	
@@ -41,7 +30,4 @@ int Credit::isAbleToGetCredit()
 		amount -= 500;
 	}
 	return (int)amount;
-	
-	
-	//return ((rand() % 2) * -1);
 }

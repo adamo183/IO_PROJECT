@@ -241,7 +241,7 @@ bool Page_general_view::work_in_new_thread()
 
 	if (current_work == Thread_signals::TRANS_HIST_PAGE) {
 
-		download_succeed = User->DownloadUserTransactions(db_holder);
+		download_succeed = User->downloadUserTransactions(db_holder);
 		if (!download_succeed) last_error = User->getLastError();
 	}
 	if (current_work == Thread_signals::CREDIT_PAGE) {
@@ -251,7 +251,7 @@ bool Page_general_view::work_in_new_thread()
 	}
 	if (current_work == Thread_signals::SETT_PAGE) {
 
-		download_succeed = User->DownloadUserJobs(db_holder);
+		download_succeed = User->downloadUserJobs(db_holder);
 		if (!download_succeed) last_error = User->getLastError();
 	}
 

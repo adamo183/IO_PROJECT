@@ -8,7 +8,8 @@ DESTDIR = ../Win32/Debug
 QT += core sql gui widgets
 CONFIG += debug
 DEFINES += _WINDOWS _UNICODE _ENABLE_EXTENDED_ALIGNED_STORAGE _WINDOWS _UNICODE _ENABLE_EXTENDED_ALIGNED_STORAGE _WINDOWS _UNICODE _ENABLE_EXTENDED_ALIGNED_STORAGE _WINDOWS _UNICODE _ENABLE_EXTENDED_ALIGNED_STORAGE _WINDOWS _UNICODE _ENABLE_EXTENDED_ALIGNED_STORAGE _WINDOWS _UNICODE _ENABLE_EXTENDED_ALIGNED_STORAGE _WINDOWS _UNICODE _ENABLE_EXTENDED_ALIGNED_STORAGE _UNICODE _ENABLE_EXTENDED_ALIGNED_STORAGE WIN64 QT_DLL QT_SQL_LIB QT_WIDGETS_LIB QT_WIDGETS_LIB QT_SQL_LIB QT_WIDGETS_LIB QT_SQL_LIB QT_WIDGETS_LIB QT_SQL_LIB QT_WIDGETS_LIB QT_SQL_LIB QT_WIDGETS_LIB QT_SQL_LIB QT_WIDGETS_LIB QT_SQL_LIB QT_WIDGETS_LIB QT_SQL_LIB
-INCLUDEPATH += ./GeneratedFiles/$(ConfigurationName) \
+INCLUDEPATH += ../../../../../../../../opencv/build/include \
+    ./GeneratedFiles/$(ConfigurationName) \
     ./GeneratedFiles \
     . \
     ./GeneratedFiles/$(ConfigurationName) \
@@ -16,8 +17,9 @@ INCLUDEPATH += ./GeneratedFiles/$(ConfigurationName) \
     ./../../../../../../../../VulkanSDK/1.0.51.0/include \
     $(QTDIR)/mkspecs/win32-msvc \
     ./../../../../../../../../VulkanSDK/1.0.51.0/include \
-    ../../../../../../../../VulkanSDK/1.0.51.0/include \
-    $(QTDIR)/mkspecs/win32-msvc
+    ../../../../../../../../VulkanSDK/1.0.51.0/include
+LIBS += -L"../../../../../../../../opencv/x86/lib/Debug" \
+    -lopencv_world410d
 DEPENDPATH += .
 MOC_DIR += ./GeneratedFiles
 OBJECTS_DIR += debug

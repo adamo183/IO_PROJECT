@@ -21,7 +21,7 @@ int account::getAge() const {
 	return (born_date.month() > QDate::currentDate().month() ? age - 1 : age);
 }
 
-bool account::getUserData(DB_Holder *base)
+bool account::downloadUserData(DB_Holder *base)
 {
 	bool success = false;
 	if(base->Connect())		
@@ -73,7 +73,7 @@ bool account::getUserData(DB_Holder *base)
 	return success;
 }
 
-bool account::DownloadUserTransactions(DB_Holder * base)
+bool account::downloadUserTransactions(DB_Holder * base)
 {
 	bool success = false;
 	if (!base->Connect()) {
@@ -144,7 +144,7 @@ bool account::DownloadUserTransactions(DB_Holder * base)
 	return success;
 }
 
-bool account::DownloadUserJobs(DB_Holder * base)
+bool account::downloadUserJobs(DB_Holder * base)
 {
 	bool success = false;
 	if (!base->Connect()) {

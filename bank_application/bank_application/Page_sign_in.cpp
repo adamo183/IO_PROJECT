@@ -75,7 +75,7 @@ bool Page_sign_in::work_in_new_thread()
 {
 	bool downloaded_success = false;
 
-	downloaded_success = db_holder->Login(login,password,User) && User->getUserData(db_holder);
+	downloaded_success = db_holder->Login(login,password,User) && User->downloadUserData(db_holder);
 
 	//std::this_thread::sleep_for(std::chrono::milliseconds(500));
 	

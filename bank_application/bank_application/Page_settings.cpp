@@ -61,7 +61,7 @@ void Page_settings::showPage()
 			std::get<2>(ite),
 			QString::number(std::get<3>(ite))
 		));
-		jobs_lay->addWidget(jobs.back()->wgt);
+		jobs_lay->addWidget(jobs.back());
 	}
 
 	/***********************************************************************/
@@ -87,7 +87,7 @@ void Page_settings::showPage()
 		new_job_btn->hide();
 
 		jobs.push_back(new JobField());
-		jobs_lay->addWidget(jobs.back()->wgt);
+		jobs_lay->addWidget(jobs.back());
 	});
 
 
@@ -158,7 +158,7 @@ void Page_settings::setNewData()
 					query.next();
 
 					ite->Job_id = query.value(0).toInt();
-					ite->delete_job->setText("Delete this job");
+					ite->delete_job_btn->setText("Delete this job");
 				}
 
 				noChanges = false;
@@ -204,7 +204,7 @@ void Page_settings::setNewData()
 
 	if (success) {
 		QMessageBox::information(parent, "Success", "Your changes are saved!");
-		User->getUserData(db_holder);
+		User->downloadUserData(db_holder);
 		new_job_btn->show();
 	}
 	else {

@@ -7,30 +7,35 @@
 message("You are running qmake on a generated .pro file. This may not work!")
 
 
-HEADERS += ./DB_Holder.h \
+HEADERS += ./Credit.h \
+    ./DB_Holder.h \
     ./Page_Trans_Hist.h \
     ./Page_credit.h \
     ./Page_general_view.h \
-    ./Page_settings.h \
     ./Page_sign_in.h \
     ./Transfer.h \
     ./md5.h \
     ./Page.h \
+    ./Page_settings.h \
     ./Thread_synch.h \
     ./Win_transfer.h \
     ./account.h \
-    ./main_win.h
-SOURCES += ./DB_Holder.cpp \
+    ./main_win.h \
+    ./JobField.h
+SOURCES += ./Credit.cpp \
+    ./DB_Holder.cpp \
     ./Page.cpp \
     ./Page_Trans_Hist.cpp \
     ./Page_credit.cpp \
     ./Page_general_view.cpp \
     ./Page_settings.cpp \
     ./Page_sign_in.cpp \
+    ./Transfer.cpp \
     ./Win_transfer.cpp \
     ./account.cpp \
     ./main.cpp \
     ./main_win.cpp \
-    ./md5.cpp
+    ./md5.cpp \
+    ./JobField.cpp
 FORMS += ./main_win.ui
 RESOURCES += main_win.qrc

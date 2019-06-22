@@ -260,3 +260,4 @@ paket-files/
 __pycache__/
 *.pyc
 /main_win/main_win/main_win.pro
+/bank_application/Win32/Bank_Application_Release.zip

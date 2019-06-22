@@ -89,6 +89,9 @@
     <ClCompile Include="Transfer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="JobField.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DB_Holder.h">
@@ -128,6 +131,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Credit.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="JobField.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -201,6 +201,7 @@
   <ItemGroup>
     <ClCompile Include="Credit.cpp" />
     <ClCompile Include="DB_Holder.cpp" />
+    <ClCompile Include="JobField.cpp" />
     <ClCompile Include="Page.cpp" />
     <ClCompile Include="Page_Trans_Hist.cpp" />
     <ClCompile Include="Page_credit.cpp" />
@@ -219,6 +220,7 @@
     <ClInclude Include="DB_Holder.h" />
     <QtMoc Include="Page.h">
     </QtMoc>
+    <ClInclude Include="JobField.h" />
     <ClInclude Include="Page_Trans_Hist.h" />
     <ClInclude Include="Page_credit.h" />
     <ClInclude Include="Page_general_view.h" />

@@ -131,7 +131,7 @@ void Page_credit::take_credit() {
 
 	QMessageBox::information(parent, "Answer", ans);
 
-	User->getUserData(db_holder);
+	User->downloadUserData(db_holder);
 
 	setHidden();
 }
