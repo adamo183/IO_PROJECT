@@ -9,6 +9,11 @@ class Page_settings :
 {
 	Q_OBJECT
 
+private:
+
+	void setNewData();
+	void deleteAcc();
+
 	account *User = Q_NULLPTR;
 	DB_Holder * db_holder = nullptr;
 
@@ -16,6 +21,7 @@ class Page_settings :
 	QPushButton * cancel_btn;
 	QPushButton * save_btn;
 	QPushButton * new_job_btn;
+	QPushButton * delete_acc_btn;
 	QGridLayout * info_lay;
 	QGridLayout * btns_lay;
 	QWidget * info_widget ;
@@ -44,9 +50,6 @@ public:
 
 	Page_settings(QScrollArea * parent = Q_NULLPTR, DB_Holder * db = nullptr, const QString & CSS = "", account *user = Q_NULLPTR) : Page(parent, CSS), db_holder(db), User(user) {};
 	~Page_settings();
-
-public slots:
-	void setNewData();
 
 };
 

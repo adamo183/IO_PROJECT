@@ -28,6 +28,12 @@ QPushButton:hover:pressed {
 	color: blue; 
 }
 
+QPushButton#delete_acc_btn {
+	background-color: #e02e2e;
+	color: rgb(253, 173, 173); 
+}
+
+
 /*-------------------QRadioButton------------------*/
 QRadioButton {
 	background-color: rgba(0, 128, 0, 0);

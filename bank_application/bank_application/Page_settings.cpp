@@ -1,6 +1,7 @@
 #include "Page_settings.h"
 #include <algorithm>
 
+
 void Page_settings::showPage()
 {
 	isHidden = false;
@@ -76,7 +77,16 @@ void Page_settings::showPage()
 	btns_lay->addWidget(cancel_btn, 1, 0, Qt::AlignRight);
 	btns_lay->addWidget(save_btn, 1, 1, Qt::AlignLeft);
 	main_lay->addLayout(btns_lay);
-		
+
+	if (!User->hasCredit()) {
+		delete_acc_btn = new QPushButton("Delete account");
+		delete_acc_btn->setObjectName("delete_acc_btn");
+		main_lay->addSpacing(35);
+		main_lay->addWidget(delete_acc_btn, 1, Qt::AlignCenter);
+
+		connect(delete_acc_btn, &QPushButton::clicked, this, [this]() { deleteAcc(); });
+	}
+
 	connect(cancel_btn, &QPushButton::clicked, this, [this]() {
 		setHidden();
 	});
@@ -99,116 +109,143 @@ void Page_settings::showPage()
 	setCSS();
 }
 
+void Page_settings::deleteAcc()
+{
+	auto ans = QMessageBox::question(parent, "Confirm", "You are going to delete your bank account. Are you sure?", QMessageBox::Cancel, QMessageBox::Yes);
+
+	if (ans == QMessageBox::Yes) {
+		if (db_holder->Connect()) {
+			QSqlQuery query(db_holder->getDB());
+
+			bool success = query.exec("DELETE FROM `UZYTKOWNIK` WHERE Id_Uzytkow = " + QString::number(User->getUserId()) + ";");
+
+			if (success) {
+				QMessageBox::information(parent, "Success", "Your account has been deleted!");
+				setHidden(false);
+				emit logout();
+			}
+			else {
+				QMessageBox::critical(parent, "Error", query.lastError().text());
+			}
+		}
+		else {
+			QMessageBox::critical(parent, "Error", db_holder->GetLastError());
+		}
+	}
+}
+
 void Page_settings::setNewData()
 {
-	bool success = false;
-	if (db_holder->Connect()) {
-		QSqlQuery query(db_holder->getDB());
+	auto ans = QMessageBox::question(parent, "Confirm", "Check your changes!\nAre you ready to save them?", QMessageBox::Yes, QMessageBox::No);
 
-		bool noChanges = true;
+	if (ans == QMessageBox::Yes) {
+		bool success = false;
+		if (db_holder->Connect()) {
+			QSqlQuery query(db_holder->getDB());
 
-		if (name_line->text() != User->getName() && !name_line->text().isEmpty())
-		{
-			success = query.exec("UPDATE `UZYTKOWNIK` SET `Imie` = '" + name_line->text() + "'  WHERE `Id_Uzytkow` = " + QString::number(User->getUserId()));
-			noChanges = false;
-		}
-		if (surname_line->text() != User->getSurrname() && !surname_line->text().isEmpty())
-		{
-			success = query.exec("UPDATE `UZYTKOWNIK` SET `Nazwisko` = '" + surname_line->text() + "'  WHERE `Id_Uzytkow` = " + QString::number(User->getUserId()));
-			noChanges = false;
-		}
-		if (phone_line->text() != User->getPhoneNumber() && !phone_line->text().isEmpty())
-		{
-			success = query.exec("UPDATE `UZYTKOWNIK` SET `Nr_Tel` = '" + phone_line->text() + "'  WHERE `Id_Uzytkow` = " + QString::number(User->getUserId()));
-			noChanges = false;
-		}
-		if (doc_line->text() != User->getDocNumber() && !doc_line->text().isEmpty())
-		{
-			success = query.exec("UPDATE `UZYTKOWNIK` SET `Nr_Dokumentu` = '" + doc_line->text() + "'  WHERE `Id_Uzytkow` = " + QString::number(User->getUserId()));
-			noChanges = false;
-		}
-		if (addr_line->text() != User->getAdress() && !addr_line->text().isEmpty())
-		{
-			success = query.exec("UPDATE `UZYTKOWNIK` SET `Adres` = '" + addr_line->text() + "'  WHERE `Id_Uzytkow` = " + QString::number(User->getUserId()));
-			noChanges = false;
-		}
+			bool noChanges = true;
 
-		for (auto & ite : jobs) {
+			if (name_line->text() != User->getName() && !name_line->text().isEmpty())
+			{
+				success = query.exec("UPDATE `UZYTKOWNIK` SET `Imie` = '" + name_line->text() + "'  WHERE `Id_Uzytkow` = " + QString::number(User->getUserId()));
+				noChanges = false;
+			}
+			if (surname_line->text() != User->getSurrname() && !surname_line->text().isEmpty())
+			{
+				success = query.exec("UPDATE `UZYTKOWNIK` SET `Nazwisko` = '" + surname_line->text() + "'  WHERE `Id_Uzytkow` = " + QString::number(User->getUserId()));
+				noChanges = false;
+			}
+			if (phone_line->text() != User->getPhoneNumber() && !phone_line->text().isEmpty())
+			{
+				success = query.exec("UPDATE `UZYTKOWNIK` SET `Nr_Tel` = '" + phone_line->text() + "'  WHERE `Id_Uzytkow` = " + QString::number(User->getUserId()));
+				noChanges = false;
+			}
+			if (doc_line->text() != User->getDocNumber() && !doc_line->text().isEmpty())
+			{
+				success = query.exec("UPDATE `UZYTKOWNIK` SET `Nr_Dokumentu` = '" + doc_line->text() + "'  WHERE `Id_Uzytkow` = " + QString::number(User->getUserId()));
+				noChanges = false;
+			}
+			if (addr_line->text() != User->getAdress() && !addr_line->text().isEmpty())
+			{
+				success = query.exec("UPDATE `UZYTKOWNIK` SET `Adres` = '" + addr_line->text() + "'  WHERE `Id_Uzytkow` = " + QString::number(User->getUserId()));
+				noChanges = false;
+			}
 
-			if (ite->isNew) {
-				if (ite->deleteJob) continue;
+			for (auto & ite : jobs) {
 
-				if (ite->lines[JobField::NAME]->text().isEmpty() ||
-					ite->lines[JobField::ADDRESS]->text().isEmpty() ||
-					ite->lines[JobField::SALARY]->text().isEmpty()) 
-				{
-					QMessageBox::information(parent, "Error", "Fill empty fields!");
-					//db_holder->close();
-					return;
-				}
-				success = query.exec("INSERT INTO DOCHOD(Id_Uzytkow, Nazwa_Firmy, Adres_Firmy, Kwota) VALUES("
+				if (ite->isNew) {
+					if (ite->deleteJob) continue;
+
+					if (ite->lines[JobField::NAME]->text().isEmpty() ||
+						ite->lines[JobField::ADDRESS]->text().isEmpty() ||
+						ite->lines[JobField::SALARY]->text().isEmpty())
+					{
+						QMessageBox::information(parent, "Error", "Fill empty fields!");
+						return;
+					}
+					success = query.exec("INSERT INTO DOCHOD(Id_Uzytkow, Nazwa_Firmy, Adres_Firmy, Kwota) VALUES("
 						+ QString::number(User->getUserId()) + ", "
 						"'" + ite->lines[JobField::NAME]->text() + "', " +
 						"'" + ite->lines[JobField::ADDRESS]->text() + "', " +
 						ite->lines[JobField::SALARY]->text().replace(",", ".") + ");");
 
-				if (success) {
-					ite->isNew = false;
-					success = query.exec("SELECT Id_Doch FROM DOCHOD WHERE Id_Uzytkow = " + QString::number(User->getUserId()) + " ORDER BY Id_Doch DESC LIMIT 1;");
-					query.next();
+					if (success) {
+						ite->isNew = false;
+						success = query.exec("SELECT Id_Doch FROM DOCHOD WHERE Id_Uzytkow = " + QString::number(User->getUserId()) + " ORDER BY Id_Doch DESC LIMIT 1;");
+						query.next();
 
-					ite->Job_id = query.value(0).toInt();
-					ite->delete_job_btn->setText("Delete this job");
-				}
+						ite->Job_id = query.value(0).toInt();
+						ite->delete_job_btn->setText("Delete this job");
+					}
 
-				noChanges = false;
-			}
-			else {
-				if (ite->deleteJob) {
-					success = query.exec("DELETE FROM DOCHOD WHERE Id_Doch = " + QString::number(ite->Job_id) + ";");
-				
 					noChanges = false;
 				}
 				else {
-					if (ite->lines[JobField::NAME]->text() != ite->Name && !ite->lines[JobField::NAME]->text().isEmpty())
-					{
-						success = query.exec("UPDATE `DOCHOD` SET `Nazwa_Firmy` = '" + ite->lines[JobField::NAME]->text() + "'  WHERE `Id_Doch` = " + QString::number(ite->Job_id));
+					if (ite->deleteJob) {
+						success = query.exec("DELETE FROM DOCHOD WHERE Id_Doch = " + QString::number(ite->Job_id) + ";");
+
 						noChanges = false;
 					}
-					if (ite->lines[JobField::ADDRESS]->text() != ite->Address && !ite->lines[JobField::ADDRESS]->text().isEmpty())
-					{
-						success = query.exec("UPDATE `DOCHOD` SET `Adres_Firmy` = '" + ite->lines[JobField::ADDRESS]->text() + "'  WHERE `Id_Doch` = " + QString::number(ite->Job_id));
-						noChanges = false;
-					}
-					if (ite->lines[JobField::SALARY]->text() != ite->Salary && !ite->lines[JobField::SALARY]->text().isEmpty())
-					{
-						success = query.exec("UPDATE `DOCHOD` SET `Kwota` = '" + ite->lines[JobField::SALARY]->text() + "'  WHERE `Id_Doch` = " + QString::number(ite->Job_id));
-						noChanges = false;
+					else {
+						if (ite->lines[JobField::NAME]->text() != ite->Name && !ite->lines[JobField::NAME]->text().isEmpty())
+						{
+							success = query.exec("UPDATE `DOCHOD` SET `Nazwa_Firmy` = '" + ite->lines[JobField::NAME]->text() + "'  WHERE `Id_Doch` = " + QString::number(ite->Job_id));
+							noChanges = false;
+						}
+						if (ite->lines[JobField::ADDRESS]->text() != ite->Address && !ite->lines[JobField::ADDRESS]->text().isEmpty())
+						{
+							success = query.exec("UPDATE `DOCHOD` SET `Adres_Firmy` = '" + ite->lines[JobField::ADDRESS]->text() + "'  WHERE `Id_Doch` = " + QString::number(ite->Job_id));
+							noChanges = false;
+						}
+						if (ite->lines[JobField::SALARY]->text() != ite->Salary && !ite->lines[JobField::SALARY]->text().isEmpty())
+						{
+							success = query.exec("UPDATE `DOCHOD` SET `Kwota` = '" + ite->lines[JobField::SALARY]->text() + "'  WHERE `Id_Doch` = " + QString::number(ite->Job_id));
+							noChanges = false;
+						}
 					}
 				}
+
 			}
+			if (noChanges) return;
 
+			auto new_end = std::remove_if(jobs.begin(), jobs.end(), [](JobField * j) {
+				bool ans = j->deleteJob;
+				if (ans) delete j;
+				return ans;
+			});
+			jobs.erase(new_end, jobs.end());
+
+			db_holder->SetLastError(query.lastError().text());
 		}
-		//db_holder->close();
-		if (noChanges) return;
 
-		auto new_end = std::remove_if(jobs.begin(), jobs.end(), [](JobField * j) {
-			bool ans = j->deleteJob;
-			if(ans) delete j;
-			return ans;
-		});
-		jobs.erase(new_end, jobs.end());
-
-		db_holder->SetLastError(query.lastError().text());
-	}
-
-	if (success) {
-		QMessageBox::information(parent, "Success", "Your changes are saved!");
-		User->downloadUserData(db_holder);
-		new_job_btn->show();
-	}
-	else {
-		QMessageBox::information(parent, "Error", db_holder->GetLastError());
+		if (success) {
+			QMessageBox::information(parent, "Success", "Your changes are saved!");
+			User->downloadUserData(db_holder);
+			new_job_btn->show();
+		}
+		else {
+			QMessageBox::information(parent, "Error", db_holder->GetLastError());
+		}
 	}
 }
 

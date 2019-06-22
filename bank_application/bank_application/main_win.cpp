@@ -44,6 +44,7 @@ main_win::main_win(QWidget *parent)
 
 	connect(pages[GEN_VIEW], SIGNAL(settPage()), pages[SETT], SLOT(showPage()));
 	connect(pages[SETT], SIGNAL(hide()), pages[GEN_VIEW], SLOT(showPage()));
+	connect(pages[SETT], SIGNAL(logout()), pages[SING_IN], SLOT(showPage()));
 
 	connect(pages[GEN_VIEW], &Page::setCloseAble, this, [this](bool var) { closeAble = var; });
 	connect(pages[TRANS_HIST], &Page::setCloseAble, this, [this](bool var) { closeAble = var; });
