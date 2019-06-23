@@ -49,6 +49,7 @@ documentation and/or software.
 //      MD5(std::string).hexdigest()
 //
 // assumes that char is 8 bit and int is 32 bit
+
 class MD5
 {
 public:

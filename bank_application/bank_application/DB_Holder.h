@@ -12,6 +12,9 @@
 
 class account;
 
+/**
+*	Klasa odpowiedzialna za łączność z bazą danych.
+*/
 class DB_Holder
 {
 	QSqlDatabase db;

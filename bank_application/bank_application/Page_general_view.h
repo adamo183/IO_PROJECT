@@ -2,32 +2,21 @@
 #include "Page.h"
 #include "Win_transfer.h"
 
-
+/**
+* Strona główna programu.
+*/
 class Page_general_view :
 	public Page
 {
-
-public:
-	void showPage() override;
-	void setHidden(bool emitSignal = true) override;
-	bool work_in_new_thread() override;
-
-
-	Page_general_view(QScrollArea * parent = Q_NULLPTR, DB_Holder * db = nullptr, const QString & CSS = "" , account *user = Q_NULLPTR) : Page(parent, CSS), db_holder(db) , User(user) {};
-	~Page_general_view();
-	
-private:
 	void send_transfer();
 	void new_transfer(bool);
 
 	Thread_signals current_work;
 
 	DB_Holder * db_holder = nullptr;
+	account* User = Q_NULLPTR;
 
 	Win_transfer * win_transfer = Q_NULLPTR;
-
-	QLabel * lbl = Q_NULLPTR;
-	account* User = Q_NULLPTR;
 
 	QPushButton * new_transf = Q_NULLPTR;
 	QPushButton* credit_bton = Q_NULLPTR;
@@ -54,18 +43,31 @@ private:
 	QWidget * quick_wgt = Q_NULLPTR;
 	QWidget * acc_wgt = Q_NULLPTR;
 
-	//QVBoxLayout* acc_bar = Q_NULLPTR;
-	//QHBoxLayout* box_layout = Q_NULLPTR;
-	//QGridLayout* data_lay = Q_NULLPTR;
-	//QGroupBox* acc_frame = Q_NULLPTR;
-	//QLabel* trans_name_1 = Q_NULLPTR;
-	//QLabel* trans_value_1 = Q_NULLPTR;
-	//QLabel* trans_name_2 = Q_NULLPTR;
-	//QLabel* trans_value_2 = Q_NULLPTR;
-	//QGroupBox* quick_wid = Q_NULLPTR;
-	//QGridLayout * quick_grid = Q_NULLPTR;
-	//QWidget * layout_widget = Q_NULLPTR;
-	//QWidget* topWigdet = Q_NULLPTR;
-	//QHBoxLayout* top_bar = Q_NULLPTR;
-	
+public:
+
+	/** Metoda wyświetlająca bieżącą stronę.
+	*/
+	void showPage() override;
+
+	/** Metoda ukrywająca bieżącą stronę.
+	*	@param emitSignal - flaga czy po ukryciu strony wyemitować sygnał ukrycia strony.
+	*/
+	void setHidden(bool emitSignal = true) override;
+
+	/** Metoda implementująca pracę do wykonania w wątku pracującym.
+	*/
+	bool work_in_new_thread() override;
+
+
+	/** Konstruktor inicjalizujący.
+	*	@param parent - przodek obiektu.
+	*	@param db - obiekt bazy danych.
+	*	@param CSS - arkusz styli CSS.
+	*	@param user - obiekt użytkownika.
+	*/
+	Page_general_view(QScrollArea * parent = Q_NULLPTR, DB_Holder * db = nullptr, const QString & CSS = "", account *user = Q_NULLPTR) : Page(parent, CSS), db_holder(db), User(user) {};
+
+	/** Destruktor zwalniający dynamicznie zaalokowaną pamięć.
+	*/
+	~Page_general_view();
 };

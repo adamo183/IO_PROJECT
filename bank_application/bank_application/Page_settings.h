@@ -4,13 +4,12 @@
 #include <QTableView>
 #include "JobField.h"
 
+/**
+* Strona gui odpowiedzialnego za ustawienia.
+*/
 class Page_settings :
 	public Page
 {
-	Q_OBJECT
-
-private:
-
 	void setNewData();
 	void deleteAcc();
 
@@ -41,15 +40,28 @@ private:
 	QVBoxLayout * jobs_lay;
 	std::vector<JobField *> jobs;
 
-
-
 public:
+
+	/** Metoda wyświetlająca bieżącą stronę.
+	*/
 	void showPage() override;
+
+	/** Metoda ukrywająca bieżącą stronę.
+	*	@param emitSignal - flaga czy po ukryciu strony wyemitować sygnał ukrycia strony.
+	*/
 	void setHidden(bool emitSignal = true) override;
 
 
+	/** Konstruktor inicjalizujący.
+	*	@param parent - przodek obiektu.
+	*	@param db - obiekt bazy danych.
+	*	@param CSS - arkusz styli CSS.
+	*	@param user - obiekt użytkownika.
+	*/
 	Page_settings(QScrollArea * parent = Q_NULLPTR, DB_Holder * db = nullptr, const QString & CSS = "", account *user = Q_NULLPTR) : Page(parent, CSS), db_holder(db), User(user) {};
-	~Page_settings();
 
+	/** Destruktor zwalniający dynamicznie zaalokowaną pamięć.
+	*/
+	~Page_settings();
 };
 

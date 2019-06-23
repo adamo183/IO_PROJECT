@@ -5,6 +5,9 @@
 #include <QToolBox>
 #include <QButtonGroup>
 
+/**
+* Strona gui odpowiedzialnego za wyświetlenie transakcji użytkownika.
+*/
 class Page_Trans_Hist :
 	public Page
 {
@@ -27,11 +30,27 @@ class Page_Trans_Hist :
 	std::vector<std::pair<QLabel *, QPushButton *>> lbl_btn;
 
 public:
+
+	/** Metoda wyświetlająca bieżącą stronę.
+	*/
 	void showPage() override;
+
+	/** Metoda ukrywająca bieżącą stronę.
+	*	@param emitSignal - flaga czy po ukryciu strony wyemitować sygnał ukrycia strony.
+	*/
 	void setHidden(bool emitSignal = true) override;
 
 
+	/** Konstruktor inicjalizujący.
+	*	@param parent - przodek obiektu.
+	*	@param db - obiekt bazy danych.
+	*	@param CSS - arkusz styli CSS.
+	*	@param user - obiekt użytkownika.
+	*/
 	Page_Trans_Hist(QScrollArea * parent = Q_NULLPTR, DB_Holder * db = nullptr, const QString & CSS = "", account *user = Q_NULLPTR) : Page(parent, CSS), db_holder(db), User(user) {};
+
+	/** Destruktor zwalniający dynamicznie zaalokowaną pamięć.
+	*/
 	~Page_Trans_Hist();
 };
 

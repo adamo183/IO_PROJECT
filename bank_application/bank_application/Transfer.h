@@ -4,6 +4,10 @@
 class account;
 class DB_Holder;
 
+
+/**
+* Klasa realizująca operacje przelewów, oraz brania kredytu.
+*/
 class Transfer
 {
 	static bool correctNumber(const QString & number);

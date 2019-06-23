@@ -6,6 +6,9 @@
 #include <QTextBrowser>
 #include <QCheckBox>
 
+/**
+* Strona gui odpowiedzianego za kredyty.
+*/
 class Page_credit :
 	public Page
 {
@@ -30,11 +33,26 @@ class Page_credit :
 	void take_credit();
 
 public:
+
+	/** Metoda wyświetlająca bieżącą stronę.
+	*/
 	void showPage() override;
+
+	/** Metoda ukrywająca bieżącą stronę.
+	*	@param emitSignal - flaga czy po ukryciu strony wyemitować sygnał ukrycia strony.
+	*/
 	void setHidden(bool emitSignal = true) override;
 
-
+	/** Konstruktor inicjalizujący.
+	*	@param parent - przodek obiektu.
+	*	@param db - obiekt bazy danych.
+	*	@param CSS - arkusz styli CSS.
+	*	@param user - obiekt użytkownika.
+	*/
 	Page_credit(QScrollArea * parent = Q_NULLPTR, DB_Holder * db = nullptr, const QString & CSS = "", account *user = Q_NULLPTR) : Page(parent, CSS), db_holder(db), User(user) {};
+
+	/** Destruktor zwalniający dynamicznie zaalokowaną pamięć.
+	*/
 	~Page_credit();
 };
 
