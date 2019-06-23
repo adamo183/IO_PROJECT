@@ -80,7 +80,7 @@ QString Transfer::QuickTransfer(
 			QString req =
 				"SET SESSION TRANSACTION ISOLATION LEVEL SERIALIZABLE;\n"
 				"INSERT INTO TRANSAKCJE (Nr_Rach_Nad, Nr_Rach_Odb, Kwota, Tytul, Nazw_Odb, Adres_Odb) "
-				"VALUES('" + user->getAccNumber() + "', '" + number + "', " + amount_str + ", '" + title + "', '" + receiver_name + "', '" + receiver_adress + "');\n"
+				"VALUES('" + user->getAccNumber() + "', '" + number + "', " + amount_str + ", '" + title + "', '" + receiver_name + "', '" + receiver_address + "');\n"
 				"UPDATE UZYTKOWNIK SET Stan_Konta = Stan_Konta + " + amount_str + " WHERE Id_Uzytkow = " + receiver_id + ";\n"
 				"UPDATE UZYTKOWNIK SET Stan_Konta = Stan_Konta - " + amount_str + " WHERE Id_Uzytkow = " + QString::number(user->getUserId()) + ";\n"
 				"COMMIT;";

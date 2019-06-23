@@ -65,6 +65,8 @@ main_win::main_win(QWidget *parent)
 
 		timer->stop();
 	});
+
+	this->showMaximized();
 }
 
 main_win::~main_win() {
