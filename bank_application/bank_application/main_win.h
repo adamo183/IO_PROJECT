@@ -48,12 +48,6 @@ private:
 
 	QString css = "";
 	QTimer * timer;
-		
-	Page * page_sign_in = Q_NULLPTR;
-	Page * page_general_view = Q_NULLPTR;
-	Page * page_credit = Q_NULLPTR;
-	Page * page_trans_hist = Q_NULLPTR;
-	Page * page_settings = Q_NULLPTR;
 
 	enum {SING_IN, GEN_VIEW, CREDIT, TRANS_HIST, SETT};
 	std::vector<Page *> pages;
