@@ -64,4 +64,3 @@ public:
 	void setTransferAmount(double amount) { ln[Amount]->setText(QString::number(amount)); };
 	void setTransferAmount(const QString & amount) { ln[Amount]->setText(amount); };
 };
-

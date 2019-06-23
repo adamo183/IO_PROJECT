@@ -14,8 +14,12 @@ class Page_sign_in :
 
 	std::atomic<bool> download_success = false;
 
-public slots:
+	DB_Holder * db_holder = nullptr;
+	QString *login;
+	QString *password;
+
 	void set_login_data(QString log, QString pas);
+
 
 public:
 	void showPage() override;
@@ -25,12 +29,5 @@ public:
 	Page_sign_in(QScrollArea * parent = Q_NULLPTR, DB_Holder * db = nullptr, const QString & CSS = "" , account *user = Q_NULLPTR) : Page(parent, CSS), db_holder(db) , User(user) {};
 
 	~Page_sign_in();
-
-protected:
-	DB_Holder * db_holder = nullptr;
-	QString *login;
-	QString *password;
-	
-	
 };
 

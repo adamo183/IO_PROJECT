@@ -19,12 +19,22 @@
 #include "DB_Holder.h"
 #include "account.h"
 
+
+/**
+* Klasa odpowiedzialna za gui.
+*/
 class main_win : public QMainWindow
 {
 	Q_OBJECT
 		
 public:
+	/** Konstruktor inicjalizujący aplikację.
+	*	@param parent - przodek, domyślnie brak przodka.
+	*/
 	main_win(QWidget *parent = Q_NULLPTR);
+
+	/** Destruktor zwalniający dynamicznie zaalokowaną pamięć.
+	*/
 	~main_win();
 
 private:
@@ -38,9 +48,7 @@ private:
 
 	QString css = "";
 	QTimer * timer;
-
-	//QHBoxLayout * main_layout;??
-	
+		
 	Page * page_sign_in = Q_NULLPTR;
 	Page * page_general_view = Q_NULLPTR;
 	Page * page_credit = Q_NULLPTR;

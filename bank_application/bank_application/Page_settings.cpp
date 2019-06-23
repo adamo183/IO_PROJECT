@@ -235,7 +235,10 @@ void Page_settings::setNewData()
 			});
 			jobs.erase(new_end, jobs.end());
 
-			db_holder->SetLastError(query.lastError().text());
+			if (!success) {
+				QMessageBox::critical(parent, "Error", query.lastError().text());
+				return;
+			}
 		}
 
 		if (success) {
@@ -244,7 +247,7 @@ void Page_settings::setNewData()
 			new_job_btn->show();
 		}
 		else {
-			QMessageBox::information(parent, "Error", db_holder->GetLastError());
+			QMessageBox::critical(parent, "Error", db_holder->GetLastError());
 		}
 	}
 }

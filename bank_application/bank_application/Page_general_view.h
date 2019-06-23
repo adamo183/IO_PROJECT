@@ -6,9 +6,6 @@
 class Page_general_view :
 	public Page
 {
-public slots:
-	void send_transfer();
-	void new_transfer(bool);
 
 public:
 	void showPage() override;
@@ -20,6 +17,8 @@ public:
 	~Page_general_view();
 	
 private:
+	void send_transfer();
+	void new_transfer(bool);
 
 	Thread_signals current_work;
 
