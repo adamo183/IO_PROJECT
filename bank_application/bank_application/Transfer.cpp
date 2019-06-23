@@ -42,7 +42,7 @@ QString Transfer::QuickTransfer(
 	const QString & number, 
 	const QString & title, 
 	QString receiver_name, 
-	QString receiver_adress
+	QString receiver_address
 ) {
 	QString ans;
 
@@ -74,7 +74,7 @@ QString Transfer::QuickTransfer(
 			QString amount_str = QString::number(amount);
 			if (download_receiver_data) {
 				receiver_name = query.value(1).toString() + " " + query.value(2).toString();
-				receiver_adress = query.value(3).toString();
+				receiver_address = query.value(3).toString();
 			}
 
 			QString req =

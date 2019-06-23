@@ -175,7 +175,7 @@ public:
 	*	@param u_id - Id użytkownika.
 		@param nm - Imię użytkownika.
 		@param srnm - Nazwisko użytkownika.
-		@param acc_m - Numer konta użytkownika.
+		@param acc_n - Numer konta użytkownika.
 		@param pn - Numer telefonu użytkownika.
 		@param addr - Adres zamieszkania użytkownika.
 		@param nr_d - Numer dowodu użytkownika.

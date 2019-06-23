@@ -30,7 +30,7 @@ public:
 		const QString & number, 
 		const QString & title, 
 		QString receiver_name = "", 
-		QString receiver_adress = ""
+		QString receiver_address = ""
 	);
 
 	/** Statyczna matoda dodająca kredyt użytkownikowi.
