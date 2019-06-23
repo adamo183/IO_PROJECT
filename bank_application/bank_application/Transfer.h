@@ -35,7 +35,7 @@ public:
 	*	@param amount - kwota kredytu.
 	*	@param interest - oprocentowanie.
 	*	@param duration - okres kredytowania w miesiącach.
-	*	@ Informacja o przebigu zaciągania kredytu.
+	*	@return Informacja o przebigu zaciągania kredytu.
 	*/
 	static QString TakeCredit(
 		DB_Holder * db,
